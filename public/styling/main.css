@@ -1,0 +1,10 @@
+/* FONTS */
+@font-face {
+  font-family: "KdG";
+  src: url("../fonts/KdG-Regular.otf") format("otf"), url("../fonts/KdG-Regular.woff") format("woff"), url("../fonts/KdG-Regular.ttf") format("truetype"), url("../fonts/KdG-Regular.svg#KdGRegular") format("svg"); }
+/* VARIABLES */
+body {
+  font-family: Verdana, Geneva, sans-serif;
+  background-color: #1d1d1b; }
+
+/*# sourceMappingURL=main.css.map */

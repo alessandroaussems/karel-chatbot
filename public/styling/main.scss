@@ -1,0 +1,20 @@
+/* FONTS */
+@font-face {
+  font-family: "KdG";
+  src: url("../fonts/KdG-Regular.otf") format("otf"),
+  url("../fonts/KdG-Regular.woff") format("woff"),
+  url("../fonts/KdG-Regular.ttf") format("truetype"),
+  url("../fonts/KdG-Regular.svg#KdGRegular") format("svg");
+}
+/* VARIABLES */
+$black: #1d1d1b;
+$fullblack: #0c090a;
+$white: #ffffff;
+$accentcolor: #00b2e2;
+$Kdgfont: KdG;
+$secundaryfont: Verdana, Geneva, sans-serif;
+body
+{
+  font-family: $secundaryfont;
+  background-color: $black;
+}
