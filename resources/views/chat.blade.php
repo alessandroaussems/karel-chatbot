@@ -8,7 +8,18 @@
     <link rel="stylesheet" type="text/css" href="{{asset('styling/main.css')}}">
 </head>
 <body>
-    <p>Karel</p>
+<nav>
+    <img src="{{asset('img/logo_white.png')}}">
+</nav>
+<main>
+    <div class="chat">
+        <ul id="messagelist">
+            <li class="botmessage">Bot</li>
+            <li class="usermessage">Me</li>
+        </ul>
+    </div>
+    <input type="text" class="userinput" onkeydown="sendMessage(this)">
+</main>
 <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
 </body>

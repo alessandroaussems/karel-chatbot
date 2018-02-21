@@ -15,6 +15,52 @@ $Kdgfont: KdG;
 $secundaryfont: Verdana, Geneva, sans-serif;
 body
 {
-  font-family: $secundaryfont;
+  margin: 0 auto;
+  background-color: $white;
+}
+nav
+{
   background-color: $black;
+  img
+  {
+    width: 15%;
+    height: auto;
+  }
+}
+main
+{
+  .chat
+  {
+    border: 1px solid black;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    ul
+    {
+      list-style-type: none;
+      padding: 0px;
+      li
+      {
+        display: table;
+        width: 50%;
+      }
+      .usermessage
+      {
+        margin-left: 50%;
+        text-align: right;
+      }
+    }
+  }
+  .userinput
+  {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding: 0px;
+    border-color: $black;
+  }
+  .userinput:focus
+  {
+    outline: none;
+  }
 }
