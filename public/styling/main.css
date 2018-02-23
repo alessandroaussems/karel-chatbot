@@ -3,37 +3,72 @@
   font-family: "KdG";
   src: url("../fonts/KdG-Regular.otf") format("otf"), url("../fonts/KdG-Regular.woff") format("woff"), url("../fonts/KdG-Regular.ttf") format("truetype"), url("../fonts/KdG-Regular.svg#KdGRegular") format("svg"); }
 /* VARIABLES */
+/* CLEARFIX */
+.clearfix::before, .clearfix::after {
+  content: "";
+  display: table;
+  line-height: 0; }
+
+.clearfix::after {
+  clear: both; }
+
 body {
   margin: 0 auto;
-  background-color: #ffffff; }
+  background-color: #ffffff;
+  overflow-x: hidden; }
 
 nav {
   background-color: #1d1d1b; }
-  nav img {
+  nav * {
+    float: left; }
+  nav #botlogo {
+    margin-top: 1.75%;
+    width: 2.5%;
+    height: auto;
+    margin-left: 1%; }
+  nav h1 {
+    font-family: KdG;
+    font-weight: normal;
+    color: #ffffff;
+    margin-top: 1%;
+    margin-bottom: 0px;
+    font-size: 3.5vw;
+    width: 30%;
+    text-align: center;
+    margin-left: 30%; }
+  nav #kdglogo {
     width: 15%;
-    height: auto; }
+    height: auto;
+    margin-left: 21%; }
 
-main .chat {
-  border: 1px solid black;
-  width: 50%;
-  margin-left: 25%;
-  margin-right: 25%; }
-  main .chat ul {
-    list-style-type: none;
-    padding: 0px; }
-    main .chat ul li {
-      display: table;
-      width: 50%; }
-    main .chat ul .usermessage {
-      margin-left: 50%;
-      text-align: right; }
-main .userinput {
-  width: 50%;
-  margin-left: 25%;
-  margin-right: 25%;
-  padding: 0px;
-  border-color: #1d1d1b; }
-main .userinput:focus {
-  outline: none; }
+main {
+  height: 85vh; }
+  main .chat {
+    border-left: 2px solid #0c090a;
+    border-right: 2px solid #0c090a;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    height: 95%;
+    overflow-x: scroll;
+    overflow-y: hidden; }
+    main .chat ul {
+      list-style-type: none;
+      padding: 0px; }
+      main .chat ul li {
+        display: table;
+        width: 50%; }
+      main .chat ul .usermessage {
+        margin-left: 50%;
+        text-align: right; }
+  main .userinput {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding: 0px;
+    border-color: #1d1d1b;
+    height: 5%; }
+  main .userinput:focus {
+    outline: none; }
 
 /*# sourceMappingURL=main.css.map */

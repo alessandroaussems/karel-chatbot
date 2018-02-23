@@ -8,8 +8,10 @@
     <link rel="stylesheet" type="text/css" href="{{asset('styling/main.css')}}">
 </head>
 <body>
-<nav>
-    <img src="{{asset('img/logo_white.png')}}">
+<nav class="clearfix">
+    <img id="botlogo" src="{{asset('img/logo_white.png')}}">
+    <h1>Karel - Chatbot</h1>
+    <img id="kdglogo" src="{{asset('img/logo_kdg_white.png')}}">
 </nav>
 <main>
     <div class="chat">
