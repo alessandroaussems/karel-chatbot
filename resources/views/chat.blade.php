@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name') }}  - Chatbot</title>
+    <link rel="icon" type="image/png" href="{{asset('img/logo_black.png')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('styling/main.css')}}">
 </head>
 <body>
