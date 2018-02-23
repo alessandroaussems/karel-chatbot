@@ -21,7 +21,7 @@
             <li class="usermessage">Me</li>
         </ul>
     </div>
-    <input type="text" class="userinput" onkeydown="sendMessage(this)">
+    <input type="text" class="userinput" placeholder="Typ je bericht hier..." onkeydown="sendMessage(this)">
 </main>
 <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>

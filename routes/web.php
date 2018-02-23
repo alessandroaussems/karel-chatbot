@@ -14,3 +14,4 @@
 Route::get('/', function () {
     return view('chat');
 });
+Route::get('/chat/{message}','ChatController@handleMessage');
