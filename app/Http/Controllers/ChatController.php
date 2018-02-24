@@ -10,10 +10,28 @@ class ChatController extends Controller
     {
         //ON ERROR: echo "ERROR";
         //RESPONSE: echo "Your response";
-        var_dump($this->CallWit($message));
+        $witresponsearray=$this->CallWit($message);
+        if(count($witresponsearray["entities"])>0)
+        {
+            $intentvalue=$witresponsearray["entities"]["intent"][0]["value"]; ///GET INTENT VALUE
+        }
+        else
+        {
+            $intentvalue="UNDEFINED";
+        }
+        if($intentvalue=="toestand")
+        {
+            echo "Goed! En met jou?";
+        }
+        else
+        {
+            echo "ERROR";
+        }
+
     }
     function CallWit($message)
     {
+        $message=urlencode($message);
         $witaccestoken=$_ENV['WITACCESSTOKEN'];
         $url="https://api.wit.ai/message?q=".$message;
         $authorization = "Authorization: Bearer ".$witaccestoken;
@@ -23,7 +41,7 @@ class ChatController extends Controller
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch,CURLOPT_URL,$url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $result = json_decode(curl_exec($ch));
+        $result = json_decode(curl_exec($ch),true);
         curl_close($ch);
         return $result;
     }
