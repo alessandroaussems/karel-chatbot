@@ -8,6 +8,7 @@ class ChatController extends Controller
 {
     function handleMessage($message)
     {
-        echo $message;
+        //ON ERROR: echo "ERROR";
+        //RESPONSE: echo "Your response";
     }
 }
