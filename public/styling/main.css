@@ -56,11 +56,19 @@ main {
       list-style-type: none;
       padding: 0px; }
       main .chat ul li {
+        text-align: left;
         display: table;
-        width: 50%; }
+        max-width: 50%;
+        padding: 0.5%;
+        margin-bottom: 2%; }
+      main .chat ul .botmessage {
+        background-color: #0c090a;
+        color: #ffffff; }
       main .chat ul .usermessage {
-        margin-left: 50%;
-        text-align: right; }
+        background-color: #00b2e2;
+        color: #0c090a;
+        margin-left: auto;
+        margin-right: 0; }
   main .userinput {
     width: 50%;
     margin-left: 25%;

@@ -80,13 +80,23 @@ main
       padding: 0px;
       li
       {
+        text-align: left;
         display: table;
-        width: 50%;
+        max-width: 50%;
+        padding: 0.5%;
+        margin-bottom: 2%;
+      }
+      .botmessage
+      {
+        background-color: $fullblack;
+        color: $white;
       }
       .usermessage
       {
-        margin-left: 50%;
-        text-align: right;
+        background-color: $accentcolor;
+        color: $fullblack;
+        margin-left:auto;
+        margin-right:0;
       }
     }
   }
