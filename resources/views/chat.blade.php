@@ -19,11 +19,6 @@
         <ul id="messagelist">
             <li class="botmessage">Hallo! Ik ben Karel! Dé chatbot van KdG! Heb je vragen? Stel ze maar!</li>
             <li class="usermessage">Hier komen berichten van de gebruiker!</li>
-            <div class="typing-indicator">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </ul>
     </div>
     <input type="text" class="userinput" placeholder="Typ je bericht hier..." onkeydown="sendMessage(this)">

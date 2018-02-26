@@ -1,13 +1,15 @@
-var messagelist=document.getElementById("messagelist");
+var MESSAGELIST=document.getElementById("messagelist");
+var BOTTHINKINGTIME=3000;
 var errormessage="Whoops! Dat heb ik niet verstaan!";
 function sendMessage(e)
 {
+    //IF ENTER KEY IS PRESSED
     if(event.key === 'Enter')
     {
         var message=e.value;
         CreateUserMessage(message);
         e.value = "";
-
+            //AJAX CALL TO OUR API
             var xmlhttp;
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
@@ -15,11 +17,11 @@ function sendMessage(e)
                     var response = this.responseText;
                     if(response=="ERROR")
                     {
-                        CreateBotMessage(errormessage);
+                        CreateAnswer(errormessage);
                     }
                     else
                     {
-                        CreateBotMessage(response);
+                        CreateAnswer(response);
                     }
                 }
             }
@@ -30,19 +32,33 @@ function sendMessage(e)
 }
 function CreateUserMessage(message)
 {
+    //ADDING THE USER'S MESSAGE TO THE DOM
     var listitem=document.createElement("li");
     listitem.className="usermessage";
     message=document.createTextNode(message);
     listitem.appendChild(message);
-    messagelist.appendChild(listitem);
+    MESSAGELIST.appendChild(listitem);
 }
-function CreateBotMessage(message)
+function CreateAnswer(message)
 {
-    var listitem=document.createElement("li");
-    listitem.className="botmessage";
-    message=document.createTextNode(message);
-    listitem.appendChild(message);
-    messagelist.appendChild(listitem);
+        //CREATING TYPING ICON HERE
+        var listitem=document.createElement("li");
+        listitem.className="typing-indicator botmessage";
+        for(var i=0;i<3;i++)
+        {
+            var span=document.createElement("span");
+            listitem.appendChild(span);
+        }
+        MESSAGELIST.appendChild(listitem);
+        //WAIT BOTTHIKNINGTIME THEN REMOVE TYPING ICON AND CREATE RESPONSE
+        setTimeout(function(){
+            MESSAGELIST.removeChild(document.getElementsByClassName("typing-indicator")[0]);
+            var listitem=document.createElement("li");
+            listitem.className="botmessage";
+            message=document.createTextNode(message);
+            listitem.appendChild(message);
+            MESSAGELIST.appendChild(listitem);
+        }, BOTTHINKINGTIME);
 }
 $(document).ready(function(){
  //JSCODE HERE!

@@ -118,7 +118,7 @@ main
   background-color: $fullblack;
   will-change: transform;
   width: auto;
-  padding: 1%;
+  padding: 1% !important;
   display: table;
   position: relative;
   animation: 2s bulge infinite ease-out;
