@@ -1,7 +1,7 @@
-@extends('layouts.header')
+@extends('partials.header')
 
 @section('content')
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" class="login">
                         @csrf
 
                             <label for="email">E-Mail Address</label><br>

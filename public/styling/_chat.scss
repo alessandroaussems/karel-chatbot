@@ -1,0 +1,49 @@
+.chat
+{
+  border-left: 2px solid $fullblack;
+  border-right: 2px solid $fullblack;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  height: 95%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  ul
+  {
+    list-style-type: none;
+    padding: 0px;
+    li
+    {
+      text-align: left;
+      display: table;
+      max-width: 50%;
+      padding: 0.5%;
+      margin-bottom: 2%;
+    }
+    .botmessage
+    {
+      background-color: $fullblack;
+      color: $white;
+    }
+    .usermessage
+    {
+      background-color: $accentcolor;
+      color: $fullblack;
+      margin-left:auto;
+      margin-right:0;
+    }
+  }
+}
+.userinput
+{
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding: 0px;
+  border-color: $black;
+  height: 5%;
+}
+.userinput:focus
+{
+  outline: none;
+}

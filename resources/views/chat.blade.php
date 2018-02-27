@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('partials.header')
 
 @section('content')
     <div class="chat">

@@ -1,0 +1,33 @@
+nav
+{
+  background-color: $black;
+  *
+  {
+    float: left;
+  }
+  #botlogo
+  {
+    margin-top: 1.75%;
+    width: 2.5%;
+    height: auto;
+    margin-left: 1%;
+  }
+  h1
+  {
+    font-family: $Kdgfont;
+    font-weight: normal;
+    color: $white;
+    margin-top: 1%;
+    margin-bottom: 0px;
+    font-size: 3.5vw;
+    width: 30%;
+    text-align: center;
+    margin-left: 30%;
+  }
+  #kdglogo
+  {
+    width: 15%;
+    height: auto;
+    margin-left: 21%;
+  }
+}
