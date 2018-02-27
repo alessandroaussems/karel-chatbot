@@ -18,6 +18,7 @@ $secundaryfont: Verdana, Geneva, sans-serif;
 @import "_chat.scss";
 @import "_chat.scss";
 @import "_typing.scss";
+@import "_login.scss";
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {
   content: "";
@@ -32,6 +33,7 @@ body
   margin: 0 auto;
   background-color: $white;
   overflow-x: hidden;
+  font-family: $secundaryfont;
 }
 main
 {

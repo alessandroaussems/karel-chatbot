@@ -134,6 +134,35 @@ nav {
 @keyframes bulge {
   50% {
     transform: scale(1.05); } }
+.login {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2.5%; }
+  .login > input {
+    font-family: Verdana, Geneva, sans-serif;
+    width: 100%;
+    height: 3vh;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: 3px solid #0c090a; }
+  .login > input:focus {
+    outline: none; }
+  .login > button {
+    padding: 1%;
+    color: #ffffff;
+    background-color: #0c090a;
+    border: 1px solid #0c090a;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    font-family: Verdana, Geneva, sans-serif; }
+  .login > button:focus {
+    outline: none; }
+  .login .invalid-feedback {
+    font-size: 1vw;
+    color: red; }
+
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {
   content: "";
@@ -146,7 +175,8 @@ nav {
 body {
   margin: 0 auto;
   background-color: #ffffff;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  font-family: Verdana, Geneva, sans-serif; }
 
 main {
   height: 85vh; }
