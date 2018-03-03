@@ -21,6 +21,7 @@ $secundaryfont: Verdana, Geneva, sans-serif;
 @import "_login.scss";
 @import "_adminmenu.scss";
 @import "_register.scss";
+@import "_messages.scss";
 /* GLOBAL */
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {
@@ -42,4 +43,8 @@ main
 {
   height: 85vh;
 
+}
+small
+{
+  opacity: 0.5;
 }

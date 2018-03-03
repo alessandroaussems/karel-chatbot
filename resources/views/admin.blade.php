@@ -5,7 +5,7 @@
         <h3>Welkom! {{Auth::user()->name}}</h3>    <a href="{{ route('logout') }}"> Logout </a>
         <p>Hier kan je de instellingen aanpassen voor Karel-Chatbot:</p>
         <ul class="options">
-            <li><a href="/register">Admin bijmaken</a></li>
+            <li><a href="/register">Admin maken</a></li>
             <li><a href="/messages">Berichten</a></li>
         </ul>
     </div>

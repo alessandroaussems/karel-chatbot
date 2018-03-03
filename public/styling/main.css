@@ -225,6 +225,29 @@ nav {
     font-size: 1vw;
     color: red; }
 
+.messagesoverview {
+  text-align: center;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%; }
+  .messagesoverview ul {
+    list-style-type: none;
+    padding: 0px; }
+    .messagesoverview ul li {
+      border: 1px solid #0c090a;
+      padding: 1%;
+      margin-bottom: 3%;
+      width: 100%;
+      background-color: #0c090a; }
+      .messagesoverview ul li a {
+        text-decoration: none;
+        color: #ffffff; }
+    .messagesoverview ul li:hover {
+      background-color: #ffffff;
+      cursor: pointer; }
+      .messagesoverview ul li:hover a {
+        color: #0c090a; }
+
 /* GLOBAL */
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {
@@ -243,5 +266,8 @@ body {
 
 main {
   height: 85vh; }
+
+small {
+  opacity: 0.5; }
 
 /*# sourceMappingURL=main.css.map */

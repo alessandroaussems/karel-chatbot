@@ -1,0 +1,35 @@
+.messagesoverview
+{
+  text-align: center;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  ul
+  {
+    list-style-type: none;
+    padding: 0px;
+    li
+    {
+      border: 1px solid $fullblack;
+      padding: 1%;
+      margin-bottom: 3%;
+      width: 100%;
+      background-color: $fullblack;
+      a
+      {
+        text-decoration: none;
+        color: $white;
+      }
+    }
+    li:hover
+    {
+      background-color: $white;
+      cursor: pointer;
+      a
+      {
+        color: $fullblack;
+      }
+    }
+  }
+
+}

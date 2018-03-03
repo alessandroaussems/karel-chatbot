@@ -2,6 +2,8 @@
 
 @section('content')
                     <form method="POST" action="{{ route('register') }}" class="register">
+                        <h3>Admin maken</h3>
+                        <small>Deze heeft dan ook toegang tot de opties van Karel!</small>
                         @csrf
                         @if ($errors->has('name'))
                             <span class="invalid-feedback">
