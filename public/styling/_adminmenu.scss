@@ -14,10 +14,19 @@
       padding: 1%;
       width: 100%;
       background-color: $fullblack;
+      border: 1px solid $fullblack;
       a
       {
-        color: $white;
         text-decoration: none;
+        color: $white;
+      }
+    }
+    li:hover
+    {
+      background-color: $white;
+      a
+      {
+        color: $fullblack;
       }
     }
   }

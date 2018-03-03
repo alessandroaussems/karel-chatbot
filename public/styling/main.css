@@ -159,6 +159,11 @@ nav {
     font-family: Verdana, Geneva, sans-serif; }
   .login > button:focus {
     outline: none; }
+  .login > button:hover {
+    background-color: #ffffff;
+    border-color: #0c090a;
+    color: #0c090a;
+    cursor: pointer; }
   .login .invalid-feedback {
     font-size: 1vw;
     color: red; }
@@ -175,10 +180,15 @@ nav {
       margin-bottom: 3%;
       padding: 1%;
       width: 100%;
-      background-color: #0c090a; }
+      background-color: #0c090a;
+      border: 1px solid #0c090a; }
       .adminmenu .options li a {
-        color: #ffffff;
-        text-decoration: none; }
+        text-decoration: none;
+        color: #ffffff; }
+    .adminmenu .options li:hover {
+      background-color: #ffffff; }
+      .adminmenu .options li:hover a {
+        color: #0c090a; }
 
 .register {
   width: 30%;
@@ -205,6 +215,11 @@ nav {
     font-family: Verdana, Geneva, sans-serif; }
   .register > button:focus {
     outline: none; }
+  .register > button:hover {
+    background-color: #ffffff;
+    border-color: #0c090a;
+    color: #0c090a;
+    cursor: pointer; }
   .register .invalid-feedback {
     font-size: 1vw;
     color: red; }

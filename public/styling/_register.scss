@@ -32,6 +32,13 @@
   {
     outline: none;
   }
+  > button:hover
+  {
+    background-color: $white;
+    border-color: $fullblack;
+    color: $fullblack;
+    cursor: pointer;
+  }
   .invalid-feedback
   {
     font-size: 1vw;
