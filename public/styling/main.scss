@@ -22,6 +22,8 @@ $secundaryfont: Verdana, Geneva, sans-serif;
 @import "_adminmenu.scss";
 @import "_register.scss";
 @import "_messages.scss";
+@import "_messagedetail.scss";
+@import "_messageedit.scss";
 /* GLOBAL */
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {

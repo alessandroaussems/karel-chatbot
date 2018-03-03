@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Message;
+use App\Sentence;
+use Collective\Html\HtmlFacade;
+use Collective\Html\FormFacade;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 
 class MessageController extends Controller
 {
@@ -51,7 +57,10 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        //
+        $message = Message::where("id",$id)->first();
+        $answers= Sentence::where("message_id",$id)->get();
+        return view("messagedetail")->with('message',$message)->with("answers",$answers);
+
     }
 
     /**
@@ -62,7 +71,8 @@ class MessageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $message = Message::where("id",$id)->first();
+        return view("messageedit")->with('message', $message);
     }
 
     /**
@@ -74,7 +84,23 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = array(
+            'answer'      => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails())
+        {
+            return Redirect::to('messages/'.$id."/edit")
+                ->withErrors($validator)
+                ->withInput();
+        }
+        else
+        {
+            $message = Message::find($id);
+            $message->answer = Input::get('answer');
+            $message->save();
+            return Redirect::to('messages/'.$id);
+        }
     }
 
     /**
@@ -85,6 +111,13 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $message = Message::find($id);
+        $message->delete();
+        $sentences=Sentence::where("message_id",$id)->get();
+        foreach ($sentences as $sentence)
+        {
+            $sentence->delete();
+        }
+        return Redirect::to('messages');
     }
 }

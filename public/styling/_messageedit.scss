@@ -1,0 +1,47 @@
+.messageedit
+{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+   input
+  {
+    font-family: $secundaryfont;
+    width: 100%;
+    height: 3vh;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: 3px solid $fullblack;
+  }
+   input:focus
+  {
+    outline: none;
+  }
+   button
+  {
+    padding: 1%;
+    color: $white;
+    background-color: $fullblack;
+    border: 1px solid $fullblack;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    font-family: $secundaryfont;
+  }
+   button:focus
+  {
+    outline: none;
+  }
+   button:hover
+  {
+    background-color: $white;
+    border-color: $fullblack;
+    color: $fullblack;
+    cursor: pointer;
+  }
+}
+.errors
+{
+  padding: 0px;
+  list-style-type: none;
+  color: red;
+}
