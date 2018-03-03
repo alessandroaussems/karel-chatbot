@@ -14,12 +14,12 @@
 Route::get('/', function () {
     return view('chat');
 });
-Route::get('/chat/{message}','ChatController@handleMessage');
+Route::get('chat/{message}','ChatController@handleMessage');
 
 Auth::routes();
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::get('/admin', 'AdminController@index');
+Route::get('admin', 'AdminController@index');
 
 Route::resource('messages', 'MessageController');
