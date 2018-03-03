@@ -19,6 +19,8 @@ $secundaryfont: Verdana, Geneva, sans-serif;
 @import "_chat.scss";
 @import "_typing.scss";
 @import "_login.scss";
+@import "_adminmenu.scss";
+/* GLOBAL */
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {
   content: "";
