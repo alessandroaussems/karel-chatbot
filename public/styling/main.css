@@ -186,7 +186,8 @@ nav {
         text-decoration: none;
         color: #ffffff; }
     .adminmenu .options li:hover {
-      background-color: #ffffff; }
+      background-color: #ffffff;
+      cursor: pointer; }
       .adminmenu .options li:hover a {
         color: #0c090a; }
 
