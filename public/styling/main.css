@@ -255,6 +255,27 @@ nav {
   margin-left: 25%;
   margin-right: 25%; }
 
+.edit, .delete {
+  display: inline-block; }
+
+.edit, .deletebutton {
+  background-color: #0c090a;
+  color: #ffffff;
+  border: 1px solid #0c090a; }
+
+.edit {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1em; }
+
+.deletebutton {
+  font-size: 1em;
+  cursor: pointer; }
+
+.edit:hover, .deletebutton:hover {
+  color: #0c090a;
+  background-color: #ffffff; }
+
 .messageedit {
   width: 50%;
   margin-left: auto;

@@ -59,7 +59,14 @@ class MessageController extends Controller
     {
         $message = Message::where("id",$id)->first();
         $answers= Sentence::where("message_id",$id)->get();
-        return view("messagedetail")->with('message',$message)->with("answers",$answers);
+        if(isset($message))
+        {
+            return view("messagedetail")->with('message',$message)->with("answers",$answers);
+        }
+        else
+        {
+            abort(404);
+        }
 
     }
 

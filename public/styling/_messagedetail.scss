@@ -4,3 +4,29 @@
   margin-left: 25%;
   margin-right: 25%;
 }
+.edit,.delete
+{
+  display: inline-block;
+}
+.edit,.deletebutton
+{
+  background-color: $fullblack;
+  color: $white;
+  border: 1px solid $fullblack;
+}
+.edit
+{
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1em;
+}
+.deletebutton
+{
+  font-size: 1em;
+  cursor: pointer;
+}
+.edit:hover,.deletebutton:hover
+{
+  color: $fullblack;
+  background-color: $white;
+}

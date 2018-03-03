@@ -6,10 +6,10 @@
         <small>Hier zie je wat Karel antwoord op bepaalde berichten</small>
         <h5>Antwoord:</h5>
         <p>{{$message->answer}}</p>
-        <a href="/messages/{{$message->id}}/edit">Edit</a>
+        <a class="edit" href="/messages/{{$message->id}}/edit">Aanpassen</a>
         {{ Form::open(array('url' => 'messages/' . $message->id, 'class' =>'delete')) }}
         {{ Form::hidden('_method', 'DELETE') }}
-        {{ Form::submit('Delete', array('class' => 'delete','onclick'=>'return confirm("Ben je zeker?")')) }}
+        {{ Form::submit('Verwijderen', array('class' => 'deletebutton','onclick'=>'return confirm("Ben je zeker?")')) }}
         {{ Form::close() }}
         <h5>Reageert op:</h5>
         <ul>
