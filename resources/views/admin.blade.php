@@ -6,6 +6,7 @@
         <p>Hier kan je de instellingen aanpassen voor Karel-Chatbot:</p>
         <ul class="options">
             <li><a href="/register">Admin bijmaken</a></li>
+            <li><a href="/messages">Berichten</a></li>
         </ul>
     </div>
 
