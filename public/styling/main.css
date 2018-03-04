@@ -2,6 +2,9 @@
 @font-face {
   font-family: "KdG";
   src: url("../fonts/KdG-Regular.otf") format("otf"), url("../fonts/KdG-Regular.woff") format("woff"), url("../fonts/KdG-Regular.ttf") format("truetype"), url("../fonts/KdG-Regular.svg#KdGRegular") format("svg"); }
+@font-face {
+  font-family: "icon";
+  src: url("../fonts/iconfont.eot") format("eot"), url("../fonts/iconfont.woff") format("woff"), url("../fonts/iconfont.ttf") format("truetype"); }
 /* VARIABLES */
 /* PARTIALS */
 nav {
@@ -254,27 +257,15 @@ nav {
   width: 50%;
   margin-left: 25%;
   margin-right: 25%; }
-
-.edit, .delete {
-  display: inline-block; }
-
-.edit, .deletebutton {
-  background-color: #0c090a;
-  color: #ffffff;
-  border: 1px solid #0c090a; }
-
-.edit {
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 1em; }
-
-.deletebutton {
-  font-size: 1em;
-  cursor: pointer; }
-
-.edit:hover, .deletebutton:hover {
-  color: #0c090a;
-  background-color: #ffffff; }
+  .messagedetail .answer {
+    display: inline-block; }
+  .messagedetail .edit, .messagedetail .delete {
+    display: inline-block;
+    font-family: icon;
+    color: #0c090a;
+    text-decoration: none; }
+  .messagedetail .edit:hover, .messagedetail .delete:hover {
+    transform: translateY(-10%); }
 
 .messageedit {
   width: 50%;

@@ -6,12 +6,19 @@
   url("../fonts/KdG-Regular.ttf") format("truetype"),
   url("../fonts/KdG-Regular.svg#KdGRegular") format("svg");
 }
+@font-face {
+  font-family: "icon";
+  src: url("../fonts/iconfont.eot") format("eot"),
+  url("../fonts/iconfont.woff") format("woff"),
+  url("../fonts/iconfont.ttf") format("truetype")
+}
 /* VARIABLES */
 $black: #1d1d1b;
 $fullblack: #0c090a;
 $white: #ffffff;
 $accentcolor: #00b2e2;
 $Kdgfont: KdG;
+$iconfont: icon;
 $secundaryfont: Verdana, Geneva, sans-serif;
 /* PARTIALS */
 @import "_header.scss";
