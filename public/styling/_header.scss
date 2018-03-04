@@ -4,30 +4,39 @@ nav
   *
   {
     float: left;
+    width: 33.33333333%;
   }
   #botlogo
   {
-    margin-top: 1.75%;
-    width: 2.5%;
-    height: auto;
+    width: 4%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     margin-left: 1%;
+    img
+    {
+      width: 100%;
+    }
   }
   h1
   {
+    margin-left: 30%;
+    margin-right: 19%;
     font-family: $Kdgfont;
     font-weight: normal;
+    width: 30%;
     color: $white;
     margin-top: 1%;
     margin-bottom: 0px;
     font-size: 3.5vw;
-    width: 30%;
     text-align: center;
-    margin-left: 30%;
   }
   #kdglogo
   {
     width: 15%;
-    height: auto;
-    margin-left: 21%;
+    margin-right: 1%;
+    img
+    {
+      width: 100%;
+    }
   }
 }

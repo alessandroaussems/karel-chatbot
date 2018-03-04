@@ -10,26 +10,31 @@
 nav {
   background-color: #1d1d1b; }
   nav * {
-    float: left; }
+    float: left;
+    width: 33.33333333%; }
   nav #botlogo {
-    margin-top: 1.75%;
-    width: 2.5%;
-    height: auto;
+    width: 4%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     margin-left: 1%; }
+    nav #botlogo img {
+      width: 100%; }
   nav h1 {
+    margin-left: 30%;
+    margin-right: 19%;
     font-family: KdG;
     font-weight: normal;
+    width: 30%;
     color: #ffffff;
     margin-top: 1%;
     margin-bottom: 0px;
     font-size: 3.5vw;
-    width: 30%;
-    text-align: center;
-    margin-left: 30%; }
+    text-align: center; }
   nav #kdglogo {
     width: 15%;
-    height: auto;
-    margin-left: 21%; }
+    margin-right: 1%; }
+    nav #kdglogo img {
+      width: 100%; }
 
 .chat {
   border-left: 2px solid #0c090a;

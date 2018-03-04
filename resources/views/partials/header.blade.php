@@ -12,9 +12,13 @@
 </head>
 <body>
 <nav class="clearfix">
-    <img id="botlogo" src="{{asset('img/logo_white.png')}}">
+    <a href="/" id="botlogo">
+    <img src="{{asset('img/logo_white.png')}}" alt="Logo van Karel - Chatbot" title="Logo van Karel - Chatbot">
+    </a>
     <h1>Karel - Chatbot</h1>
-    <img id="kdglogo" src="{{asset('img/logo_kdg_white.png')}}">
+    <a href="https://www.kdg.be/" id="kdglogo" target="_blank">
+    <img  src="{{asset('img/logo_kdg_white.png')}}" alt="Logo van KdG" title="Logo van KdG">
+    </a>
 </nav>
 <main>
     @yield('content')
