@@ -6,12 +6,26 @@ nav
     float: left;
     width: 33.33333333%;
   }
+  #settings
+  {
+    width: 1%;
+    font-family: $iconfont;
+    color: $white;
+    text-decoration: none;
+    margin-top: 0.5%;
+    margin-left: 0.5%;
+    transition: transform 1s;
+  }
+  #settings:hover
+  {
+    transform: rotate(360deg);
+  }
   #botlogo
   {
     width: 4%;
     margin-top: 1%;
     margin-bottom: 1%;
-    margin-left: 1%;
+    margin-left: 0%;
     img
     {
       width: 100%;
@@ -19,7 +33,7 @@ nav
   }
   h1
   {
-    margin-left: 30%;
+    margin-left: 29.5%;
     margin-right: 19%;
     font-family: $Kdgfont;
     font-weight: normal;

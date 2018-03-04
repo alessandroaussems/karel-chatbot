@@ -12,6 +12,7 @@
 </head>
 <body>
 <nav class="clearfix">
+    <a id="settings" href="/admin">k</a>
     <a href="/" id="botlogo">
     <img src="{{asset('img/logo_white.png')}}" alt="Logo van Karel - Chatbot" title="Logo van Karel - Chatbot">
     </a>

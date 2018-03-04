@@ -12,15 +12,25 @@ nav {
   nav * {
     float: left;
     width: 33.33333333%; }
+  nav #settings {
+    width: 1%;
+    font-family: icon;
+    color: #ffffff;
+    text-decoration: none;
+    margin-top: 0.5%;
+    margin-left: 0.5%;
+    transition: transform 1s; }
+  nav #settings:hover {
+    transform: rotate(360deg); }
   nav #botlogo {
     width: 4%;
     margin-top: 1%;
     margin-bottom: 1%;
-    margin-left: 1%; }
+    margin-left: 0%; }
     nav #botlogo img {
       width: 100%; }
   nav h1 {
-    margin-left: 30%;
+    margin-left: 29.5%;
     margin-right: 19%;
     font-family: KdG;
     font-weight: normal;
