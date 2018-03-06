@@ -26,6 +26,6 @@ Route::resource('messages', 'MessageController');
 Route::get('messages/{id}/delete','MessageController@destroy');
 
 Route::resource('sentences', 'SentenceController');
-Route::get('sentences/{id}/delete','SentenceController@destroy');
+Route::get('sentences/{id}/delete/message/{messageid}','SentenceController@destroy');
 Route::get('sentences/create/{messageid}','SentenceController@create');
 Route::get('sentences/edit/{id}/message/{messageid}','SentenceController@edit');
