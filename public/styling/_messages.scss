@@ -4,6 +4,23 @@
   width: 50%;
   margin-left: 25%;
   margin-right: 25%;
+  h3
+  {
+    margin-top: 0px;
+  }
+  .add
+  {
+    margin-top: 1%;
+    margin-left: 90%;
+    align-items: right;
+    display: block;
+    width: 10%;
+    margin-right: 0px;
+    font-family: $iconfont;
+    color: $fullblack;
+    text-decoration: none;
+    transform: rotate(45deg);
+  }
   ul
   {
     list-style-type: none;

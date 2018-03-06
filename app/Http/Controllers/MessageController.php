@@ -35,7 +35,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        //
+        return view("messageadd");
     }
 
     /**
@@ -46,7 +46,23 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'answer'      => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails())
+        {
+            return Redirect::to('messages/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+        else
+        {
+            $message = new Message();
+            $message->answer = Input::get('answer');
+            $message->save();
+            return Redirect::to('messages/');
+        }
     }
 
     /**

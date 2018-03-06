@@ -248,6 +248,19 @@ nav {
   width: 50%;
   margin-left: 25%;
   margin-right: 25%; }
+  .messagesoverview h3 {
+    margin-top: 0px; }
+  .messagesoverview .add {
+    margin-top: 1%;
+    margin-left: 90%;
+    align-items: right;
+    display: block;
+    width: 10%;
+    margin-right: 0px;
+    font-family: icon;
+    color: #0c090a;
+    text-decoration: none;
+    transform: rotate(45deg); }
   .messagesoverview ul {
     list-style-type: none;
     padding: 0px; }
@@ -281,20 +294,20 @@ nav {
   .messagedetail .edit:hover, .messagedetail .delete:hover {
     transform: translateY(-10%); }
 
-.messageedit {
+.messageform {
   width: 50%;
   margin-left: auto;
   margin-right: auto; }
-  .messageedit input {
+  .messageform input {
     font-family: Verdana, Geneva, sans-serif;
     width: 100%;
     height: 3vh;
     margin-top: 2%;
     margin-bottom: 2%;
     border: 3px solid #0c090a; }
-  .messageedit input:focus {
+  .messageform input:focus {
     outline: none; }
-  .messageedit button {
+  .messageform button {
     padding: 1%;
     color: #ffffff;
     background-color: #0c090a;
@@ -303,9 +316,9 @@ nav {
     margin-left: 30%;
     margin-right: 30%;
     font-family: Verdana, Geneva, sans-serif; }
-  .messageedit button:focus {
+  .messageform button:focus {
     outline: none; }
-  .messageedit button:hover {
+  .messageform button:hover {
     background-color: #ffffff;
     border-color: #0c090a;
     color: #0c090a;

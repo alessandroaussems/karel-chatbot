@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="messageform">
-        <h3>Antwoord aanpassen</h3>
-        <small>Hier kan je het antwoord van Karel aanpassen.</small>
+        <h3>Antwoord toevoegen</h3>
+        <small>Hier kan je een antwoord van Karel toevoegen</small>
         {{ Html::ul($errors->all(), array('class' => 'errors'))}}
 
-        {{ Form::model($message, array('route' => array('messages.update', $message->id), 'method' => 'PUT')) }}
+        {{ Form::open(['url' => 'messages'])}}
         {{ csrf_field() }}
 
         {{ Form::text('answer', null, array('class' => 'form-control')) }}
         <br>
 
-        {{ Form::button('Antwoord aanpassen!', array('type' => 'submit')) }}
+        {{ Form::button('Antwoord toevoegen!', array('type' => 'submit')) }}
 
         {{ Form::close() }}
 

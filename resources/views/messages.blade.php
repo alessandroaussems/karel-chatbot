@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="messagesoverview">
+        <a class="add" href="messages/create">n</a><br>
         <h3>Berichten</h3>
         <small>Dit zijn alle antwoorden die Karel kan geven! Klik op eentje om meer opties te krijgen!</small>
         <ul id="messages">
