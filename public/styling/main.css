@@ -18,11 +18,9 @@ nav {
     color: #ffffff;
     text-decoration: none;
     margin-top: 0.5%;
-    margin-left: 0.5%;
-    transition: transform 1s;
-    padding-left: 0.4%; }
+    margin-left: 0.5%; }
   nav #settings:hover {
-    transform: rotate(360deg); }
+    transform: translateY(-10%); }
   nav #botlogo {
     width: 4%;
     margin-top: 1%;
@@ -31,7 +29,7 @@ nav {
     nav #botlogo img {
       width: 100%; }
   nav h1 {
-    margin-left: 29.1%;
+    margin-left: 29.5%;
     margin-right: 19%;
     font-family: KdG;
     font-weight: normal;

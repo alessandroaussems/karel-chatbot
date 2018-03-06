@@ -14,12 +14,10 @@ nav
     text-decoration: none;
     margin-top: 0.5%;
     margin-left: 0.5%;
-    transition: transform 1s;
-    padding-left: 0.4%;
   }
   #settings:hover
   {
-    transform: rotate(360deg);
+    transform: translateY(-10%);
   }
   #botlogo
   {
@@ -34,7 +32,7 @@ nav
   }
   h1
   {
-    margin-left: 29.1%;
+    margin-left: 29.5%;
     margin-right: 19%;
     font-family: $Kdgfont;
     font-weight: normal;
