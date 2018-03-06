@@ -294,6 +294,8 @@ nav {
     transform: translateY(-10%); }
   .messagedetail h5 {
     margin-top: 0px; }
+  .messagedetail li {
+    display: inline-block; }
   .messagedetail .add {
     margin-left: 5%;
     display: table;

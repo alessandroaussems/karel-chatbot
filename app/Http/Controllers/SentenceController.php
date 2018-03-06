@@ -57,9 +57,10 @@ class SentenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id,$messageid)
     {
-        //
+        $sentence = Sentence::where("id",$id)->first();
+        return view("sentenceedit")->with('messageid', $messageid)->with("sentence",$sentence);
     }
 
     /**
@@ -71,7 +72,24 @@ class SentenceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = array(
+            'sentence'      => 'required',
+        );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails())
+        {
+            return Redirect::to('sentences/edit/'.$id.'/message/'.Input::get("messageid"))
+                ->withErrors($validator)
+                ->withInput();
+        }
+        else
+        {
+            $sentence = Sentence::find($id);
+            $sentence->sentence = Input::get('sentence');
+            $sentence->message_id=Input::get("messageid");
+            $sentence->save();
+            return Redirect::to('messages/'.Input::get("messageid"));
+        }
     }
 
     /**

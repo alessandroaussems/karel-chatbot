@@ -14,6 +14,9 @@
                 <li>
                     {{$value->sentence}}
                 </li>
+                <a class="edit" href="/sentences/edit/{{$value->id}}/message/{{$message->id}}">3</a>
+                <a class="delete" href="/messages/{{$value->id}}/delete">n</a>
+                <br>
             @endforeach
         </ul>
         <a class="add" href="/sentences/create/{{$message->id}}">n</a><br>
