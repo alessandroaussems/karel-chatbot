@@ -19,4 +19,17 @@
   {
     transform: translateY(-10%);
   }
+  h5
+  {
+    margin-top: 0px;
+  }
+  .add
+  {
+    margin-left: 5%;
+    display: table;
+    font-family: $iconfont;
+    color: $fullblack;
+    text-decoration: none;
+    transform: rotate(45deg);
+  }
 }

@@ -253,8 +253,7 @@ nav {
   .messagesoverview .add {
     margin-top: 1%;
     margin-left: 90%;
-    align-items: right;
-    display: block;
+    display: table;
     width: 10%;
     margin-right: 0px;
     font-family: icon;
@@ -293,6 +292,15 @@ nav {
     text-decoration: none; }
   .messagedetail .edit:hover, .messagedetail .delete:hover {
     transform: translateY(-10%); }
+  .messagedetail h5 {
+    margin-top: 0px; }
+  .messagedetail .add {
+    margin-left: 5%;
+    display: table;
+    font-family: icon;
+    color: #0c090a;
+    text-decoration: none;
+    transform: rotate(45deg); }
 
 .messageform {
   width: 50%;

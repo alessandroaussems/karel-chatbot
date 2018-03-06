@@ -16,5 +16,6 @@
                 </li>
             @endforeach
         </ul>
+        <a class="add" href="/sentences/create/{{$message->id}}">n</a><br>
     </div>
 @endsection
