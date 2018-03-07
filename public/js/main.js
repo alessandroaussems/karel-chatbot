@@ -9,7 +9,7 @@ function sendMessage(value,event)
     {
         var message=value;
         CreateUserMessage(message);
-        value = "";
+        document.getElementsByClassName("userinput")[0].value="";
             //AJAX CALL TO OUR API
             var xmlhttp;
             xmlhttp = new XMLHttpRequest();
