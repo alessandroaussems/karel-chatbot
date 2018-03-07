@@ -8,6 +8,8 @@
   height: 95%;
   overflow-x: hidden;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
   ul
   {
     list-style-type: none;

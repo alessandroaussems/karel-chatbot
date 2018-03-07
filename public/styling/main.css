@@ -53,7 +53,9 @@ nav {
   margin-right: 25%;
   height: 95%;
   overflow-x: hidden;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse; }
   .chat ul {
     list-style-type: none;
     padding: 0px; }
@@ -91,7 +93,9 @@ nav {
   margin-right: 25%;
   height: 95%;
   overflow-x: hidden;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse; }
   .chat ul {
     list-style-type: none;
     padding: 0px; }
