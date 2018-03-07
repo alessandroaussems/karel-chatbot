@@ -1,14 +1,15 @@
 var MESSAGELIST=document.getElementById("messagelist");
 var BOTTHINKINGTIME=3000;
 var errormessage="Whoops! Dat heb ik niet verstaan!";
-function sendMessage(e)
+function sendMessage(value,event)
 {
+    console.log(event);
     //IF ENTER KEY IS PRESSED
-    if(event.key === 'Enter')
+    if(event.keyCode == 13)
     {
-        var message=e.value;
+        var message=value;
         CreateUserMessage(message);
-        e.value = "";
+        value = "";
             //AJAX CALL TO OUR API
             var xmlhttp;
             xmlhttp = new XMLHttpRequest();

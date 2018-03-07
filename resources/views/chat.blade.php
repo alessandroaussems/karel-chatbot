@@ -7,6 +7,6 @@
             <li class="usermessage">Hier komen berichten van de gebruiker!</li>
         </ul>
     </div>
-    <input type="text" class="userinput" placeholder="Typ je bericht hier..." onkeydown="sendMessage(this)">
+    <input type="text" class="userinput" placeholder="Typ je bericht hier..." onkeypress="sendMessage(this.value,event)" autofocus>
 <script src="{{asset('js/main.js')}}"></script>
 @endsection
