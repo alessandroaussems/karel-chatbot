@@ -12,15 +12,24 @@ class ChatController extends Controller
     {
         //ON ERROR: echo "ERROR";
         //RESPONSE: echo "Your response";
-        $message=urldecode ( $message);
-        $answer=$this->CallChat($message);
-        if($answer!="none")
+        $message=urldecode($message);//DECODE TO ORIGINAL STRING
+
+        $search=$this->SearchMessage($message); // FIRST CHECKING LITERALLY
+        if($search!="none") // IF SUCCESFULL 100% MATCH
         {
-            echo $answer;
+            echo $search; // ECHO 100% MATCH ANSWER
         }
-        else
+        else // NO 100% MATCH
         {
-            echo "ERROR";
+            $answer=$this->CheckMessagesSequential($message); //LOOP AND CHECK IF RESEMBLANCE
+            if($answer!="none") //SOME RESEMBLANCE FOUND
+            {
+                echo $answer; //ECHO THE RESEMBLANCE
+            }
+            else
+            {
+                echo "ERROR"; //NO 100% MATCH AND NOT RESEMBLANCE
+            }
         }
 
 
@@ -41,7 +50,7 @@ class ChatController extends Controller
         curl_close($ch);
         return $result;
     }
-    function CallChat($sentence)
+    function SearchMessage($sentence)
     {
         $sentence=Sentence::where("sentence",$sentence)->first();
         if($sentence)
@@ -61,6 +70,20 @@ class ChatController extends Controller
             return "none";
         }
 
+    }
+    function CheckMessagesSequential($sentencetocheck)
+    {
+        $sentences=Sentence::all();
+        foreach ($sentences as $sentence => $value)
+        {
+            similar_text($value->sentence, $sentencetocheck, $perc);
+            if($perc>70)
+            {
+                $message=Message::where("id",$value->message_id)->first();
+                return $message->answer;
+            }
+        }
+        return "none";
     }
 }
 
