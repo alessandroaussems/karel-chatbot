@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Sentence;
+use App\Message;
 
 class ChatController extends Controller
 {
@@ -10,23 +12,17 @@ class ChatController extends Controller
     {
         //ON ERROR: echo "ERROR";
         //RESPONSE: echo "Your response";
-        $witresponsearray=$this->CallWit($message);
-        if(count($witresponsearray["entities"])>0)
+        $message=urldecode ( $message);
+        $answer=$this->CallChat($message);
+        if($answer!="none")
         {
-            $intentvalue=$witresponsearray["entities"]["intent"][0]["value"]; ///GET INTENT VALUE
-        }
-        else
-        {
-            $intentvalue="UNDEFINED";
-        }
-        if($intentvalue=="toestand")
-        {
-            echo "Goed! En met jou?";
+            echo $answer;
         }
         else
         {
             echo "ERROR";
         }
+
 
     }
     function CallWit($message)
@@ -44,6 +40,27 @@ class ChatController extends Controller
         $result = json_decode(curl_exec($ch),true);
         curl_close($ch);
         return $result;
+    }
+    function CallChat($sentence)
+    {
+        $sentence=Sentence::where("sentence",$sentence)->first();
+        if($sentence)
+        {
+            $message=Message::where("id",$sentence->message_id)->first();
+            if($message)
+            {
+                return $message->answer;
+            }
+            else
+            {
+                return "none";
+            }
+        }
+        else
+        {
+            return "none";
+        }
+
     }
 }
 
