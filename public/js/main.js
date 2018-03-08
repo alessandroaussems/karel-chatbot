@@ -4,11 +4,14 @@ var errormessage="Whoops! Dat heb ik niet verstaan!";
 var allowtosend=true;
 function sendMessage(value,event)
 {
-    if(event.keyCode == 13)    //IF ENTER KEY IS PRESSED
+    if(event.keyCode == 13)//IF ENTER KEY IS PRESSED
     {
         var message=value;
         CreateUserMessage(message);
         document.getElementsByClassName("userinput")[0].value="";
+        //MAKE SURE TYPEICON IS ALWAYS @ THE BOTTOM
+        RemoveTypeIcon();//REMOVE OLD TYPE ICON
+        CreateTypeIcon();//CREATE NEW TYPE ICON
         if(allowtosend)//CHECK IF NO PREVIOUS REQUEST IS STILL EXECUTING
         {
             allowtosend=false; // BECAUSE WE START EXECUTING A NEW REQUEST
@@ -45,18 +48,9 @@ function CreateUserMessage(message)
 }
 function CreateAnswer(message)
 {
-        //CREATING TYPING ICON HERE
-        var listitem=document.createElement("li");
-        listitem.className="typing-indicator botmessage";
-        for(var i=0;i<3;i++)
-        {
-            var span=document.createElement("span");
-            listitem.appendChild(span);
-        }
-        MESSAGELIST.appendChild(listitem);
         //WAIT BOTTHIKNINGTIME THEN REMOVE TYPING ICON AND CREATE RESPONSE
         setTimeout(function(){
-            MESSAGELIST.removeChild(document.getElementsByClassName("typing-indicator")[0]);
+            RemoveTypeIcon();
             var listitem=document.createElement("li");
             listitem.className="botmessage";
             message=document.createTextNode(message);
@@ -64,6 +58,26 @@ function CreateAnswer(message)
             MESSAGELIST.appendChild(listitem);
             allowtosend=true; // THIS REQUEST IS FINISHED SO THE NEXT ONE IS NOW ALLOWED
         }, BOTTHINKINGTIME);
+}
+function CreateTypeIcon()
+{
+    //CREATING TYPING ICON HERE
+    var listitem=document.createElement("li");
+    listitem.className="typing-indicator botmessage";
+    for(var i=0;i<3;i++)
+    {
+        var span=document.createElement("span");
+        listitem.appendChild(span);
+    }
+    MESSAGELIST.appendChild(listitem);
+}
+function RemoveTypeIcon()
+{
+    var typingindicator=document.getElementsByClassName("typing-indicator")[0];
+    if(typingindicator)//IF THE ELEMENT EXISTS THEN REMOVE
+    {
+        MESSAGELIST.removeChild(typingindicator);
+    }
 }
 $(document).ready(function(){
  //JSCODE HERE!
