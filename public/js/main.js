@@ -1,15 +1,17 @@
 var MESSAGELIST=document.getElementById("messagelist");
 var BOTTHINKINGTIME=3000;
 var errormessage="Whoops! Dat heb ik niet verstaan!";
+var allowtosend=true;
 function sendMessage(value,event)
 {
-    console.log(event);
-    //IF ENTER KEY IS PRESSED
-    if(event.keyCode == 13)
+    if(event.keyCode == 13)    //IF ENTER KEY IS PRESSED
     {
         var message=value;
         CreateUserMessage(message);
         document.getElementsByClassName("userinput")[0].value="";
+        if(allowtosend)//CHECK IF NO PREVIOUS REQUEST IS STILL EXECUTING
+        {
+            allowtosend=false; // BECAUSE WE START EXECUTING A NEW REQUEST
             //AJAX CALL TO OUR API
             var xmlhttp;
             xmlhttp = new XMLHttpRequest();
@@ -28,6 +30,7 @@ function sendMessage(value,event)
             }
             xmlhttp.open("GET", "./chat/"+message, true);
             xmlhttp.send();
+        }
     }
 
 }
@@ -59,6 +62,7 @@ function CreateAnswer(message)
             message=document.createTextNode(message);
             listitem.appendChild(message);
             MESSAGELIST.appendChild(listitem);
+            allowtosend=true; // THIS REQUEST IS FINISHED SO THE NEXT ONE IS NOW ALLOWED
         }, BOTTHINKINGTIME);
 }
 $(document).ready(function(){
