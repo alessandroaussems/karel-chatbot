@@ -38,6 +38,11 @@
     color: $fullblack;
     cursor: pointer;
   }
+  textarea
+  {
+    width: 100%;
+    height: 300px;
+  }
 }
 .errors
 {

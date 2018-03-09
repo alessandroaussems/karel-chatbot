@@ -9,7 +9,7 @@
         {{ Form::model($message, array('route' => array('messages.update', $message->id), 'method' => 'PUT')) }}
         {{ csrf_field() }}
 
-        {{ Form::text('answer', null, array('class' => 'form-control')) }}
+        {{ Form::textarea('answer', null, ['class' => 'field']) }}
         <br>
 
         {{ Form::button('Antwoord aanpassen!', array('type' => 'submit')) }}
@@ -17,10 +17,9 @@
         {{ Form::close() }}
 
     </div>
-    <textarea id="example" style="width: 50%; height: 100%"></textarea>
     <script src="{{asset('wysiwyg/sceditor.js')}}"></script>
     <script>
-    var textarea = document.getElementById('example');
+    var textarea = document.getElementsByClassName('field')[0];
     sceditor.create(textarea, {
     format: 'bbcode',
     });
