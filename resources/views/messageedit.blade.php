@@ -17,4 +17,12 @@
         {{ Form::close() }}
 
     </div>
+    <textarea id="example" style="width: 50%; height: 100%"></textarea>
+    <script src="{{asset('wysiwyg/sceditor.js')}}"></script>
+    <script>
+    var textarea = document.getElementById('example');
+    sceditor.create(textarea, {
+    format: 'bbcode',
+    });
+    </script>
 @endsection
