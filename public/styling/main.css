@@ -288,7 +288,9 @@ nav {
   margin-left: 25%;
   margin-right: 25%; }
   .messagedetail .answer {
-    display: inline-block; }
+    width: 100%;
+    border: 1px solid black;
+    height: 300px; }
   .messagedetail .edit, .messagedetail .delete {
     display: inline-block;
     font-family: icon;
@@ -307,6 +309,8 @@ nav {
     color: #0c090a;
     text-decoration: none;
     transform: rotate(45deg); }
+  .messagedetail .pullright {
+    margin-left: 92.5%; }
 
 .messageform {
   width: 50%;

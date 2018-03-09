@@ -5,7 +5,9 @@
   margin-right: 25%;
   .answer
   {
-    display: inline-block;
+    width: 100%;
+    border: 1px solid black;
+    height: 300px;
   }
   .edit,.delete
   {
@@ -35,5 +37,9 @@
     color: $fullblack;
     text-decoration: none;
     transform: rotate(45deg);
+  }
+  .pullright
+  {
+    margin-left: 92.5%;
   }
 }
