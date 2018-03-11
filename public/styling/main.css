@@ -85,6 +85,9 @@ nav {
 .userinput:focus {
   outline: none; }
 
+.sceditor-nlf {
+  display: none; }
+
 .chat {
   border-left: 2px solid #0c090a;
   border-right: 2px solid #0c090a;
@@ -124,6 +127,9 @@ nav {
 
 .userinput:focus {
   outline: none; }
+
+.sceditor-nlf {
+  display: none; }
 
 .typing-indicator {
   background-color: #0c090a;

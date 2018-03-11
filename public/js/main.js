@@ -53,8 +53,8 @@ function CreateAnswer(message)
             RemoveTypeIcon();
             var listitem=document.createElement("li");
             listitem.className="botmessage";
-            message=document.createTextNode(message);
-            listitem.appendChild(message);
+            //message=document.createTextNode(message);
+            listitem.innerHTML=message;
             MESSAGELIST.appendChild(listitem);
             allowtosend=true; // THIS REQUEST IS FINISHED SO THE NEXT ONE IS NOW ALLOWED
         }, BOTTHINKINGTIME);
