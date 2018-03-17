@@ -46,14 +46,12 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array(
-            'answer'      => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->fails())
+        //CLEANING VALUE OF WYSIWYG OF SPACES FOR CHECKING
+        $cleananswer=preg_replace('/[\s]+/','',str_replace("&nbsp;","",strip_tags(Input::get("answer"))));
+        if(!isset($cleananswer) || $cleananswer == '')
         {
             return Redirect::to('messages/create')
-                ->withErrors($validator)
+                ->withErrors("Het antwoord veld is verplicht!")
                 ->withInput();
         }
         else
@@ -107,14 +105,12 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rules = array(
-            'answer'      => 'required',
-        );
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->fails())
+        //CLEANING VALUE OF WYSIWYG OF SPACES FOR CHECKING
+        $cleananswer=preg_replace('/[\s]+/','',str_replace("&nbsp;","",strip_tags(Input::get("answer"))));
+        if(!isset($cleananswer) || $cleananswer == '')
         {
-            return Redirect::to('messages/'.$id."/edit")
-                ->withErrors($validator)
+            return Redirect::to('messages/create')
+                ->withErrors("Het antwoord veld is verplicht!")
                 ->withInput();
         }
         else

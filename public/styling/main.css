@@ -85,6 +85,9 @@ nav {
 .userinput:focus {
   outline: none; }
 
+.sceditor-nlf {
+  display: none; }
+
 .chat {
   border-left: 2px solid #0c090a;
   border-right: 2px solid #0c090a;
@@ -124,6 +127,9 @@ nav {
 
 .userinput:focus {
   outline: none; }
+
+.sceditor-nlf {
+  display: none; }
 
 .typing-indicator {
   background-color: #0c090a;
@@ -288,7 +294,10 @@ nav {
   margin-left: 25%;
   margin-right: 25%; }
   .messagedetail .answer {
-    display: inline-block; }
+    width: 100%;
+    border: 1px solid black;
+    height: 300px;
+    overflow-y: scroll; }
   .messagedetail .edit, .messagedetail .delete {
     display: inline-block;
     font-family: icon;
@@ -307,6 +316,8 @@ nav {
     color: #0c090a;
     text-decoration: none;
     transform: rotate(45deg); }
+  .messagedetail .pullright {
+    margin-left: 92.5%; }
 
 .messageform {
   width: 50%;
@@ -337,6 +348,9 @@ nav {
     border-color: #0c090a;
     color: #0c090a;
     cursor: pointer; }
+  .messageform textarea {
+    width: 100%;
+    height: 300px; }
 
 .errors {
   padding: 0px;

@@ -8,7 +8,7 @@
         <ul id="messages">
             @foreach($messages as $key => $value)
                 <li>
-                    <a href="/messages/{{$value->id}}">{{ substr($value->answer, 0, 50)}}</a>
+                    <a href="/messages/{{$value->id}}">{{ substr(html_entity_decode(strip_tags($value->answer)), 0, 50)}}</a>
                 </li>
             @endforeach
         </ul>
