@@ -296,7 +296,8 @@ nav {
   .messagedetail .answer {
     width: 100%;
     border: 1px solid black;
-    height: 300px; }
+    height: 300px;
+    overflow-y: scroll; }
   .messagedetail .edit, .messagedetail .delete {
     display: inline-block;
     font-family: icon;

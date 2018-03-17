@@ -7,7 +7,7 @@
         <h5>Antwoord:</h5>
         <a class="edit pullright" href="/messages/{{$message->id}}/edit">3</a>
         <a class="delete" href="/messages/{{$message->id}}/delete">n</a>
-        <div class="answer"><?php echo $message->answer ?></div>
+        <div class="answer"><?php echo $message->answer?></div>
         <h5>Reageert op:</h5>
         <ul>
             @foreach($answers as $key => $value)
