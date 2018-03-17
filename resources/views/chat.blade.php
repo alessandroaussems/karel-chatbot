@@ -3,8 +3,8 @@
 @section('content')
     <div class="chat">
         <ul id="messagelist">
-            <li class="botmessage">Hallo! Ik ben Karel! Dé chatbot van KdG! Heb je vragen? Stel ze maar!</li>
-            <li class="usermessage">Hier komen berichten van de gebruiker!</li>
+            <!--<li class="botmessage">Hallo! Ik ben Karel! Dé chatbot van KdG! Heb je vragen? Stel ze maar!</li>
+            <li class="usermessage">Hier komen berichten van de gebruiker!</li>-->
         </ul>
         <div class="opener">
             <img src="{{asset("img/logo_black.png")}}" alt="Logo van Karel-Chatbot" title="Logo van Karel-Chatbot">

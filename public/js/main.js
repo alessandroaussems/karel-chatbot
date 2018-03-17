@@ -1,7 +1,15 @@
 var MESSAGELIST=document.getElementById("messagelist");
 var BOTTHINKINGTIME=3000;
 var errormessage="Whoops! Dat heb ik niet verstaan!";
+var welcomemessage="Hallo ik ben Karel! Stel je vragen maar!"
 var allowtosend=true;
+if(getCookie("visits")!="" && getCookie("visits")==1)//CHECK IF COOKIE VISITS EXISTS AND IF FIRST TIME USER VISITS PAGE
+{
+    setTimeout(function(){
+        CreateTypeIcon();
+        CreateAnswer(welcomemessage);
+    }, 1000);
+}
 function sendMessage(value,event)
 {
     if(event.keyCode == 13)//IF ENTER KEY IS PRESSED
@@ -78,6 +86,21 @@ function RemoveTypeIcon()
     {
         MESSAGELIST.removeChild(typingindicator);
     }
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
 $(document).ready(function(){
  //JSCODE HERE!

@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('chat');
-});
+Route::get('/','WelcomeController@welcome');
 Route::get('chat/{message}','ChatController@handleMessage');
 
 Auth::routes();
