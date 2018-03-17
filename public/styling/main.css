@@ -56,18 +56,35 @@ nav {
   overflow-y: scroll;
   display: flex;
   flex-direction: column-reverse; }
+  .chat .opener {
+    display: table;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #0c090a; }
+    .chat .opener img {
+      width: 20%;
+      height: auto; }
+    .chat .opener h2 {
+      font-family: KdG;
+      font-size: 3vw;
+      margin-bottom: 3%;
+      margin-top: 0px; }
   .chat ul {
     list-style-type: none;
     padding: 0px; }
     .chat ul li {
       text-align: left;
       display: table;
-      max-width: 50%;
-      padding: 0.5%;
+      max-width: 60%;
+      padding: 1%;
       margin-bottom: 2%; }
     .chat ul .botmessage {
       background-color: #0c090a;
       color: #ffffff; }
+      .chat ul .botmessage a {
+        color: inherit; }
+      .chat ul .botmessage a:hover {
+        text-decoration: underline; }
     .chat ul .usermessage {
       background-color: #00b2e2;
       color: #0c090a;
@@ -99,18 +116,35 @@ nav {
   overflow-y: scroll;
   display: flex;
   flex-direction: column-reverse; }
+  .chat .opener {
+    display: table;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #0c090a; }
+    .chat .opener img {
+      width: 20%;
+      height: auto; }
+    .chat .opener h2 {
+      font-family: KdG;
+      font-size: 3vw;
+      margin-bottom: 3%;
+      margin-top: 0px; }
   .chat ul {
     list-style-type: none;
     padding: 0px; }
     .chat ul li {
       text-align: left;
       display: table;
-      max-width: 50%;
-      padding: 0.5%;
+      max-width: 60%;
+      padding: 1%;
       margin-bottom: 2%; }
     .chat ul .botmessage {
       background-color: #0c090a;
       color: #ffffff; }
+      .chat ul .botmessage a {
+        color: inherit; }
+      .chat ul .botmessage a:hover {
+        text-decoration: underline; }
     .chat ul .usermessage {
       background-color: #00b2e2;
       color: #0c090a;
