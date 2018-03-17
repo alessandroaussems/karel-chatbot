@@ -15,10 +15,7 @@ class WelcomeController extends Controller
             setcookie("chatsession", $sessionid);
             setcookie("visits",1);
 
-            $sessionmessages[0]="Hallo ik ben Karel! Stel je vragen maar!";
-            $sessionmessages[1]="Hallo ik ben Karel! Stel je vragen maar!";
-            $sessionmessages[2]="Hallo ik ben Karel! Stel je vragen maar!";
-            $sessionmessages[3]="Hallo ik ben Karel! Stel je vragen maar!";
+            $sessionmessages[0]=["Hallo ik ben Karel! Stel je vragen maar!","B"];
 
             $session = new Session();
             $session->id = $sessionid;
@@ -26,7 +23,7 @@ class WelcomeController extends Controller
             $session->lastactive=date('Y-m-d');
             $session->save();
 
-            return view("chat");
+            return view("chat")->with("messages",[]);
         }
         else
         {
@@ -34,10 +31,15 @@ class WelcomeController extends Controller
             {
                 setcookie("visits",$_COOKIE["visits"]+=1);
             }
-            $session=Session::select('messages')->where('id', $_COOKIE["chatsession"])->first();
-            var_dump(json_decode($session->messages));
 
-            return view("chat");
+            $session=Session::find($_COOKIE["chatsession"]);
+            $session->lastactive=date("Y-m-d");
+            $session->save();
+
+            $session=Session::select('messages')->where('id', $_COOKIE["chatsession"])->first();
+            $messages=json_decode($session->messages);
+
+            return view("chat")->with("messages",$messages);
         }
     }
 }

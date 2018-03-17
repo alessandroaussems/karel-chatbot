@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Session;
 use Illuminate\Http\Request;
 use App\Sentence;
 use App\Message;
@@ -10,14 +11,17 @@ class ChatController extends Controller
 {
     function handleMessage($message)
     {
+        $error="Whoops dat heb ik niet verstaan!";
         //ON ERROR: echo "ERROR";
         //RESPONSE: echo "Your response";
         $message=urldecode($message);//DECODE TO ORIGINAL STRING
 
+        $this->AddToSession($message,"H");
         $search=$this->SearchMessage($message); // FIRST CHECKING LITERALLY
         if($search!="none") // IF SUCCESFULL 100% MATCH
         {
             echo $search; // ECHO 100% MATCH ANSWER
+            $this->AddToSession($search,"B");
         }
         else // NO 100% MATCH
         {
@@ -25,10 +29,12 @@ class ChatController extends Controller
             if($answer!="none") //SOME RESEMBLANCE FOUND
             {
                 echo $answer; //ECHO THE RESEMBLANCE
+                $this->AddToSession($answer,"B");
             }
             else
             {
-                echo "ERROR"; //NO 100% MATCH AND NOT RESEMBLANCE
+                echo $error; //NO 100% MATCH AND NOT RESEMBLANCE
+                $this->AddToSession($error,"B");
             }
         }
 
@@ -84,6 +90,16 @@ class ChatController extends Controller
             }
         }
         return "none";
+    }
+    function AddToSession($messagetoadd,$who)
+    {
+        $toadd=[$messagetoadd,$who];
+        $session=Session::select('messages')->where('id', $_COOKIE["chatsession"])->first();
+        $messages=json_decode($session->messages);
+        array_push($messages,$toadd);
+        $session=Session::find($_COOKIE["chatsession"]);
+        $session->messages=json_encode($messages);
+        $session->save();
     }
 }
 

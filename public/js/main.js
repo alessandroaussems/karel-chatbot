@@ -1,6 +1,5 @@
 var MESSAGELIST=document.getElementById("messagelist");
 var BOTTHINKINGTIME=3000;
-var errormessage="Whoops! Dat heb ik niet verstaan!";
 var welcomemessage="Hallo ik ben Karel! Stel je vragen maar!"
 var allowtosend=true;
 if(getCookie("visits")!="" && getCookie("visits")==1)//CHECK IF COOKIE VISITS EXISTS AND IF FIRST TIME USER VISITS PAGE
@@ -28,15 +27,7 @@ function sendMessage(value,event)
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-                    var response = this.responseText;
-                    if(response=="ERROR")
-                    {
-                        CreateAnswer(errormessage);
-                    }
-                    else
-                    {
-                        CreateAnswer(response);
-                    }
+                    CreateAnswer(this.responseText);
                 }
             }
             xmlhttp.open("GET", "./chat/"+message, true);

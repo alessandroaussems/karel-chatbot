@@ -3,6 +3,14 @@
 @section('content')
     <div class="chat">
         <ul id="messagelist">
+            @foreach($messages as $key => $value)
+                @if($value[1]=="B")
+                    <li class="botmessage"><?php echo $value[0] ?></li>
+                @endif
+                @if($value[1]=="H")
+                    <li class="usermessage"><?php echo $value[0] ?></li>
+                @endif
+        @endforeach
             <!--<li class="botmessage">Hallo! Ik ben Karel! Dé chatbot van KdG! Heb je vragen? Stel ze maar!</li>
             <li class="usermessage">Hier komen berichten van de gebruiker!</li>-->
         </ul>
