@@ -12,8 +12,8 @@ class WelcomeController extends Controller
         if(!isset($_COOKIE['chatsession']))
         {
             $sessionid=uniqid();
-            setcookie("chatsession", $sessionid);
-            setcookie("visits",1);
+            setcookie("chatsession", $sessionid,time() + (60*60*24*30));
+            setcookie("visits",1,time() + (60*60*24*30));
 
             $sessionmessages[0]=["Hallo ik ben Karel! Stel je vragen maar!","B"];
 
@@ -29,7 +29,11 @@ class WelcomeController extends Controller
         {
             if(isset($_COOKIE["visits"]))
             {
-                setcookie("visits",$_COOKIE["visits"]+=1);
+                setcookie("visits",$_COOKIE["visits"]+=1,time() + (60*60*24*30));
+            }
+            if(isset($_COOKIE["chatsession"]))
+            {
+                setcookie("chatsession", $_COOKIE["chatsession"],time() + (60*60*24*30));
             }
 
             $session=Session::find($_COOKIE["chatsession"]);
