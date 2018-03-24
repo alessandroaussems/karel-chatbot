@@ -238,6 +238,10 @@ nav {
     border-color: #0c090a;
     color: #0c090a;
     cursor: pointer; }
+  .login a {
+    display: block;
+    margin-top: 5%;
+    font-size: 2vh; }
   .login .invalid-feedback {
     font-size: 1vw;
     color: red; }
@@ -409,6 +413,74 @@ nav {
     width: 90%;
     margin-left: 5%;
     margin-right: 5%; } }
+.email {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2.5%; }
+  .email > input {
+    font-family: Verdana, Geneva, sans-serif;
+    width: 100%;
+    height: 3vh;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: 3px solid #0c090a; }
+  .email > input:focus {
+    outline: none; }
+  .email > button {
+    padding: 1%;
+    color: #ffffff;
+    background-color: #0c090a;
+    border: 1px solid #0c090a;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    font-family: Verdana, Geneva, sans-serif; }
+  .email > button:focus {
+    outline: none; }
+  .email > button:hover {
+    background-color: #ffffff;
+    border-color: #0c090a;
+    color: #0c090a;
+    cursor: pointer; }
+  .email .invalid-feedback {
+    font-size: 1vw;
+    color: red; }
+
+.reset {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2.5%; }
+  .reset > input {
+    font-family: Verdana, Geneva, sans-serif;
+    width: 100%;
+    height: 3vh;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border: 3px solid #0c090a; }
+  .reset > input:focus {
+    outline: none; }
+  .reset > button {
+    padding: 1%;
+    color: #ffffff;
+    background-color: #0c090a;
+    border: 1px solid #0c090a;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    font-family: Verdana, Geneva, sans-serif; }
+  .reset > button:focus {
+    outline: none; }
+  .reset > button:hover {
+    background-color: #ffffff;
+    border-color: #0c090a;
+    color: #0c090a;
+    cursor: pointer; }
+  .reset .invalid-feedback {
+    font-size: 1vw;
+    color: red; }
+
 /* GLOBAL */
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {

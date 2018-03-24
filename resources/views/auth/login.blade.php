@@ -28,5 +28,6 @@
                                 <button type="submit">
                                     Login
                                 </button>
+                        <a href="{{url("password/reset/")}}">Wachtwoord vergeten?</a>
                     </form>
 @endsection
