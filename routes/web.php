@@ -13,6 +13,7 @@
 
 Route::get('/','WelcomeController@welcome');
 Route::get('chat/{message}','ChatController@handleMessage');
+Route::get("/test",'ChatController@test');
 
 Auth::routes();
 

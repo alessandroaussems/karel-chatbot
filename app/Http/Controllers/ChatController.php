@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\KdGClientProvider;
+use App\Services\KdGService;
 use App\Session;
 use Illuminate\Http\Request;
 use App\Sentence;
@@ -100,6 +102,12 @@ class ChatController extends Controller
         $session=Session::find($_COOKIE["chatsession"]);
         $session->messages=json_encode($messages);
         $session->save();
+    }
+    function test()
+    {
+        $KdGService=new KdGService();
+        dump($KdGService->DoLogin());
+
     }
 }
 
