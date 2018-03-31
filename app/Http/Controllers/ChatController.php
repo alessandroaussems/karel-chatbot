@@ -106,7 +106,8 @@ class ChatController extends Controller
     function test()
     {
         $KdGService=new KdGService();
-        dump($KdGService->DoLogin());
+        $KdGService->DoLogin();
+
 
     }
 }
