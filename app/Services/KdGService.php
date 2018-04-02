@@ -14,12 +14,12 @@ class KdGService
     }
 
     /**
-     * @return bool indicatiing if login was successful
+     * @return bool indicating if login was successful
      */
-    public function DoLogin()
+    public function DoLogin($u,$p)
     {
-        $USER="";
-        $PASS="";
+        $USER=$u;
+        $PASS=$p;
         //FILLING IN KDG-INTRANET LOGIN FORM
         $response_login = $this->client->post('https://sts.kdg.be/adfs/ls/?wa=wsignin1.0&wtrealm=https%3a%2f%2fintranet.student.kdg.be&wctx=rm%3d1%26id%3dpassive%26ru%3dhttps%253a%252f%252fintranet.student.kdg.be%252f&wct=2018-03-31T12%3a34%3a45Z&wreply=https%3a%2f%2fintranet.student.kdg.be%2f', [
                 'allow_redirects' => true,

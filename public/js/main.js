@@ -93,6 +93,25 @@ function getCookie(cname) {
     }
     return "";
 }
+function DoKdGlogin(event)
+{
+    var login=document.getElementById("login").value;
+    var password=document.getElementById("password").value;
+    var xmlhttp;
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+            if(this.responseText)
+            {
+                
+            }
+        }
+    }
+    xmlhttp.open('PUT', "./kdglogin/", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("login="+login+"&password="+password);
+
+}
 $(document).ready(function(){
  //JSCODE HERE!
 });

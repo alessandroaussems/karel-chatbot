@@ -1,5 +1,4 @@
 @extends('partials.header')
-
 @section('content')
     <div class="chat">
         <ul id="messagelist">
