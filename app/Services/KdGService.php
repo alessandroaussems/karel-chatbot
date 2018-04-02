@@ -12,6 +12,10 @@ class KdGService
         $this->client=new Client();
         $this->cookieJar=new \GuzzleHttp\Cookie\CookieJar();
     }
+
+    /**
+     * @return bool indicatiing if login was successful
+     */
     public function DoLogin()
     {
         $USER="";
@@ -48,7 +52,44 @@ class KdGService
             ]
         );
         //THE INTRANET!!!!
-        echo $response_intranet->getBody()->getContents();
-        return;
+        $intranet_html=str_get_html($response_intranet->getBody()->getContents());
+        //LOGIN FAILED BECAUSE LOGIN PAGE IS SHOWN
+        if($intranet_html->find("h1",0)->plaintext==='                                Welkom op het studentenportaal                         ')
+        {
+            return FALSE;
+        }
+        //LOGIN SUCCEEDED BECAUSE WE FIND A TITLE THAT IS BEHIND A LOGIN
+        if($intranet_html->find("h1",0)->plaintext==='                  Mijn lessenrooster               ')
+        {
+            return TRUE;
+        }
+    }
+
+    /**
+     * @return array of notifications
+     */
+    public function GetNotifications()
+    {
+        $NOTIFICATIONS=[];
+        //BROWSING TO NOTIFICATIONS URL
+        $response_notifications = $this->client->get('https://intranet.student.kdg.be/mededelingen', [
+                'allow_redirects' => true,
+                'cookies' => $this->cookieJar,
+            ]
+        );
+        //GETTING NOTIFIACTIONS PAGE HTML
+        $notifications_html=str_get_html($response_notifications->getBody()->getContents());
+        $notifications=$notifications_html->find("div.modAnnouncement");
+        //ADDING ALL NOTIFICATIONS TO OUR ARRAY
+        foreach($notifications as $notification)
+        {
+            $NOTIFICATION=[];
+            array_push($NOTIFICATION,$notification->find("a",0)->plaintext);
+            array_push($NOTIFICATION,$notification->find("div.textblock",0)->plaintext);
+
+            array_push($NOTIFICATIONS,$NOTIFICATION);
+        }
+        return $NOTIFICATIONS;
+
     }
 }
