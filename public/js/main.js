@@ -97,19 +97,27 @@ function DoKdGlogin(event)
 {
     var login=document.getElementById("login").value;
     var password=document.getElementById("password").value;
+    var button=document.getElementById("loginbutton");
+    var sessionid=getCookie("chatsession");
+    button.disabled=true;
     var xmlhttp;
     xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
             if(this.responseText)
             {
-                
+                //login succes
+            }
+            if(!this.responseText)
+            {
+                button.disabled=false;
+                document.getElementById("loginerror").classList.add("display");
             }
         }
     }
     xmlhttp.open('PUT', "./kdglogin/", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("login="+login+"&password="+password);
+    xmlhttp.send("login="+login+"&password="+password+"&chatsession="+sessionid);
 
 }
 $(document).ready(function(){

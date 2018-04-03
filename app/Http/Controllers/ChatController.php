@@ -106,8 +106,8 @@ class ChatController extends Controller
     function test()
     {
         $KdGService=new KdGService();
-        echo $KdGService->DoLogin();
-        $KdGService->GetNotifications();
+        $KdGService->DoLogin("","");
+        echo $KdGService->GetNameOfUser()[0].$KdGService->GetNameOfUser()[1];
 
 
     }
