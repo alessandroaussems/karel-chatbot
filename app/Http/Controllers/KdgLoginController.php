@@ -24,8 +24,9 @@ class KdgLoginController extends Controller
             $session->forname=$forname;
             $session->lastname=$lastname;
             $session->login=$login;
-            $session->password=$password;
+            $session->password=encrypt($password);
             $session->save();
+
 
             echo TRUE;
         }

@@ -108,7 +108,7 @@ class KdGService
         $forname=$name_html->find("span.firstname",0)->plaintext;
         $lastname=$name_html->find("span.lastname",0)->plaintext;
         //RETURNING FULL NAME
-        $name=[$forname,$lastname];
+        $name=[trim($forname),trim($lastname)];
         return $name;
     }
 }
