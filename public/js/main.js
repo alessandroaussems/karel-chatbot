@@ -106,7 +106,8 @@ function DoKdGlogin(event)
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
             if(this.responseText)
             {
-                //login succes
+                document.getElementById("overlay").classList.remove("display");
+                CreateAnswer("Dankjewel om je KdG-account te koppelen! Ik kan je nu nog beter helpen!")
             }
             if(!this.responseText)
             {
@@ -119,6 +120,14 @@ function DoKdGlogin(event)
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("login="+login+"&password="+password+"&chatsession="+sessionid);
 
+}
+function ShowLoginForm(event)
+{
+    document.getElementById("overlay").classList.add("display");
+}
+function HideLoginForm(event)
+{
+    document.getElementById("overlay").classList.remove("display");
 }
 $(document).ready(function(){
  //JSCODE HERE!

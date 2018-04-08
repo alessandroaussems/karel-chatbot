@@ -112,6 +112,25 @@ nav {
 .sceditor-nlf {
   display: none; }
 
+#kdgconnect {
+  position: absolute;
+  margin-left: 1.5%;
+  text-align: center !important;
+  width: 20%;
+  background-color: #0c090a;
+  border: 1px solid #0c090a;
+  color: #ffffff;
+  display: block;
+  float: left;
+  padding: 1%;
+  bottom: 2.5%; }
+
+#kdgconnect:hover {
+  background-color: #ffffff;
+  border-color: #0c090a;
+  color: #0c090a;
+  cursor: pointer; }
+
 .chat {
   border-left: 2px solid #0c090a;
   border-right: 2px solid #0c090a;
@@ -177,6 +196,25 @@ nav {
 
 .sceditor-nlf {
   display: none; }
+
+#kdgconnect {
+  position: absolute;
+  margin-left: 1.5%;
+  text-align: center !important;
+  width: 20%;
+  background-color: #0c090a;
+  border: 1px solid #0c090a;
+  color: #ffffff;
+  display: block;
+  float: left;
+  padding: 1%;
+  bottom: 2.5%; }
+
+#kdgconnect:hover {
+  background-color: #ffffff;
+  border-color: #0c090a;
+  color: #0c090a;
+  cursor: pointer; }
 
 .typing-indicator {
   background-color: #0c090a;
@@ -492,6 +530,12 @@ nav {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2; }
+  #overlay #close {
+    font-family: icon;
+    color: #0c090a;
+    margin-left: 90%; }
+  #overlay #close:hover {
+    cursor: pointer; }
   #overlay .login {
     margin-top: 10%;
     padding: 5%;

@@ -1,5 +1,6 @@
-<div id="overlay" class="display">
+<div id="overlay">
     <div class="login">
+        <span id="close" onclick="HideLoginForm(this.event)">n</span>
         <h3>Inloggen bij KdG</h3>
         <small>Log hier in met je KdG-account en Karel wordt nog slimmer!</small>
         <small id="loginerror" class="nodisplay">Whoops! Er iets fout gegaan! Ben je zeker dat al je gegevens juist zijn?</small>
