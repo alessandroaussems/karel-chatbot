@@ -29,6 +29,10 @@ function sendMessage(value,event)
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
                     CreateAnswer(this.responseText);
                 }
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 500)
+                {
+                    CreateAnswer("<p>Whoops er ging iets fout. Je mag nu een mail sturen naar <a href='mailto:alessandro.aussems@student.kdg.be'>alessandro.aussems@student.kdg.be</a></p>");
+                }
             }
             xmlhttp.open("GET", "./chat/"+message, true);
             xmlhttp.send();

@@ -11,6 +11,11 @@ use App\Message;
 
 class ChatController extends Controller
 {
+    private $pleaselogin;
+    public function __construct()
+    {
+        $this->pleaselogin="<strong>Log je in bij KdG zodat ik deze informatie te weten kan komen!</strong>";
+    }
     /**
      * @param $message, @echo string
      */
@@ -179,20 +184,26 @@ class ChatController extends Controller
         $MELDINGENHTML="<ul>";
         $session=Session::find($_COOKIE["chatsession"]);
         $user=$session->login;
-        $password=decrypt($session->password);
-        $KdGService=new KdGService();
-        $KdGService->DoLogin($user,$password);
-        $meldingen=$KdGService->GetNotifications();
-        foreach ($meldingen as $melding)
+        $password=$session->password;
+        if(!is_null($user) && !is_null($password))
         {
-            $MELDINGENHTML.="<li>";
-            $MELDINGENHTML.="<h5>".$melding[0]."</h5>";
-            $MELDINGENHTML.="<p>".substr($melding[1],0,150)."...</p>";
-            $MELDINGENHTML.="</li>";
+            $KdGService=new KdGService();
+            $KdGService->DoLogin($user,$password);
+            $meldingen=$KdGService->GetNotifications();
+            foreach ($meldingen as $melding)
+            {
+                $MELDINGENHTML.="<li>";
+                $MELDINGENHTML.="<h5>".$melding[0]."</h5>";
+                $MELDINGENHTML.="<p>".substr($melding[1],0,150)."...</p>";
+                $MELDINGENHTML.="</li>";
+            }
+            $MELDINGENHTML.="</ul>";
+            return $MELDINGENHTML;
         }
-        $MELDINGENHTML.="</ul>";
-        return $MELDINGENHTML;
-
+        else
+        {
+            return $this->pleaselogin;
+        }
     }
 
     /**
@@ -202,16 +213,17 @@ class ChatController extends Controller
     {
         $session=Session::find($_COOKIE["chatsession"]);
         $user=$session->login;
-        $password=decrypt($session->password);
-        $KdGService=new KdGService();
-        if($KdGService->DoLogin($user,$password))
+        $password=$session->password;
+        if(!is_null($user) && !is_null($password))
         {
+            $KdGService=new KdGService();
+            $KdGService->DoLogin($user,decrypt($password));
             $fullname=$KdGService->GetNameOfUser();
             return "<p>".$fullname[0]." ".$fullname[1]."</p>";
         }
         else
         {
-            return "Log je in bij KdG zodat ik deze informatie te weten kan komen!";
+            $this->pleaselogin;
         }
     }
 }
