@@ -11,6 +11,9 @@ use App\Message;
 
 class ChatController extends Controller
 {
+    /**
+     * @param $message, @echo string
+     */
     function handleMessage($message)
     {
         $error="Whoops dat heb ik niet verstaan!";
@@ -22,11 +25,11 @@ class ChatController extends Controller
         $search=$this->SearchMessage($message); // FIRST CHECKING LITERALLY
         if($search!="none") // IF SUCCESFULL 100% MATCH
         {
-            if($this->IsACode($search))
+            if($this->IsACode($search))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
             {
-                $code=$this->GetTheCode($search);
-                $answer=$this->$code();
-                echo $answer;
+                $code=$this->GetTheCode($search); //GET THE CODE
+                $answer=$this->$code(); //CALL FUNCTION WITH NAME OF THE CODE
+                echo $search;
             }
             else
             {
@@ -39,10 +42,10 @@ class ChatController extends Controller
             $answer=$this->CheckMessagesSequential($message); //LOOP AND CHECK IF RESEMBLANCE
             if($answer!="none") //SOME RESEMBLANCE FOUND
             {
-                if($this->IsACode($answer))
+                if($this->IsACode($answer))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
                 {
-                    $code=$this->GetTheCode($answer);
-                    $answer=$this->$code();
+                    $code=$this->GetTheCode($answer);//GET THE CODE
+                    $answer=$this->$code();//CALL FUNCTION WITH NAME OF THE CODE
                     echo $answer;
                 }
                 else
@@ -60,6 +63,7 @@ class ChatController extends Controller
 
 
     }
+    /*
     function CallWit($message)
     {
         $message=urlencode($message);
@@ -75,7 +79,11 @@ class ChatController extends Controller
         $result = json_decode(curl_exec($ch),true);
         curl_close($ch);
         return $result;
-    }
+    }*/
+    /**
+     * @param $sentence
+     * @return string
+     */
     function SearchMessage($sentence)
     {
         $sentence=Sentence::where("sentence",$sentence)->first();
@@ -97,6 +105,11 @@ class ChatController extends Controller
         }
 
     }
+
+    /**
+     * @param $sentencetocheck
+     * @return string
+     */
     function CheckMessagesSequential($sentencetocheck)
     {
         $sentences=Sentence::all();
@@ -111,7 +124,12 @@ class ChatController extends Controller
         }
         return "none";
     }
-    function AddToSession($messagetoadd,$who)
+
+    /**
+     * @param $messagetoadd
+     * @param $who
+     */
+    function AddToSession($messagetoadd, $who)
     {
         $toadd=[$messagetoadd,$who];
         $session=Session::select('messages')->where('id', $_COOKIE["chatsession"])->first();
@@ -121,6 +139,11 @@ class ChatController extends Controller
         $session->messages=json_encode($messages);
         $session->save();
     }
+
+    /**
+     * @param $answer
+     * @return bool
+     */
     function IsACode($answer)
     {
         $answer=html_entity_decode(strip_tags($answer));
@@ -135,6 +158,11 @@ class ChatController extends Controller
             return FALSE;
         }
     }
+
+    /**
+     * @param $answer
+     * @return mixed|string
+     */
     function GetTheCode($answer)
     {
         $answer=html_entity_decode(strip_tags($answer));
@@ -142,6 +170,10 @@ class ChatController extends Controller
         $answer=str_replace(">>>","",$answer);
         return $answer;
     }
+
+    /**
+     * @return string
+     */
     function MELDINGEN()
     {
         $MELDINGENHTML="<ul>";
@@ -162,6 +194,10 @@ class ChatController extends Controller
         return $MELDINGENHTML;
 
     }
+
+    /**
+     * @return string
+     */
     function NAAM()
     {
         $session=Session::find($_COOKIE["chatsession"]);

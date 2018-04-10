@@ -8,6 +8,9 @@ use App\Session;
 
 class KdgLoginController extends Controller
 {
+    /**
+     * @param Request $request @echo bool
+     */
     public function login(Request $request)
     {
         $login = $request->input("login");

@@ -7,6 +7,9 @@ use App\Session;
 
 class WelcomeController extends Controller
 {
+    /**
+     * @return $this
+     */
     public function welcome()
     {
         if(!isset($_COOKIE['chatsession']))
