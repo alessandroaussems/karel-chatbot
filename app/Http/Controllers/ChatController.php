@@ -22,7 +22,16 @@ class ChatController extends Controller
         $search=$this->SearchMessage($message); // FIRST CHECKING LITERALLY
         if($search!="none") // IF SUCCESFULL 100% MATCH
         {
-            echo $search; // ECHO 100% MATCH ANSWER
+            if($this->IsACode($search))
+            {
+                $code=$this->GetTheCode($search);
+                $answer=$this->$code();
+                echo $answer;
+            }
+            else
+            {
+                echo $search; //ECHO THE RESEMBLANCE
+            }
             $this->AddToSession($search,"B");
         }
         else // NO 100% MATCH
@@ -30,7 +39,16 @@ class ChatController extends Controller
             $answer=$this->CheckMessagesSequential($message); //LOOP AND CHECK IF RESEMBLANCE
             if($answer!="none") //SOME RESEMBLANCE FOUND
             {
-                echo $answer; //ECHO THE RESEMBLANCE
+                if($this->IsACode($answer))
+                {
+                    $code=$this->GetTheCode($answer);
+                    $answer=$this->$code();
+                    echo $answer;
+                }
+                else
+                {
+                    echo $answer; //ECHO THE RESEMBLANCE
+                }
                 $this->AddToSession($answer,"B");
             }
             else
@@ -103,13 +121,62 @@ class ChatController extends Controller
         $session->messages=json_encode($messages);
         $session->save();
     }
-    function test()
+    function IsACode($answer)
     {
+        $answer=html_entity_decode(strip_tags($answer));
+        if(strpos($answer,"<<<")!==false && strpos($answer,">>>")!==false)
+        {
+            $answer=str_replace("<<<","",$answer);
+            $answer=str_replace(">>>","",$answer);
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+    function GetTheCode($answer)
+    {
+        $answer=html_entity_decode(strip_tags($answer));
+        $answer=str_replace("<<<","",$answer);
+        $answer=str_replace(">>>","",$answer);
+        return $answer;
+    }
+    function MELDINGEN()
+    {
+        $MELDINGENHTML="<ul>";
+        $session=Session::find($_COOKIE["chatsession"]);
+        $user=$session->login;
+        $password=decrypt($session->password);
         $KdGService=new KdGService();
-        $KdGService->DoLogin("","");
-        echo $KdGService->GetNameOfUser()[0].$KdGService->GetNameOfUser()[1];
+        $KdGService->DoLogin($user,$password);
+        $meldingen=$KdGService->GetNotifications();
+        foreach ($meldingen as $melding)
+        {
+            $MELDINGENHTML.="<li>";
+            $MELDINGENHTML.="<h5>".$melding[0]."</h5>";
+            $MELDINGENHTML.="<p>".substr($melding[1],0,150)."...</p>";
+            $MELDINGENHTML.="</li>";
+        }
+        $MELDINGENHTML.="</ul>";
+        return $MELDINGENHTML;
 
-
+    }
+    function NAAM()
+    {
+        $session=Session::find($_COOKIE["chatsession"]);
+        $user=$session->login;
+        $password=decrypt($session->password);
+        $KdGService=new KdGService();
+        if($KdGService->DoLogin($user,$password))
+        {
+            $fullname=$KdGService->GetNameOfUser();
+            return "<p>".$fullname[0]." ".$fullname[1]."</p>";
+        }
+        else
+        {
+            return "Log je in bij KdG zodat ik deze informatie te weten kan komen!";
+        }
     }
 }
 

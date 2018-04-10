@@ -13,7 +13,6 @@
 
 Route::get('/','WelcomeController@welcome');
 Route::get('chat/{message}','ChatController@handleMessage');
-Route::get("/test",'ChatController@test');
 
 Auth::routes();
 
@@ -29,4 +28,3 @@ Route::get('sentences/create/{messageid}','SentenceController@create');
 Route::get('sentences/edit/{id}/message/{messageid}','SentenceController@edit');
 
 Route::put("kdglogin",'KdgLoginController@login');
-Route::get("kdglogin",'KdgLoginController@test');

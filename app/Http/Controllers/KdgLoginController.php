@@ -37,8 +37,4 @@ class KdgLoginController extends Controller
 
 
     }
-    public function test()
-    {
-        echo $_COOKIE["chatsession"];
-    }
 }
