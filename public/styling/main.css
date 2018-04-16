@@ -70,8 +70,6 @@ nav {
       font-size: 3vw;
       margin-bottom: 3%;
       margin-top: 0px; }
-    .chat .opener p {
-      font-size: 1vw; }
   .chat ul {
     list-style-type: none;
     padding: 0px; }
@@ -80,8 +78,7 @@ nav {
       display: table;
       max-width: 60%;
       padding: 1%;
-      margin-bottom: 2%;
-      font-size: 1.25vw; }
+      margin-bottom: 2%; }
     .chat ul .botmessage {
       background-color: #0c090a;
       color: #ffffff; }
@@ -104,7 +101,8 @@ nav {
   margin-right: 25%;
   padding: 0px;
   border-color: #1d1d1b;
-  height: 5%; }
+  height: 5%;
+  font-size: 16px; }
 
 .userinput:focus {
   outline: none; }
@@ -155,8 +153,6 @@ nav {
       font-size: 3vw;
       margin-bottom: 3%;
       margin-top: 0px; }
-    .chat .opener p {
-      font-size: 1vw; }
   .chat ul {
     list-style-type: none;
     padding: 0px; }
@@ -165,8 +161,7 @@ nav {
       display: table;
       max-width: 60%;
       padding: 1%;
-      margin-bottom: 2%;
-      font-size: 1.25vw; }
+      margin-bottom: 2%; }
     .chat ul .botmessage {
       background-color: #0c090a;
       color: #ffffff; }
@@ -189,7 +184,8 @@ nav {
   margin-right: 25%;
   padding: 0px;
   border-color: #1d1d1b;
-  height: 5%; }
+  height: 5%;
+  font-size: 16px; }
 
 .userinput:focus {
   outline: none; }
@@ -452,10 +448,22 @@ nav {
     margin-left: 0;
     margin-right: 0; }
 
-  nav #settings {
-    display: none; }
-  nav #botlogo {
-    margin-left: 1.5%; } }
+  .chat {
+    border: none; }
+
+  .userinput {
+    border-left: none;
+    border-right: none; }
+
+  nav {
+    height: 5vh; }
+    nav #settings {
+      display: none; }
+    nav #botlogo {
+      margin-left: 1.5%; }
+
+  main {
+    height: 95vh !important; } }
 .email {
   width: 30%;
   margin-left: auto;
@@ -569,7 +577,8 @@ body {
   margin: 0 auto;
   background-color: #ffffff;
   overflow-x: hidden;
-  font-family: Verdana, Geneva, sans-serif; }
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 16px; }
 
 main {
   height: 85vh; }
