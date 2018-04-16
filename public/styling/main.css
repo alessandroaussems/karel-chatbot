@@ -577,4 +577,7 @@ main {
 small {
   opacity: 0.5; }
 
+.nodisplay {
+  display: none !important; }
+
 /*# sourceMappingURL=main.css.map */

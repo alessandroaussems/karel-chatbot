@@ -111,6 +111,7 @@ function DoKdGlogin(event)
             if(this.responseText)
             {
                 document.getElementById("overlay").classList.remove("display");
+                document.getElementById("kdgconnect").classList.add("nodisplay");
                 CreateAnswer("Dankjewel om je KdG-account te koppelen! Ik kan je nu nog beter helpen!")
             }
             if(!this.responseText)
