@@ -12,6 +12,8 @@ use App\Message;
 class ChatController extends Controller
 {
     private $pleaselogin;
+    private $starttag="[intranet]";
+    private $endtag="[/intranet]";
     public function __construct()
     {
         $this->pleaselogin="<strong>Log je in bij KdG zodat ik deze informatie te weten kan komen!</strong>";
@@ -33,7 +35,8 @@ class ChatController extends Controller
             if($this->IsACode($search))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
             {
                 $code=$this->GetTheCode($search); //GET THE CODE
-                $answer=$this->$code(); //CALL FUNCTION WITH NAME OF THE CODE
+                $search=str_replace($code,$this->$code(),$search); //CALL FUNCTION WITH NAME OF THE CODE
+                $search=$this->SanitizeTheCode($search); //REMOVE START AND END TAG
                 echo $search;
             }
             else
@@ -50,7 +53,8 @@ class ChatController extends Controller
                 if($this->IsACode($answer))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
                 {
                     $code=$this->GetTheCode($answer);//GET THE CODE
-                    $answer=$this->$code();//CALL FUNCTION WITH NAME OF THE CODE
+                    $answer=str_replace($code,$this->$code(),$answer);//CALL FUNCTION WITH NAME OF THE CODE
+                    $answer=$this->SanitizeTheCode($answer); //REMOVE START AND END TAG
                     echo $answer;
                 }
                 else
@@ -152,10 +156,8 @@ class ChatController extends Controller
     function IsACode($answer)
     {
         $answer=html_entity_decode(strip_tags($answer));
-        if(strpos($answer,"<<<")!==false && strpos($answer,">>>")!==false)
+        if(strpos($answer,$this->starttag)!==false && strpos($answer,$this->endtag)!==false)
         {
-            $answer=str_replace("<<<","",$answer);
-            $answer=str_replace(">>>","",$answer);
             return TRUE;
         }
         else
@@ -170,12 +172,19 @@ class ChatController extends Controller
      */
     function GetTheCode($answer)
     {
-        $answer=html_entity_decode(strip_tags($answer));
-        $answer=str_replace("<<<","",$answer);
-        $answer=str_replace(">>>","",$answer);
+        $string = ' ' . html_entity_decode(strip_tags($answer));
+        $ini = strpos($string, $this->starttag);
+        if ($ini == 0) return '';
+        $ini += strlen($this->starttag);
+        $len = strpos($string, $this->endtag, $ini) - $ini;
+        return substr($string, $ini, $len);
+    }
+    function SanitizeTheCode($answer)
+    {
+        $answer=str_replace($this->starttag," ",$answer);
+        $answer=str_replace($this->endtag," ",$answer);
         return $answer;
     }
-
     /**
      * @return string
      */
@@ -188,7 +197,7 @@ class ChatController extends Controller
         if(!is_null($user) && !is_null($password))
         {
             $KdGService=new KdGService();
-            $KdGService->DoLogin($user,$password);
+            $KdGService->DoLogin($user,decrypt($password));
             $meldingen=$KdGService->GetNotifications();
             foreach ($meldingen as $melding)
             {
