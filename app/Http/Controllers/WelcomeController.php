@@ -7,6 +7,9 @@ use App\Session;
 
 class WelcomeController extends Controller
 {
+    /**
+     * @return $this
+     */
     public function welcome()
     {
         if(!isset($_COOKIE['chatsession']))
@@ -40,10 +43,18 @@ class WelcomeController extends Controller
             $session->lastactive=date("Y-m-d");
             $session->save();
 
-            $session=Session::select('messages')->where('id', $_COOKIE["chatsession"])->first();
+            $session=Session::where('id', $_COOKIE["chatsession"])->first();
+            if(!is_null($session->login) && !is_null($session->password))
+            {
+                $isconnected=TRUE;
+            }
+            else
+            {
+                $isconnected=FALSE;
+            }
             $messages=json_decode($session->messages);
 
-            return view("chat")->with("messages",$messages);
+            return view("chat")->with("messages",$messages)->with("isconnected",$isconnected);
         }
     }
 }

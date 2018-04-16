@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('wysiwyg/themes/modern.css')}}" />
 </head>
 <body>
+@extends("partials.overlay")
 <nav class="clearfix">
     <a id="settings" href="/admin">k</a>
     <a href="/" id="botlogo">

@@ -1,7 +1,32 @@
 @media screen and (max-width: 800px) {
   .chat,.userinput {
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .chat
+  {
+    border: none;
+  }
+  .userinput
+  {
+    border-left: none;
+    border-right: none;
+  }
+  nav
+  {
+    height: 5vh;
+    #settings
+    {
+      display: none;
+    }
+    #botlogo
+    {
+      margin-left: 1.5%;
+    }
+  }
+  main
+  {
+    height: 95vh !important;
   }
 }

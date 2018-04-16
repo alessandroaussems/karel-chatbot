@@ -29,6 +29,10 @@ function sendMessage(value,event)
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
                     CreateAnswer(this.responseText);
                 }
+                if(xmlhttp.readyState == 4 && xmlhttp.status == 500)
+                {
+                    CreateAnswer("<p>Whoops er ging iets fout. Je mag nu een mail sturen naar <a href='mailto:alessandro.aussems@student.kdg.be'>alessandro.aussems@student.kdg.be</a></p>");
+                }
             }
             xmlhttp.open("GET", "./chat/"+message, true);
             xmlhttp.send();
@@ -92,6 +96,43 @@ function getCookie(cname) {
         }
     }
     return "";
+}
+function DoKdGlogin(event)
+{
+    var login=document.getElementById("login").value;
+    var password=document.getElementById("password").value;
+    var button=document.getElementById("loginbutton");
+    var sessionid=getCookie("chatsession");
+    button.disabled=true;
+    var xmlhttp;
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function(){
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+            if(this.responseText)
+            {
+                document.getElementById("overlay").classList.remove("display");
+                document.getElementById("kdgconnect").classList.add("nodisplay");
+                CreateAnswer("Dankjewel om je KdG-account te koppelen! Ik kan je nu nog beter helpen!")
+            }
+            if(!this.responseText)
+            {
+                button.disabled=false;
+                document.getElementById("loginerror").classList.add("display");
+            }
+        }
+    }
+    xmlhttp.open('PUT', "./kdglogin/", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("login="+login+"&password="+password+"&chatsession="+sessionid);
+
+}
+function ShowLoginForm(event)
+{
+    document.getElementById("overlay").classList.add("display");
+}
+function HideLoginForm(event)
+{
+    document.getElementById("overlay").classList.remove("display");
 }
 $(document).ready(function(){
  //JSCODE HERE!

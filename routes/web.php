@@ -17,7 +17,6 @@ Route::get('chat/{message}','ChatController@handleMessage');
 Auth::routes();
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
 Route::get('admin', 'AdminController@index');
 
 Route::resource('messages', 'MessageController');
@@ -27,3 +26,5 @@ Route::resource('sentences', 'SentenceController');
 Route::get('sentences/{id}/delete/message/{messageid}','SentenceController@destroy');
 Route::get('sentences/create/{messageid}','SentenceController@create');
 Route::get('sentences/edit/{id}/message/{messageid}','SentenceController@edit');
+
+Route::put("kdglogin",'KdgLoginController@login');

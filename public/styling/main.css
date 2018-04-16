@@ -70,8 +70,6 @@ nav {
       font-size: 3vw;
       margin-bottom: 3%;
       margin-top: 0px; }
-    .chat .opener p {
-      font-size: 1vw; }
   .chat ul {
     list-style-type: none;
     padding: 0px; }
@@ -80,8 +78,7 @@ nav {
       display: table;
       max-width: 60%;
       padding: 1%;
-      margin-bottom: 2%;
-      font-size: 1.25vw; }
+      margin-bottom: 2%; }
     .chat ul .botmessage {
       background-color: #0c090a;
       color: #ffffff; }
@@ -104,13 +101,33 @@ nav {
   margin-right: 25%;
   padding: 0px;
   border-color: #1d1d1b;
-  height: 5%; }
+  height: 5%;
+  font-size: 16px; }
 
 .userinput:focus {
   outline: none; }
 
 .sceditor-nlf {
   display: none; }
+
+#kdgconnect {
+  position: absolute;
+  margin-left: 1.5%;
+  text-align: center !important;
+  width: 20%;
+  background-color: #0c090a;
+  border: 1px solid #0c090a;
+  color: #ffffff;
+  display: block;
+  float: left;
+  padding: 1%;
+  bottom: 2.5%; }
+
+#kdgconnect:hover {
+  background-color: #ffffff;
+  border-color: #0c090a;
+  color: #0c090a;
+  cursor: pointer; }
 
 .chat {
   border-left: 2px solid #0c090a;
@@ -136,8 +153,6 @@ nav {
       font-size: 3vw;
       margin-bottom: 3%;
       margin-top: 0px; }
-    .chat .opener p {
-      font-size: 1vw; }
   .chat ul {
     list-style-type: none;
     padding: 0px; }
@@ -146,8 +161,7 @@ nav {
       display: table;
       max-width: 60%;
       padding: 1%;
-      margin-bottom: 2%;
-      font-size: 1.25vw; }
+      margin-bottom: 2%; }
     .chat ul .botmessage {
       background-color: #0c090a;
       color: #ffffff; }
@@ -170,13 +184,33 @@ nav {
   margin-right: 25%;
   padding: 0px;
   border-color: #1d1d1b;
-  height: 5%; }
+  height: 5%;
+  font-size: 16px; }
 
 .userinput:focus {
   outline: none; }
 
 .sceditor-nlf {
   display: none; }
+
+#kdgconnect {
+  position: absolute;
+  margin-left: 1.5%;
+  text-align: center !important;
+  width: 20%;
+  background-color: #0c090a;
+  border: 1px solid #0c090a;
+  color: #ffffff;
+  display: block;
+  float: left;
+  padding: 1%;
+  bottom: 2.5%; }
+
+#kdgconnect:hover {
+  background-color: #ffffff;
+  border-color: #0c090a;
+  color: #0c090a;
+  cursor: pointer; }
 
 .typing-indicator {
   background-color: #0c090a;
@@ -410,9 +444,26 @@ nav {
 
 @media screen and (max-width: 800px) {
   .chat, .userinput {
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%; } }
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0; }
+
+  .chat {
+    border: none; }
+
+  .userinput {
+    border-left: none;
+    border-right: none; }
+
+  nav {
+    height: 5vh; }
+    nav #settings {
+      display: none; }
+    nav #botlogo {
+      margin-left: 1.5%; }
+
+  main {
+    height: 95vh !important; } }
 .email {
   width: 30%;
   margin-left: auto;
@@ -481,6 +532,37 @@ nav {
     font-size: 1vw;
     color: red; }
 
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2; }
+  #overlay #close {
+    font-family: icon;
+    color: #0c090a;
+    margin-left: 90%; }
+  #overlay #close:hover {
+    cursor: pointer; }
+  #overlay .login {
+    margin-top: 10%;
+    padding: 5%;
+    background-color: #ffffff;
+    border: 3px solid #0c090a; }
+  #overlay #loginerror {
+    color: red;
+    opacity: 0; }
+  #overlay .display {
+    opacity: 1 !important; }
+
+.display {
+  display: block !important; }
+
 /* GLOBAL */
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {
@@ -495,12 +577,16 @@ body {
   margin: 0 auto;
   background-color: #ffffff;
   overflow-x: hidden;
-  font-family: Verdana, Geneva, sans-serif; }
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 16px; }
 
 main {
   height: 85vh; }
 
 small {
   opacity: 0.5; }
+
+.nodisplay {
+  display: none !important; }
 
 /*# sourceMappingURL=main.css.map */

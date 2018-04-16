@@ -30,7 +30,7 @@
     }
     p
     {
-      font-size: 1vw;
+      //font-size: 1vw;
     }
   }
   ul
@@ -44,7 +44,7 @@
       max-width: 60%;
       padding: 1%;
       margin-bottom: 2%;
-      font-size: 1.25vw;
+      //font-size: 1.25vw;
     }
     .botmessage
     {
@@ -81,6 +81,7 @@
   padding: 0px;
   border-color: $black;
   height: 5%;
+  font-size: 16px;
 }
 .userinput:focus
 {
@@ -89,4 +90,25 @@
 .sceditor-nlf
 {
   display: none;
+}
+#kdgconnect
+{
+  position: absolute;
+  margin-left: 1.5%;
+  text-align: center !important;
+  width: 20%;
+  background-color: $fullblack;
+  border: 1px solid $fullblack;
+  color: $white;
+  display: block;
+  float: left;
+  padding: 1%;
+  bottom: 2.5%;
+}
+#kdgconnect:hover
+{
+  background-color: $white;
+  border-color: $fullblack;
+  color: $fullblack;
+  cursor: pointer;
 }

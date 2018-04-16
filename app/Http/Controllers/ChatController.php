@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\KdGClientProvider;
+use App\Services\KdGService;
 use App\Session;
 use Illuminate\Http\Request;
 use App\Sentence;
@@ -9,6 +11,16 @@ use App\Message;
 
 class ChatController extends Controller
 {
+    private $pleaselogin;
+    private $starttag="[intranet]";
+    private $endtag="[/intranet]";
+    public function __construct()
+    {
+        $this->pleaselogin="<strong>Log je in bij KdG zodat ik deze informatie te weten kan komen!</strong>";
+    }
+    /**
+     * @param $message, @echo string
+     */
     function handleMessage($message)
     {
         $error="Whoops dat heb ik niet verstaan!";
@@ -20,7 +32,17 @@ class ChatController extends Controller
         $search=$this->SearchMessage($message); // FIRST CHECKING LITERALLY
         if($search!="none") // IF SUCCESFULL 100% MATCH
         {
-            echo $search; // ECHO 100% MATCH ANSWER
+            if($this->IsACode($search))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
+            {
+                $code=$this->GetTheCode($search); //GET THE CODE
+                $search=str_replace($code,$this->$code(),$search); //CALL FUNCTION WITH NAME OF THE CODE
+                $search=$this->SanitizeTheCode($search); //REMOVE START AND END TAG
+                echo $search;
+            }
+            else
+            {
+                echo $search; //ECHO THE RESEMBLANCE
+            }
             $this->AddToSession($search,"B");
         }
         else // NO 100% MATCH
@@ -28,7 +50,17 @@ class ChatController extends Controller
             $answer=$this->CheckMessagesSequential($message); //LOOP AND CHECK IF RESEMBLANCE
             if($answer!="none") //SOME RESEMBLANCE FOUND
             {
-                echo $answer; //ECHO THE RESEMBLANCE
+                if($this->IsACode($answer))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
+                {
+                    $code=$this->GetTheCode($answer);//GET THE CODE
+                    $answer=str_replace($code,$this->$code(),$answer);//CALL FUNCTION WITH NAME OF THE CODE
+                    $answer=$this->SanitizeTheCode($answer); //REMOVE START AND END TAG
+                    echo $answer;
+                }
+                else
+                {
+                    echo $answer; //ECHO THE RESEMBLANCE
+                }
                 $this->AddToSession($answer,"B");
             }
             else
@@ -40,6 +72,7 @@ class ChatController extends Controller
 
 
     }
+    /*
     function CallWit($message)
     {
         $message=urlencode($message);
@@ -55,7 +88,11 @@ class ChatController extends Controller
         $result = json_decode(curl_exec($ch),true);
         curl_close($ch);
         return $result;
-    }
+    }*/
+    /**
+     * @param $sentence
+     * @return string
+     */
     function SearchMessage($sentence)
     {
         $sentence=Sentence::where("sentence",$sentence)->first();
@@ -77,6 +114,11 @@ class ChatController extends Controller
         }
 
     }
+
+    /**
+     * @param $sentencetocheck
+     * @return string
+     */
     function CheckMessagesSequential($sentencetocheck)
     {
         $sentences=Sentence::all();
@@ -91,7 +133,12 @@ class ChatController extends Controller
         }
         return "none";
     }
-    function AddToSession($messagetoadd,$who)
+
+    /**
+     * @param $messagetoadd
+     * @param $who
+     */
+    function AddToSession($messagetoadd, $who)
     {
         $toadd=[$messagetoadd,$who];
         $session=Session::select('messages')->where('id', $_COOKIE["chatsession"])->first();
@@ -100,6 +147,109 @@ class ChatController extends Controller
         $session=Session::find($_COOKIE["chatsession"]);
         $session->messages=json_encode($messages);
         $session->save();
+    }
+
+    /**
+     * @param $answer
+     * @return bool
+     */
+    function IsACode($answer)
+    {
+        $answer=html_entity_decode(strip_tags($answer));
+        if(strpos($answer,$this->starttag)!==false && strpos($answer,$this->endtag)!==false)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
+    /**
+     * @param $answer
+     * @return mixed|string
+     */
+    function GetTheCode($answer)
+    {
+        $string = ' ' . html_entity_decode(strip_tags($answer));
+        $ini = strpos($string, $this->starttag);
+        if ($ini == 0) return '';
+        $ini += strlen($this->starttag);
+        $len = strpos($string, $this->endtag, $ini) - $ini;
+        return substr($string, $ini, $len);
+    }
+    function SanitizeTheCode($answer)
+    {
+        $answer=str_replace($this->starttag," ",$answer);
+        $answer=str_replace($this->endtag," ",$answer);
+        return $answer;
+    }
+    /**
+     * @return string
+     */
+    function MELDINGEN()
+    {
+        $MELDINGENHTML="<ul>";
+        $session=Session::find($_COOKIE["chatsession"]);
+        $user=$session->login;
+        $password=$session->password;
+        if(!is_null($user) && !is_null($password))
+        {
+            $KdGService=new KdGService();
+            $KdGService->DoLogin($user,decrypt($password));
+            $meldingen=$KdGService->GetNotifications();
+            foreach ($meldingen as $melding)
+            {
+                $MELDINGENHTML.="<li>";
+                $MELDINGENHTML.="<h5>".$melding[0]."</h5>";
+                $MELDINGENHTML.="<p>".substr($melding[1],0,150)."...</p>";
+                $MELDINGENHTML.="</li>";
+            }
+            $MELDINGENHTML.="</ul>";
+            return $MELDINGENHTML;
+        }
+        else
+        {
+            return $this->pleaselogin;
+        }
+    }
+
+    /**
+     * @return string
+     */
+    function NAAM()
+    {
+        $session=Session::find($_COOKIE["chatsession"]);
+        $user=$session->login;
+        $password=$session->password;
+        if(!is_null($user) && !is_null($password))
+        {
+            $KdGService=new KdGService();
+            $KdGService->DoLogin($user,decrypt($password));
+            $fullname=$KdGService->GetNameOfUser();
+            return "<p>".$fullname[0]." ".$fullname[1]."</p>";
+        }
+        else
+        {
+            return $this->pleaselogin;
+        }
+    }
+    function DAGMENU()
+    {
+        $session=Session::find($_COOKIE["chatsession"]);
+        $user=$session->login;
+        $password=$session->password;
+        if(!is_null($user) && !is_null($password))
+        {
+            $KdGService=new KdGService();
+            $KdGService->DoLogin($user,decrypt($password));
+            return $KdGService->GetDayMenu();
+        }
+        else
+        {
+            return $this->pleaselogin;
+        }
     }
 }
 
