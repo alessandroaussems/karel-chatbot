@@ -13,7 +13,7 @@
         {{ Form::textarea('answer', null, ['class' => 'field']) }}
         <br>
 
-        {{ Form::button('Antwoord aanpassen!', array('type' => 'submit')) }}
+        {{ Form::button('Antwoord toevoegen!', array('type' => 'submit')) }}
 
         {{ Form::close() }}
 
