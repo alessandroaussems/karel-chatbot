@@ -111,4 +111,19 @@ class KdGService
         $name=[trim($forname),trim($lastname)];
         return $name;
     }
+    public function GetDayMenu()
+    {
+        //BROWSING TO MENU URL
+        $response_menu = $this->client->get('https://intranet.student.kdg.be/', [
+                'allow_redirects' => true,
+                'cookies' => $this->cookieJar,
+            ]
+        );
+        //GETTING MENU PAGE HTML
+        $menu_html=str_get_html($response_menu->getBody()->getContents());
+        //GETTING MENU ELEMENT TEXT
+        $menu=$menu_html->find("span#pagemain_0_homefooter_0_MyStudyfieldRepeater_MenuText_0",0);
+        //RETURNING MENU
+        return $menu;
+    }
 }

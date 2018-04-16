@@ -232,7 +232,23 @@ class ChatController extends Controller
         }
         else
         {
-            $this->pleaselogin;
+            return $this->pleaselogin;
+        }
+    }
+    function DAGMENU()
+    {
+        $session=Session::find($_COOKIE["chatsession"]);
+        $user=$session->login;
+        $password=$session->password;
+        if(!is_null($user) && !is_null($password))
+        {
+            $KdGService=new KdGService();
+            $KdGService->DoLogin($user,decrypt($password));
+            return $KdGService->GetDayMenu();
+        }
+        else
+        {
+            return $this->pleaselogin;
         }
     }
 }
