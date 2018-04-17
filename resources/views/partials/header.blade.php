@@ -22,6 +22,11 @@
     <a href="https://www.kdg.be/" id="kdglogo" target="_blank">
     <img  src="{{asset('img/logo_kdg_white.png')}}" alt="Logo van KdG" title="Logo van KdG">
     </a>
+    @if(isset($isconnected))
+        @if(!$isconnected)
+            <span id="kdgconnect" onclick="ShowLoginForm(this.event)">Verbinden met Intranet</span>
+        @endif
+    @endif
 </nav>
 <main>
     @yield('content')

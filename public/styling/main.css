@@ -45,6 +45,15 @@ nav {
     margin-right: 1%; }
     nav #kdglogo img {
       width: 100%; }
+  nav #kdgconnect {
+    width: 20%;
+    color: #ffffff;
+    margin-left: 79%;
+    font-size: 1vw;
+    text-align: right;
+    margin-bottom: 1%; }
+  nav #kdgconnect:hover {
+    cursor: pointer; }
 
 .chat {
   border-left: 2px solid #0c090a;
@@ -125,25 +134,6 @@ nav {
 .sceditor-nlf {
   display: none; }
 
-#kdgconnect {
-  position: absolute;
-  margin-left: 1.5%;
-  text-align: center !important;
-  width: 20%;
-  background-color: #0c090a;
-  border: 1px solid #0c090a;
-  color: #ffffff;
-  display: block;
-  float: left;
-  padding: 1%;
-  bottom: 2.5%; }
-
-#kdgconnect:hover {
-  background-color: #ffffff;
-  border-color: #0c090a;
-  color: #0c090a;
-  cursor: pointer; }
-
 .chat {
   border-left: 2px solid #0c090a;
   border-right: 2px solid #0c090a;
@@ -222,25 +212,6 @@ nav {
 
 .sceditor-nlf {
   display: none; }
-
-#kdgconnect {
-  position: absolute;
-  margin-left: 1.5%;
-  text-align: center !important;
-  width: 20%;
-  background-color: #0c090a;
-  border: 1px solid #0c090a;
-  color: #ffffff;
-  display: block;
-  float: left;
-  padding: 1%;
-  bottom: 2.5%; }
-
-#kdgconnect:hover {
-  background-color: #ffffff;
-  border-color: #0c090a;
-  color: #0c090a;
-  cursor: pointer; }
 
 .typing-indicator {
   background-color: #0c090a;
@@ -487,14 +458,14 @@ nav {
     width: 90%; }
 
   nav {
-    height: 5vh; }
+    height: 7.5vh; }
     nav #settings {
       display: none; }
     nav #botlogo {
       margin-left: 1.5%; }
 
   main {
-    height: 95vh !important; } }
+    height: 92.5vh !important; } }
 .email {
   width: 30%;
   margin-left: auto;

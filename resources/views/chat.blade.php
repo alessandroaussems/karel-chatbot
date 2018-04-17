@@ -1,8 +1,5 @@
 @extends('partials.header')
 @section('content')
-    @if(!$isconnected)
-        <span id="kdgconnect" onclick="ShowLoginForm(this.event)">Verbinden met Intranet</span>
-    @endif
     <div class="chat">
         <ul id="messagelist">
             @foreach($messages as $key => $value)
