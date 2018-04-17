@@ -11,9 +11,16 @@ if(getCookie("visits")!="" && getCookie("visits")==1)//CHECK IF COOKIE VISITS EX
 }
 function sendMessage(value,event)
 {
-    if(event.keyCode == 13)//IF ENTER KEY IS PRESSED
+    if(event.keyCode == 13 || value=="getit")//IF ENTER KEY IS PRESSED OR SEND BUTTON
     {
-        var message=value;
+        if(value="getit")
+        {
+            var message=document.getElementsByClassName("userinput")[0].value;
+        }
+        else
+        {
+            var message=value;
+        }
         CreateUserMessage(message);
         document.getElementsByClassName("userinput")[0].value="";
         //MAKE SURE TYPEICON IS ALWAYS @ THE BOTTOM

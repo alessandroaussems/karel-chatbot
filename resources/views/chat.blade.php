@@ -23,5 +23,6 @@
         </div>
     </div>
     <input type="text" class="userinput" placeholder="Typ je bericht hier..." onkeypress="sendMessage(this.value,event)" autofocus>
+    <span id="send" onclick="sendMessage('getit',event)"> > </span>
 <script src="{{asset('js/main.js')}}"></script>
 @endsection

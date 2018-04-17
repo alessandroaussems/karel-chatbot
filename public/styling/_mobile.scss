@@ -1,17 +1,18 @@
 @media screen and (max-width: 800px) {
   .chat,.userinput {
-    width: 100%;
     margin-left: 0;
     margin-right: 0;
   }
   .chat
   {
     border: none;
+    width: 100%;
   }
   .userinput
   {
     border-left: none;
     border-right: none;
+    width: 90%;
   }
   nav
   {

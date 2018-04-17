@@ -96,16 +96,30 @@ nav {
       margin-right: 0; }
 
 .userinput {
-  width: 50%;
+  width: 40%;
   margin-left: 25%;
-  margin-right: 25%;
+  margin-right: 0;
   padding: 0px;
   border-color: #1d1d1b;
   height: 5%;
-  font-size: 16px; }
+  font-size: 16px;
+  float: left; }
 
 .userinput:focus {
   outline: none; }
+
+#send {
+  color: #ffffff;
+  float: left;
+  background-color: #1d1d1b;
+  height: 5.6%;
+  width: 10%;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column; }
 
 .sceditor-nlf {
   display: none; }
@@ -179,16 +193,30 @@ nav {
       margin-right: 0; }
 
 .userinput {
-  width: 50%;
+  width: 40%;
   margin-left: 25%;
-  margin-right: 25%;
+  margin-right: 0;
   padding: 0px;
   border-color: #1d1d1b;
   height: 5%;
-  font-size: 16px; }
+  font-size: 16px;
+  float: left; }
 
 .userinput:focus {
   outline: none; }
+
+#send {
+  color: #ffffff;
+  float: left;
+  background-color: #1d1d1b;
+  height: 5.6%;
+  width: 10%;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column; }
 
 .sceditor-nlf {
   display: none; }
@@ -444,16 +472,17 @@ nav {
 
 @media screen and (max-width: 800px) {
   .chat, .userinput {
-    width: 100%;
     margin-left: 0;
     margin-right: 0; }
 
   .chat {
-    border: none; }
+    border: none;
+    width: 100%; }
 
   .userinput {
     border-left: none;
-    border-right: none; }
+    border-right: none;
+    width: 90%; }
 
   nav {
     height: 5vh; }
