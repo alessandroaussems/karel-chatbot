@@ -103,6 +103,10 @@
   align-content:center;
   flex-direction:column;
 }
+#send:hover
+{
+  cursor: pointer;
+}
 .sceditor-nlf
 {
   display: none;

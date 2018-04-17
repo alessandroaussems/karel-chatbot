@@ -131,6 +131,9 @@ nav {
   align-content: center;
   flex-direction: column; }
 
+#send:hover {
+  cursor: pointer; }
+
 .sceditor-nlf {
   display: none; }
 
@@ -209,6 +212,9 @@ nav {
   justify-content: center;
   align-content: center;
   flex-direction: column; }
+
+#send:hover {
+  cursor: pointer; }
 
 .sceditor-nlf {
   display: none; }
