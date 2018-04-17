@@ -80,6 +80,7 @@ nav {
       padding: 1%;
       margin-bottom: 2%; }
     .chat ul .botmessage {
+      margin-left: 0.5%;
       background-color: #0c090a;
       color: #ffffff; }
       .chat ul .botmessage a {
@@ -93,7 +94,7 @@ nav {
       background-color: #00b2e2;
       color: #0c090a;
       margin-left: auto;
-      margin-right: 0; }
+      margin-right: 0.5%; }
 
 .userinput {
   width: 40%;
@@ -177,6 +178,7 @@ nav {
       padding: 1%;
       margin-bottom: 2%; }
     .chat ul .botmessage {
+      margin-left: 0.5%;
       background-color: #0c090a;
       color: #ffffff; }
       .chat ul .botmessage a {
@@ -190,7 +192,7 @@ nav {
       background-color: #00b2e2;
       color: #0c090a;
       margin-left: auto;
-      margin-right: 0; }
+      margin-right: 0.5%; }
 
 .userinput {
   width: 40%;

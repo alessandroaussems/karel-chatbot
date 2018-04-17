@@ -48,6 +48,7 @@
     }
     .botmessage
     {
+      margin-left: 0.5%;
       background-color: $fullblack;
       color: $white;
       a
@@ -69,7 +70,7 @@
       background-color: $accentcolor;
       color: $fullblack;
       margin-left:auto;
-      margin-right:0;
+      margin-right:0.5%;
     }
   }
 }
