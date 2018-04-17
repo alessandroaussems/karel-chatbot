@@ -26,7 +26,7 @@ class WelcomeController extends Controller
             $session->lastactive=date('Y-m-d');
             $session->save();
 
-            return view("chat")->with("messages",[]);
+            return view("chat")->with("messages",[])->with("isconnected",false);
         }
         else
         {
