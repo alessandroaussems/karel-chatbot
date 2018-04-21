@@ -7,6 +7,7 @@
         <ul class="options">
             <li><a href="/register">Admin maken</a></li>
             <li><a href="/messages">Berichten</a></li>
+            <li><a href="/tags">Tags</a></li>
         </ul>
     </div>
 
