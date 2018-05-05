@@ -251,5 +251,21 @@ class ChatController extends Controller
             return $this->pleaselogin;
         }
     }
+    function LESSEN()
+    {
+        $session=Session::find($_COOKIE["chatsession"]);
+        $user=$session->login;
+        $password=$session->password;
+        if(!is_null($user) && !is_null($password))
+        {
+            $KdGService=new KdGService();
+            $KdGService->DoLogin($user,decrypt($password));
+            return $KdGService->GetDayLessons();
+        }
+        else
+        {
+            return $this->pleaselogin;
+        }
+    }
 }
 

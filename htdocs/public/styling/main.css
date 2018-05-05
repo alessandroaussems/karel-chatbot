@@ -571,10 +571,6 @@ nav {
 .display {
   display: block !important; }
 
-.tagsoverview {
-  display: table;
-  margin: 0 auto; }
-
 /* GLOBAL */
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {

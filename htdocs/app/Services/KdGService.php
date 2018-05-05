@@ -126,4 +126,34 @@ class KdGService
         //RETURNING MENU
         return $menu;
     }
+    public function GetDayLessons()
+    {
+        $this->DoLogin("alessandro.aussems@student.kdg.be","KdGVU5rn");
+        //BROWSE TO ROOSTER URL
+        $response_lessons = $this->client->get("https://intranet.student.kdg.be/kalender", [
+                'allow_redirects' => true,
+                'cookies' => $this->cookieJar,
+            ]
+        );
+        $lessons_html=str_get_html($response_lessons->getBody()->getContents());
+        //$lessons_html=$this->LinkFixer($lessons_html,"https://intranet.student.kdg.be/kalender");
+        echo $lessons_html;
+        die;
+    }
+    private function LinkFixer($html,$prefixurltoadd)
+    {
+        //LOADING ALL LINK TAGS AND ADDING OUR PREFIX TO THE HREF
+        $linktags=$html->find("link");
+        foreach ($linktags as $linktag)
+        {
+            $linktag->href=$prefixurltoadd.$linktag->href;
+        }
+        //LOADING ALL OUR SCRIPT TAGS AND ADDING OUR PREFIX TO THE SRC
+        $scriptags=$html->find("script");
+        foreach ($scriptags as $scriptag)
+        {
+            $scriptag->src=$prefixurltoadd.$scriptag->src;
+        }
+        return $html;
+    }
 }
