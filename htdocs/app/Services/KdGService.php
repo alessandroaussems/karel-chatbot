@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 use GuzzleHttp\Client;
+use JonnyW\PhantomJs\Client as PhantomClient;
 require_once "simple_html_dom.php";
 
 class KdGService
@@ -137,7 +138,18 @@ class KdGService
         );
         $lessons_html=str_get_html($response_lessons->getBody()->getContents());
         $lessons_html=$this->LinkFixer($lessons_html,"https://mijnrooster.kdg.be/");
-        echo $lessons_html;
+        //$this->ProcessLessonHTML($lessons_html);
+
+        $phantom=PhantomClient::getInstance();
+        $phantom->getEngine()->setPath("../vendor/bin/phantomjs");
+        $phantom_request=$phantom->getMessageFactory()->createRequest('https://intranet.student.kdg.be/kalender', 'GET');
+        $phantom_response=$phantom->getMessageFactory()->createResponse();
+
+        $phantom->send($phantom_request,$phantom_response);
+        if($phantom_response->getStatus()===200)
+        {
+            dump($phantom_response->getContent());
+        }
         die;
     }
     private function LinkFixer($html,$prefixurltoadd)
@@ -155,5 +167,12 @@ class KdGService
             $scriptag->src=$prefixurltoadd.$scriptag->src;
         }
         return $html;
+    }
+    private function ProcessLessonHTML($html)
+    {
+
+        //GETTING IFRAME
+        echo $html;
+        die;
     }
 }
