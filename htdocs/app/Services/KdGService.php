@@ -136,7 +136,7 @@ class KdGService
             ]
         );
         $lessons_html=str_get_html($response_lessons->getBody()->getContents());
-        //$lessons_html=$this->LinkFixer($lessons_html,"https://intranet.student.kdg.be/kalender");
+        $lessons_html=$this->LinkFixer($lessons_html,"https://mijnrooster.kdg.be/");
         echo $lessons_html;
         die;
     }
