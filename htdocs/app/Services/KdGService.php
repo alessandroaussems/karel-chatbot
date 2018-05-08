@@ -129,28 +129,39 @@ class KdGService
     }
     public function GetDayLessons()
     {
-        $this->DoLogin("alessandro.aussems@student.kdg.be","KdGVU5rn");
-        //BROWSE TO ROOSTER URL
-        $response_lessons = $this->client->get("https://intranet.student.kdg.be/kalender", [
-                'allow_redirects' => true,
-                'cookies' => $this->cookieJar,
-            ]
-        );
-        $lessons_html=str_get_html($response_lessons->getBody()->getContents());
-        $lessons_html=$this->LinkFixer($lessons_html,"https://mijnrooster.kdg.be/");
-        //$this->ProcessLessonHTML($lessons_html);
-
         $phantom=PhantomClient::getInstance();
         $phantom->getEngine()->setPath("../vendor/bin/phantomjs");
-        $phantom_request=$phantom->getMessageFactory()->createRequest('https://intranet.student.kdg.be/kalender', 'GET');
+        $phantom->isLazy();
+        $phantom_request=$phantom->getMessageFactory()->createRequest();
+        $phantom_request->setMethod("GET");
+        $phantom_request->setUrl("https://mijnrooster.kdg.be/m/?requireLogin=true");
+
         $phantom_response=$phantom->getMessageFactory()->createResponse();
 
         $phantom->send($phantom_request,$phantom_response);
-        if($phantom_response->getStatus()===200)
-        {
-            dump($phantom_response->getContent());
-        }
+
+        $actionurl=str_get_html($phantom_response->getContent())->find("form",0)->action;
+        dump($actionurl);
+
+        echo str_get_html($phantom_response->getContent());
+        $phantom_requestL=$phantom->getMessageFactory()->createRequest();
+        $phantom_responseL=$phantom->getMessageFactory()->createResponse();
+
+
+        $phantom_requestL->setMethod("POST");
+        $phantom_requestL->setUrl("https://sts.kdg.be".$actionurl);
+        $data = array(
+            'UserName' => "alessandro.aussems@student.kdg.be",
+            'Password' => "KdGVU5rn",
+        );
+        $phantom_requestL->setRequestData($data);
+
+        $phantom->send($phantom_requestL,$phantom_responseL);
+
+        echo $phantom_responseL->getContent();
         die;
+
+
     }
     private function LinkFixer($html,$prefixurltoadd)
     {
@@ -168,11 +179,38 @@ class KdGService
         }
         return $html;
     }
-    private function ProcessLessonHTML($html)
+    public function GetAbscents()
     {
+        //BROWSING TO INTRANET URL
+        $response_intranet = $this->client->get('https://intranet.student.kdg.be/', [
+                'allow_redirects' => true,
+                'cookies' => $this->cookieJar,
+            ]
+        );
+        //GETTING ABSCENTS LINK
+        $linktoabscents=str_get_html($response_intranet->getBody()->getContents())->find("nav",0)->find("ul",0)->find("li",0)->find("a",0)->href;
+        //BROWSING TO ABSCENTS URL
+        $response_abscents = $this->client->get($linktoabscents, [
+                'allow_redirects' => true,
+                'cookies' => $this->cookieJar,
+            ]
+        );
 
-        //GETTING IFRAME
-        echo $html;
-        die;
+        //ABSCENTS HTML
+        $abscenturl=str_get_html($response_abscents->getBody()->getContents())->find("iframe",1)->src;
+        $response_abscents_frame = $this->client->get(htmlspecialchars_decode($abscenturl), [
+                'allow_redirects' => true,
+                'cookies' => $this->cookieJar,
+            ]
+        );
+        $abscentshtml=str_get_html($response_abscents_frame->getBody()->getContents());
+        $abscentshtml=$abscentshtml->find("li");
+        $ABSCENTS="<ul style='list-style-type: none; padding: 0'>";
+        foreach ($abscentshtml as $abscent)
+        {
+            $ABSCENTS.=html_entity_decode($abscent);
+        }
+        $ABSCENTS.="</ul>";
+        return $ABSCENTS;
     }
 }

@@ -253,6 +253,7 @@ class ChatController extends Controller
     }
     function LESSEN()
     {
+        return "Deze functie is nog in ontwikkeling...";
         $session=Session::find($_COOKIE["chatsession"]);
         $user=$session->login;
         $password=$session->password;
@@ -261,6 +262,22 @@ class ChatController extends Controller
             $KdGService=new KdGService();
             $KdGService->DoLogin($user,decrypt($password));
             return $KdGService->GetDayLessons();
+        }
+        else
+        {
+            return $this->pleaselogin;
+        }
+    }
+    function AFWEZIGEN()
+    {
+        $session=Session::find($_COOKIE["chatsession"]);
+        $user=$session->login;
+        $password=$session->password;
+        if(!is_null($user) && !is_null($password))
+        {
+            $KdGService=new KdGService();
+            $KdGService->DoLogin($user,decrypt($password));
+            return $KdGService->GetAbscents();
         }
         else
         {
