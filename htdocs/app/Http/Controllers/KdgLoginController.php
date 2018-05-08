@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\KdGService;
 use App\Session;
+use Illuminate\Support\Facades\Mail;
 
 class KdgLoginController extends Controller
 {
@@ -29,6 +30,14 @@ class KdgLoginController extends Controller
             $session->login=$login;
             $session->password=encrypt($password);
             $session->save();
+
+            $user=new \stdClass();
+            $user->email=$login;
+            $user->name=$forname;
+            Mail::send('mail.thanksintranetconnect', ['user' => $user], function ($m) use ($user) {
+
+                $m->to($user->email)->subject('Intranet gekoppeld!');
+            });
 
 
             echo TRUE;
