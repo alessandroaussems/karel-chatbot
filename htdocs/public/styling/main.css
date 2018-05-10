@@ -571,6 +571,21 @@ nav {
 .display {
   display: block !important; }
 
+.tagsoverview {
+  text-align: center;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%; }
+  .tagsoverview ul {
+    padding: 0;
+    display: table;
+    list-style-type: none;
+    text-align: left;
+    margin: 0 auto; }
+    .tagsoverview ul li {
+      margin-top: 5%;
+      margin-bottom: 5%; }
+
 /* GLOBAL */
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {

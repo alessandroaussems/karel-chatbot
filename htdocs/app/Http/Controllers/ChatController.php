@@ -8,7 +8,6 @@ use App\Session;
 use Illuminate\Http\Request;
 use App\Sentence;
 use App\Message;
-
 class ChatController extends Controller
 {
     private $pleaselogin;
