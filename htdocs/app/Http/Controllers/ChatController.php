@@ -288,5 +288,22 @@ class ChatController extends Controller
         $KdGService=new KdGService();
         return $KdGService->GetPrintPrices();
     }
+    function ZIEKTE()
+    {
+        $session=Session::find($_COOKIE["chatsession"]);
+        $user=$session->login;
+        $password=$session->password;
+        if(!is_null($user) && !is_null($password))
+        {
+            $KdGService=new KdGService();
+            $KdGService->DoLogin("","");
+            $KdGService->EStudentServiceAuthentication("","");
+            return $KdGService->NotifyAbsceny();
+        }
+        else
+        {
+            return $this->pleaselogin;
+        }
+    }
 }
 

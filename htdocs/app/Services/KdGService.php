@@ -63,6 +63,43 @@ class KdGService
             return TRUE;
         }
     }
+    public function EStudentServiceAuthentication($USER,$PASSWORD)
+    {
+        //FILLING IN E-STUDENTSERVICE LOGIN FORM
+        $response_estudentservice = $this->client->post('https://e-studentservice.kdg.be/Main.aspx', [
+                'allow_redirects' => true,
+                'cookies' => $this->cookieJar,
+                'form_params' => [
+                    'UserName' => $USER,
+                    'Password' => $PASSWORD,
+                ],
+            ]
+        );
+        //GET RESPONSE FROM LOGIN INTO PARSER (CONTAINS XML AUTH)
+        $auth_html=str_get_html($response_estudentservice->getBody()->getContents());
+        //GET ALL THE INPUTFIELDS FROM AUTH RESPONSE
+        $hidden_fields=$auth_html->find('input');
+        //SETTING VALUES INTO VARIABLES
+        $wa=$hidden_fields[0]->value;
+        $wresult=htmlspecialchars_decode($hidden_fields[1]->value); //DECODING XML
+        $wctx=html_entity_decode($hidden_fields[2]->value); //DECODING URL
+
+        //ACTUALL AUTHENTICATION WITH INTRANET WITH AUTH-XML
+        $response_estudentservice = $this->client->post('https://e-studentservice.kdg.be:443/', [
+                'allow_redirects' => true,
+                'cookies' => $this->cookieJar,
+                'form_params' => [
+                    'wa' => $wa,
+                    'wresult' => $wresult,
+                    'wctx' => $wctx,
+                ],
+            ]
+        );
+        //THE INTRANET!!!!
+        $estudentservice_html=str_get_html($response_estudentservice->getBody()->getContents());
+        echo $estudentservice_html;
+        die;
+    }
 
     /**
      * @return array of notifications
@@ -225,5 +262,9 @@ class KdGService
         $printkdghtml=str_get_html($response_printkdg->getBody()->getContents());
         $pricestable=$printkdghtml->find("table",0);
         return $pricestable;
+    }
+    public function NotifyAbsceny()
+    {
+
     }
 }
