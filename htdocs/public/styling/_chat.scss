@@ -45,6 +45,16 @@
       padding: 1%;
       margin-bottom: 2%;
       //font-size: 1.25vw;
+      p
+      {
+        color: $white !important;
+        background-color: $fullblack !important;
+      }
+      table
+      {
+        border-collapse: collapse;
+        border-color: $white;
+      }
     }
     .botmessage
     {

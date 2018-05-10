@@ -283,5 +283,10 @@ class ChatController extends Controller
             return $this->pleaselogin;
         }
     }
+    function PRINTPRIJZEN()
+    {
+        $KdGService=new KdGService();
+        return $KdGService->GetPrintPrices();
+    }
 }
 

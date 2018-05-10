@@ -88,6 +88,12 @@ nav {
       max-width: 60%;
       padding: 1%;
       margin-bottom: 2%; }
+      .chat ul li p {
+        color: #ffffff !important;
+        background-color: #0c090a !important; }
+      .chat ul li table {
+        border-collapse: collapse;
+        border-color: #ffffff; }
     .chat ul .botmessage {
       margin-left: 0.5%;
       background-color: #0c090a;
@@ -170,6 +176,12 @@ nav {
       max-width: 60%;
       padding: 1%;
       margin-bottom: 2%; }
+      .chat ul li p {
+        color: #ffffff !important;
+        background-color: #0c090a !important; }
+      .chat ul li table {
+        border-collapse: collapse;
+        border-color: #ffffff; }
     .chat ul .botmessage {
       margin-left: 0.5%;
       background-color: #0c090a;

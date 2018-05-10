@@ -213,4 +213,17 @@ class KdGService
         $ABSCENTS.="</ul>";
         return $ABSCENTS;
     }
+    public function GetPrintPrices()
+    {
+        //BROWSING TO PRINT.KDG
+        $response_printkdg = $this->client->get('http://print.kdg.be/', [
+                'allow_redirects' => true,
+                'cookies' => $this->cookieJar,
+            ]
+        );
+        //GETTING NOTIFIACTIONS PAGE HTML
+        $printkdghtml=str_get_html($response_printkdg->getBody()->getContents());
+        $pricestable=$printkdghtml->find("table",0);
+        return $pricestable;
+    }
 }
