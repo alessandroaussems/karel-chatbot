@@ -2,7 +2,6 @@
 namespace App\Services;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Config;
-use JonnyW\PhantomJs\Client as PhantomClient;
 use Sunra\PhpSimple\HtmlDomParser;
 
 class KdGService
