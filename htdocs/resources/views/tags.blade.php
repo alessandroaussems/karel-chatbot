@@ -1,4 +1,4 @@
-@extends('partials.header')
+@extends('partials.master')
 
 @section('content')
     <div class="tagsoverview">

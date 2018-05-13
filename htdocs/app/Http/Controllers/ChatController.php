@@ -157,11 +157,11 @@ class ChatController extends Controller
         $answer=html_entity_decode(strip_tags($answer));
         if(strpos($answer,$this->starttag)!==false && strpos($answer,$this->endtag)!==false)
         {
-            return TRUE;
+            return true;
         }
         else
         {
-            return FALSE;
+            return false;
         }
     }
 

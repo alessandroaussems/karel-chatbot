@@ -46,11 +46,11 @@ class WelcomeController extends Controller
             $session=Session::where('id', $_COOKIE["chatsession"])->first();
             if(!is_null($session->login) && !is_null($session->password))
             {
-                $isconnected=TRUE;
+                $isconnected=true;
             }
             else
             {
-                $isconnected=FALSE;
+                $isconnected=false;
             }
             $messages=json_decode($session->messages);
 

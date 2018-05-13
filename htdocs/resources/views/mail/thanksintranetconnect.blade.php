@@ -29,11 +29,10 @@
                         </td>
                     </tr>
                 </table>
+            </div>
         </td>
     </tr>
 </table>
-<div class="footer"> <table border="0" cellpadding="0" cellspacing="0"> <tr> <td class="content-block"> <br>This is an automated e-mail via <a href="https://karel-chatbot.be/">karel-chatbot.be</a>. <br></td></tr><tr> <td class="content-block powered-by"> <br><a href="https://karel-chatbot.be/">Karel-Chatbot</a> </td></tr></table> </div></div></td>
-<td>&nbsp;</td>
-</tr></table>
+<div class="footer"> <table border="0" cellpadding="0" cellspacing="0"> <tr> <td class="content-block"> <br>This is an automated e-mail via <a href="https://karel-chatbot.be/">karel-chatbot.be</a>. <br></td></tr><tr> <td class="content-block powered-by"> <br><a href="https://karel-chatbot.be/">Karel-Chatbot</a> </td></tr></table></div>
 </body>
 </html>

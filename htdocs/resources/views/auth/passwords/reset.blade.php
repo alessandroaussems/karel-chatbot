@@ -1,4 +1,4 @@
-@extends('partials.header')
+@extends('partials.master')
 
 @section('content')
                         <form class="reset" method="POST" action="{{ route('password.request') }}">

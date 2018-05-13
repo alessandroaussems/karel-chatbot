@@ -1,4 +1,4 @@
-@extends('partials.header')
+@extends('partials.master')
 @section('content')
     <div class="chat">
         <ul id="messagelist">
@@ -21,5 +21,5 @@
     </div>
     <input type="text" class="userinput" placeholder="Typ je bericht hier..." onkeypress="sendMessage(this.value,event)" autofocus>
     <span id="send" onclick="sendMessage('getit',event)"> > </span>
-<script src="{{asset('js/main.js')}}"></script>
+<script src="{{asset('js/scripts.min.js')}}"></script>
 @endsection

@@ -25,7 +25,7 @@ class KdgLoginController extends Controller
             $lastname=$fullname[1];
 
             $session=Session::find($chatsession);
-            $session->forname=$forname;
+            $session->firstname=$forname;
             $session->lastname=$lastname;
             $session->login=$login;
             $session->password=encrypt($password);

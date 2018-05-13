@@ -14,10 +14,10 @@ class AddUserdataToSessions extends Migration
     public function up()
     {
         Schema::table('sessions', function($table) {
-            $table->char('forname', 100)->nullable();
-            $table->char('lastname',100)->nullable();
-            $table->char('login',100)->nullable();
-            $table->char("password",250)->nullable();
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->string('login')->nullable();
+            $table->string("password")->nullable();
         });
     }
 

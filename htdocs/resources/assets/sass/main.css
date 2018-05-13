@@ -2,11 +2,9 @@
 @font-face {
   font-family: "KdG";
   src: url("../../../public/fonts/KdG-Regular.otf") format("otf"), url("../../../public/fonts/KdG-Regular.woff") format("woff"), url("../../../public/fonts/KdG-Regular.ttf") format("truetype"), url("../../../public/fonts/KdG-Regular.svg#KdGRegular") format("svg"); }
-
 @font-face {
   font-family: "icon";
   src: url("../../../public/fonts/iconfont.eot") format("eot"), url("../../../public/fonts/iconfont.woff") format("woff"), url("../../../public/fonts/iconfont.ttf") format("truetype"); }
-
 /* VARIABLES */
 /* PARTIALS */
 nav {
@@ -66,11 +64,8 @@ nav {
   height: 95%;
   overflow-x: hidden;
   overflow-y: scroll;
-  display: -ms-flexbox;
-  -js-display: flex;
   display: flex;
-  -ms-flex-direction: column-reverse;
-      flex-direction: column-reverse; }
+  flex-direction: column-reverse; }
   .chat .opener {
     display: table;
     width: 100%;
@@ -137,15 +132,10 @@ nav {
   width: 10%;
   font-size: 20px;
   text-align: center;
-  display: -ms-flexbox;
-  -js-display: flex;
   display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -ms-flex-direction: column;
-      flex-direction: column; }
+  justify-content: center;
+  align-content: center;
+  flex-direction: column; }
 
 #send:hover {
   cursor: pointer; }
@@ -162,11 +152,8 @@ nav {
   height: 95%;
   overflow-x: hidden;
   overflow-y: scroll;
-  display: -ms-flexbox;
-  -js-display: flex;
   display: flex;
-  -ms-flex-direction: column-reverse;
-      flex-direction: column-reverse; }
+  flex-direction: column-reverse; }
   .chat .opener {
     display: table;
     width: 100%;
@@ -233,15 +220,10 @@ nav {
   width: 10%;
   font-size: 20px;
   text-align: center;
-  display: -ms-flexbox;
-  -js-display: flex;
   display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -ms-flex-direction: column;
-      flex-direction: column; }
+  justify-content: center;
+  align-content: center;
+  flex-direction: column; }
 
 #send:hover {
   cursor: pointer; }
@@ -276,11 +258,9 @@ nav {
 @keyframes blink {
   50% {
     opacity: 1; } }
-
 @keyframes bulge {
   50% {
     transform: scale(1.05); } }
-
 .login {
   width: 30%;
   margin-left: auto;
@@ -485,22 +465,25 @@ nav {
   .chat, .userinput {
     margin-left: 0;
     margin-right: 0; }
+
   .chat {
     border: none;
     width: 100%; }
+
   .userinput {
     border-left: none;
     border-right: none;
     width: 90%; }
+
   nav {
     height: 7.5%; }
     nav #settings {
       display: none; }
     nav #botlogo {
       margin-left: 1.5%; }
+
   main {
     height: 92.5vh !important; } }
-
 .email {
   width: 30%;
   margin-left: auto;
@@ -640,3 +623,5 @@ small {
 
 .nodisplay {
   display: none !important; }
+
+/*# sourceMappingURL=main.css.map */

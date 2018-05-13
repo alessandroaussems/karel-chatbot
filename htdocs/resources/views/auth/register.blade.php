@@ -1,4 +1,4 @@
-@extends('partials.header')
+@extends('partials.master')
 
 @section('content')
                     <form method="POST" action="{{ route('register') }}" class="register">
