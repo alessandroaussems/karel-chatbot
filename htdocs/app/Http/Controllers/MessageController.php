@@ -93,7 +93,14 @@ class MessageController extends Controller
     public function edit($id)
     {
         $message = Message::where("id",$id)->first();
-        return view("messageedit")->with('message', $message);
+        if(isset($message))
+        {
+            return view("messageedit")->with('message', $message);
+        }
+        else
+        {
+            abort(404);
+        }
     }
 
     /**
@@ -109,7 +116,7 @@ class MessageController extends Controller
         $cleananswer=preg_replace('/[\s]+/','',str_replace("&nbsp;","",strip_tags(Input::get("answer"))));
         if(!isset($cleananswer) || $cleananswer == '')
         {
-            return Redirect::to('messages/create')
+            return Redirect::to('messages/'.$id.'/edit')
                 ->withErrors("Het antwoord veld is verplicht!")
                 ->withInput();
         }
@@ -130,13 +137,8 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        $message = Message::find($id);
-        $message->delete();
-        $sentences=Sentence::where("message_id",$id)->get();
-        foreach ($sentences as $sentence)
-        {
-            $sentence->delete();
-        }
+        Message::where("id",$id)->delete();
+        Sentence::where("message_id",$id)->delete();
         return Redirect::to('messages');
     }
 }

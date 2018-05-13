@@ -40,11 +40,11 @@ class KdgLoginController extends Controller
             });
 
 
-            echo TRUE;
+            echo true;
         }
         else
         {
-            echo FALSE;
+            echo false;
         }
 
 

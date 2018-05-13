@@ -8,23 +8,26 @@ use App\Session;
 class WelcomeController extends Controller
 {
     /**
-     * @return $this
+     * Show the chatbox.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function welcome()
     {
+        $length = 60*60*24*30;
         if(!isset($_COOKIE['chatsession']))
         {
             $sessionid=uniqid();
-            setcookie("chatsession", $sessionid,time() + (60*60*24*30));
-            setcookie("visits",1,time() + (60*60*24*30));
+            setcookie("chatsession", $sessionid,time() + $length);
+            setcookie("visits",1,time() + $length);
 
             $sessionmessages[0]=["Hallo ik ben Karel! Stel je vragen maar!","B"];
 
-            $session = new Session();
-            $session->id = $sessionid;
-            $session->messages=json_encode($sessionmessages);
-            $session->lastactive=date('Y-m-d');
-            $session->save();
+            $session = Session::create([
+                'id' => $sessionid,
+                'messages' => json_encode($sessionmessages),
+                'lastactive' => date('Y-m-d')
+            ]);
 
             return view("chat")->with("messages",[])->with("isconnected",false);
         }
@@ -32,11 +35,31 @@ class WelcomeController extends Controller
         {
             if(isset($_COOKIE["visits"]))
             {
-                setcookie("visits",$_COOKIE["visits"]+=1,time() + (60*60*24*30));
+                setcookie("visits",$_COOKIE["visits"]+=1,time() + $length);
+            }
+            else
+            {
+                setcookie("visits",1,time() + $length);
             }
             if(isset($_COOKIE["chatsession"]))
             {
-                setcookie("chatsession", $_COOKIE["chatsession"],time() + (60*60*24*30));
+                setcookie("chatsession", $_COOKIE["chatsession"],time() + $length);
+            }
+            else
+            {
+                $sessionid=uniqid();
+                setcookie("chatsession", $sessionid,time() + $length);
+                setcookie("visits",1,time() + $length);
+
+                $sessionmessages[0]=["Hallo ik ben Karel! Stel je vragen maar!","B"];
+
+                $session = Session::create([
+                    'id' => $sessionid,
+                    'messages' => json_encode($sessionmessages),
+                    'lastactive' => date('Y-m-d')
+                ]);
+
+                return view("chat")->with("messages",[])->with("isconnected",false);
             }
 
             $session=Session::find($_COOKIE["chatsession"]);
@@ -44,17 +67,9 @@ class WelcomeController extends Controller
             $session->save();
 
             $session=Session::where('id', $_COOKIE["chatsession"])->first();
-            if(!is_null($session->login) && !is_null($session->password))
-            {
-                $isconnected=true;
-            }
-            else
-            {
-                $isconnected=false;
-            }
-            $messages=json_decode($session->messages);
+            $isconnected = (!is_null($session->login) && !is_null($session->password));
 
-            return view("chat")->with("messages",$messages)->with("isconnected",$isconnected);
+            return view("chat")->with("messages",json_decode($session->messages))->with("isconnected",$isconnected);
         }
     }
 }

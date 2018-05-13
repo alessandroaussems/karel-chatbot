@@ -16,7 +16,6 @@ class AdminController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
@@ -26,6 +25,11 @@ class AdminController extends Controller
     {
         return view('admin');
     }
+    /**
+     * Show the list of available tags.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function tags()
     {
         $tags=Tag::all();

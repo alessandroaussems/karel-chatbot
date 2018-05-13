@@ -34,7 +34,7 @@ class ChatController extends Controller
             if($this->IsACode($search))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
             {
                 $code=$this->GetTheCode($search); //GET THE CODE
-                $search=str_replace($code,$this->$code(),$search); //CALL FUNCTION WITH NAME OF THE CODE
+                $search=str_replace($code,$this->callKdgService($code),$search);
                 $search=$this->SanitizeTheCode($search); //REMOVE START AND END TAG
                 echo $search;
             }
@@ -52,7 +52,7 @@ class ChatController extends Controller
                 if($this->IsACode($answer))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
                 {
                     $code=$this->GetTheCode($answer);//GET THE CODE
-                    $answer=str_replace($code,$this->$code(),$answer);//CALL FUNCTION WITH NAME OF THE CODE
+                    $answer=str_replace($code,$this->callKdgService($code),$answer);
                     $answer=$this->SanitizeTheCode($answer); //REMOVE START AND END TAG
                     echo $answer;
                 }
@@ -178,46 +178,23 @@ class ChatController extends Controller
         $len = strpos($string, $this->endtag, $ini) - $ini;
         return substr($string, $ini, $len);
     }
+
+    /**
+     * @param $answer
+     * @return mixed
+     */
     function SanitizeTheCode($answer)
     {
         $answer=str_replace($this->starttag," ",$answer);
         $answer=str_replace($this->endtag," ",$answer);
         return $answer;
     }
-    /**
-     * @return string
-     */
-    function MELDINGEN()
-    {
-        $MELDINGENHTML="<ul>";
-        $session=Session::find($_COOKIE["chatsession"]);
-        $user=$session->login;
-        $password=$session->password;
-        if(!is_null($user) && !is_null($password))
-        {
-            $KdGService=new KdGService();
-            $KdGService->DoLogin($user,decrypt($password));
-            $meldingen=$KdGService->GetNotifications();
-            foreach ($meldingen as $melding)
-            {
-                $MELDINGENHTML.="<li>";
-                $MELDINGENHTML.="<h5>".$melding[0]."</h5>";
-                $MELDINGENHTML.="<p>".substr($melding[1],0,150)."...</p>";
-                $MELDINGENHTML.="</li>";
-            }
-            $MELDINGENHTML.="</ul>";
-            return $MELDINGENHTML;
-        }
-        else
-        {
-            return $this->pleaselogin;
-        }
-    }
 
     /**
+     * @param $code
      * @return string
      */
-    function NAAM()
+    function callKdgService($code)
     {
         $session=Session::find($_COOKIE["chatsession"]);
         $user=$session->login;
@@ -226,67 +203,53 @@ class ChatController extends Controller
         {
             $KdGService=new KdGService();
             $KdGService->DoLogin($user,decrypt($password));
-            $fullname=$KdGService->GetNameOfUser();
-            return "<p>".$fullname[0]." ".$fullname[1]."</p>";
+            $html="";
+            switch ($code)
+            {
+                case "MELDINGEN":
+                    $html.="<ul>";
+                    $meldingen=$KdGService->GetNotifications();
+                    foreach ($meldingen as $melding)
+                    {
+                        $html.="<li>";
+                        $html.="<h5>".$melding[0]."</h5>";
+                        $html.="<p>".substr($melding[1],0,150)."...</p>";
+                        $html.="</li>";
+                    }
+                    $html.="</ul>";
+                    break;
+                case "DAGMENU":
+                    $html.=$KdGService->GetDayMenu();
+                    break;
+                case "NAAM":
+                    $html.="<p>".$session->firstname." ".$session->lastname."</p>";
+                    break;
+                case "LESSEN":
+                    $html.="<p>Deze functie is nog in ontwikkeling...</p>";
+                    break;
+                case "AFWEZIGEN":
+                    $html.="<ul style='list-style-type: none; padding: 0'>";
+                    $abscents=$KdGService->GetAbscents();
+                    foreach ($abscents as $abscent)
+                    {
+                        $html.=html_entity_decode($abscent);
+                    }
+                    $html.="</ul>";
+                    break;
+                case "PRINTPRIJZEN":
+                    $html.=$KdGService->GetPrintPrices();
+                    break;
+                default:
+                    $html.="Er is iets fout gegaan! &#x1F62D";
+                    break;
+            }
+            return $html;
+
         }
         else
         {
             return $this->pleaselogin;
         }
-    }
-    function DAGMENU()
-    {
-        $session=Session::find($_COOKIE["chatsession"]);
-        $user=$session->login;
-        $password=$session->password;
-        if(!is_null($user) && !is_null($password))
-        {
-            $KdGService=new KdGService();
-            $KdGService->DoLogin($user,decrypt($password));
-            return $KdGService->GetDayMenu();
-        }
-        else
-        {
-            return $this->pleaselogin;
-        }
-    }
-    function LESSEN()
-    {
-        return "Deze functie is nog in ontwikkeling...";
-        $session=Session::find($_COOKIE["chatsession"]);
-        $user=$session->login;
-        $password=$session->password;
-        if(!is_null($user) && !is_null($password))
-        {
-            $KdGService=new KdGService();
-            $KdGService->DoLogin($user,decrypt($password));
-            return $KdGService->GetDayLessons();
-        }
-        else
-        {
-            return $this->pleaselogin;
-        }
-    }
-    function AFWEZIGEN()
-    {
-        $session=Session::find($_COOKIE["chatsession"]);
-        $user=$session->login;
-        $password=$session->password;
-        if(!is_null($user) && !is_null($password))
-        {
-            $KdGService=new KdGService();
-            $KdGService->DoLogin($user,decrypt($password));
-            return $KdGService->GetAbscents();
-        }
-        else
-        {
-            return $this->pleaselogin;
-        }
-    }
-    function PRINTPRIJZEN()
-    {
-        $KdGService=new KdGService();
-        return $KdGService->GetPrintPrices();
     }
     function ZIEKTE()
     {
