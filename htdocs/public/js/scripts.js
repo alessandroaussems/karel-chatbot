@@ -48,6 +48,7 @@ function createUserMessage(message)
     message=document.createTextNode(message);
     listitem.appendChild(message);
     messageList.appendChild(listitem);
+    messageList.scrollIntoView(false);
 }
 function createAnswer(message)
 {
@@ -59,6 +60,7 @@ function createAnswer(message)
             //message=document.createTextNode(message);
             listitem.innerHTML=message;
             messageList.appendChild(listitem);
+            messageList.scrollIntoView(false);
             allowToSend=true; // THIS REQUEST IS FINISHED SO THE NEXT ONE IS NOW ALLOWED
         }, BOTTHINKINGTIME);
 }
@@ -73,6 +75,7 @@ function createTypeIcon()
         listitem.appendChild(span);
     }
     messageList.appendChild(listitem);
+    messageList.scrollIntoView(false);
 }
 function removeTypeIcon()
 {
