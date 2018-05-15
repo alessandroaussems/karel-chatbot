@@ -19,6 +19,21 @@
   {
     cursor: pointer;
   }
+  #loading
+  {
+    display: none;
+    text-align: center;
+    font-family: $iconfont;
+    color: $fullblack;
+    animation: rotate 2s linear infinite;
+  }
+  @keyframes rotate
+  {
+    to
+    {
+      transform: rotate(360deg);
+    }
+  }
   .login
   {
     margin-top: 10%;

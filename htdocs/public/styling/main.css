@@ -586,6 +586,16 @@ nav {
     margin-left: 90%; }
   #overlay #close:hover {
     cursor: pointer; }
+  #overlay #loading {
+    display: none;
+    text-align: center;
+    font-family: icon;
+    color: #0c090a;
+    animation: rotate 2s linear infinite; }
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg); } }
   #overlay .login {
     margin-top: 10%;
     padding: 5%;

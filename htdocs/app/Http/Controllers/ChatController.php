@@ -252,7 +252,7 @@ class ChatController extends Controller
         }
         else
         {
-            return "<strong>Log je in bij KdG zodat ik deze informatie te weten kan komen!</strong>";
+            return "<p onclick='showLoginForm(this.event)' style='cursor: pointer'><strong>Log je in bij KdG zodat ik deze informatie te weten kan komen!</strong></p>";
         }
     }
 }

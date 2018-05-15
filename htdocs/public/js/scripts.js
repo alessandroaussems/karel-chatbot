@@ -102,21 +102,28 @@ function doKdGLogin(event)
     var login=document.getElementById("login").value;
     var password=document.getElementById("password").value;
     var button=document.getElementById("loginbutton");
+    var loader=document.getElementById("loading");
     var sessionid=getCookie("chatsession");
     button.disabled=true;
+    button.classList.add("nodisplay");
+    loader.classList.add("display");
     var xmlhttp;
     xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-            if(this.responseText)
+            var response =JSON.parse(this.responseText);
+            if(response)
             {
                 document.getElementById("overlay").classList.remove("display");
                 document.getElementById("kdgconnect").classList.add("nodisplay");
                 createAnswer("Dankjewel om je KdG-account te koppelen! Ik kan je nu nog beter helpen!")
             }
-            if(!this.responseText)
+            console.log(response);
+            if(!response)
             {
                 button.disabled=false;
+                button.classList.remove("nodisplay");
+                loader.classList.remove("display");
                 document.getElementById("loginerror").classList.add("display");
             }
         }

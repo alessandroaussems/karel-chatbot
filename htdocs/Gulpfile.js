@@ -73,7 +73,7 @@ gulp.task('scripts', function () {
 
 gulp.task('watch', function () {
     livereload.listen();
-    gulp.watch(root_path + 'scss/main.scss', ['sass']);
+    gulp.watch(root_path + 'scss/*', ['sass']);
     gulp.watch(root_path + 'js/main.js', ['scripts']);
 });
 
