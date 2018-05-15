@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 class AdminController extends Controller
 {
@@ -33,6 +34,8 @@ class AdminController extends Controller
     public function tags()
     {
         $tags=Tag::all();
-        return view("tags")->with("tags",$tags);
+        $starttag=Config::get("kdg.starttag");
+        $endtag=Config::get("kdg.endtag");
+        return view("tags")->with("tags",$tags)->with("starttag",$starttag)->with("endtag",$endtag);
     }
 }

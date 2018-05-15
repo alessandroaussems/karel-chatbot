@@ -18,9 +18,9 @@ class KdgLoginController extends Controller
         $password=$request->input("password");
         $chatsession=$request->input("chatsession");
         $KdGService=new KdGService();
-        if($KdGService->DoLogin($login,$password))
+        if($KdGService->doLogin($login,$password))
         {
-            $fullname=$KdGService->GetNameOfUser();
+            $fullname=$KdGService->getNameOfUser();
             $forname=$fullname[0];
             $lastname=$fullname[1];
 

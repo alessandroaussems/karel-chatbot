@@ -7,7 +7,7 @@
         <ul id="tags">
             @foreach($tags as $key => $value)
                 <li>
-                    [intranet]{{ $value->tag }}[/intranet]
+                {{$starttag}}{{ $value->tag }}{{$endtag}}
                 </li>
             @endforeach
         </ul>

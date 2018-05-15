@@ -8,15 +8,9 @@ use App\Session;
 use Illuminate\Http\Request;
 use App\Sentence;
 use App\Message;
+use Illuminate\Support\Facades\Config;
 class ChatController extends Controller
 {
-    private $pleaselogin;
-    private $starttag="[intranet]";
-    private $endtag="[/intranet]";
-    public function __construct()
-    {
-        $this->pleaselogin="<strong>Log je in bij KdG zodat ik deze informatie te weten kan komen!</strong>";
-    }
     /**
      * @param $message, @echo string
      */
@@ -155,7 +149,7 @@ class ChatController extends Controller
     function IsACode($answer)
     {
         $answer=html_entity_decode(strip_tags($answer));
-        if(strpos($answer,$this->starttag)!==false && strpos($answer,$this->endtag)!==false)
+        if(strpos($answer,Config::get("kdg.starttag"))!==false && strpos($answer,Config::get("kdg.endtag"))!==false)
         {
             return true;
         }
@@ -172,10 +166,10 @@ class ChatController extends Controller
     function GetTheCode($answer)
     {
         $string = ' ' . html_entity_decode(strip_tags($answer));
-        $ini = strpos($string, $this->starttag);
+        $ini = strpos($string, Config::get("kdg.starttag"));
         if ($ini == 0) return '';
-        $ini += strlen($this->starttag);
-        $len = strpos($string, $this->endtag, $ini) - $ini;
+        $ini += strlen(Config::get("kdg.starttag"));
+        $len = strpos($string, Config::get("kdg.endtag"), $ini) - $ini;
         return substr($string, $ini, $len);
     }
 
@@ -185,8 +179,8 @@ class ChatController extends Controller
      */
     function SanitizeTheCode($answer)
     {
-        $answer=str_replace($this->starttag," ",$answer);
-        $answer=str_replace($this->endtag," ",$answer);
+        $answer=str_replace(Config::get("kdg.starttag")," ",$answer);
+        $answer=str_replace(Config::get("kdg.endtag")," ",$answer);
         return $answer;
     }
 
@@ -202,13 +196,13 @@ class ChatController extends Controller
         if(!is_null($user) && !is_null($password))
         {
             $KdGService=new KdGService();
-            $KdGService->DoLogin($user,decrypt($password));
+            $KdGService->doLogin($user,decrypt($password));
             $html="";
             switch ($code)
             {
                 case "MELDINGEN":
                     $html.="<ul>";
-                    $meldingen=$KdGService->GetNotifications();
+                    $meldingen=$KdGService->getNotifications();
                     foreach ($meldingen as $melding)
                     {
                         $html.="<li>";
@@ -219,7 +213,7 @@ class ChatController extends Controller
                     $html.="</ul>";
                     break;
                 case "DAGMENU":
-                    $html.=$KdGService->GetDayMenu();
+                    $html.=$KdGService->getDayMenu();
                     break;
                 case "NAAM":
                     $html.="<p>".$session->firstname." ".$session->lastname."</p>";
@@ -229,7 +223,7 @@ class ChatController extends Controller
                     break;
                 case "AFWEZIGEN":
                     $html.="<ul style='list-style-type: none; padding: 0'>";
-                    $abscents=$KdGService->GetAbscents();
+                    $abscents=$KdGService->getAbscents();
                     foreach ($abscents as $abscent)
                     {
                         $html.=html_entity_decode($abscent);
@@ -237,7 +231,17 @@ class ChatController extends Controller
                     $html.="</ul>";
                     break;
                 case "PRINTPRIJZEN":
-                    $html.=$KdGService->GetPrintPrices();
+                    $html.=$KdGService->getPrintPrices();
+                    break;
+                case "PUNTEN":
+                    $KdGService->eStudentserviceAuthentication();
+                    $points=$KdGService->getPoints();
+                    $html.="<table border='1' style='width: 80%; margin: 0 auto'>";
+                    foreach ($points as $lecture => $point)
+                    {
+                        $html.="<tr><td>".$lecture."</td><td>".$point."</td></tr>";
+                    }
+                    $html.="</table>";
                     break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";
@@ -248,24 +252,7 @@ class ChatController extends Controller
         }
         else
         {
-            return $this->pleaselogin;
-        }
-    }
-    function ZIEKTE()
-    {
-        $session=Session::find($_COOKIE["chatsession"]);
-        $user=$session->login;
-        $password=$session->password;
-        if(!is_null($user) && !is_null($password))
-        {
-            $KdGService=new KdGService();
-            $KdGService->DoLogin("","");
-            $KdGService->EStudentServiceAuthentication("","");
-            return $KdGService->NotifyAbsceny();
-        }
-        else
-        {
-            return $this->pleaselogin;
+            return "<strong>Log je in bij KdG zodat ik deze informatie te weten kan komen!</strong>";
         }
     }
 }

@@ -17,7 +17,7 @@ class KdGService
     /**
      * @return bool indicating if login was successful
      */
-    public function DoLogin($USER,$PASS)
+    public function doLogin($USER, $PASS)
     {
         //FILLING IN KDG-INTRANET LOGIN FORM
         try
@@ -78,18 +78,25 @@ class KdGService
             return true;
         }
     }
-    public function EStudentServiceAuthentication($USER,$PASSWORD)
+    /**
+     * @return bool
+     */
+    public function eStudentserviceAuthentication()
     {
         //FILLING IN E-STUDENTSERVICE LOGIN FORM
-        $response_estudentservice = $this->client->post(Config::get("kdg.estudentservice").'/Main.aspx', [
-                'allow_redirects' => true,
-                'cookies' => $this->cookieJar,
-                'form_params' => [
-                    'UserName' => $USER,
-                    'Password' => $PASSWORD,
-                ],
-            ]
-        );
+        try
+        {
+            $response_estudentservice = $this->client->post(Config::get("kdg.estudentservice").'/Main.aspx', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
         //GET RESPONSE FROM LOGIN INTO PARSER (CONTAINS XML AUTH)
         $auth_html=HtmlDomParser::str_get_html($response_estudentservice->getBody()->getContents());
         //GET ALL THE INPUTFIELDS FROM AUTH RESPONSE
@@ -99,27 +106,60 @@ class KdGService
         $wresult=htmlspecialchars_decode($hidden_fields[1]->value); //DECODING XML
         $wctx=html_entity_decode($hidden_fields[2]->value); //DECODING URL
 
-        //ACTUALL AUTHENTICATION WITH INTRANET WITH AUTH-XML
-        $response_estudentservice = $this->client->post(Config::get("kdg.estudentservice").':443/', [
-                'allow_redirects' => true,
-                'cookies' => $this->cookieJar,
-                'form_params' => [
-                    'wa' => $wa,
-                    'wresult' => $wresult,
-                    'wctx' => $wctx,
-                ],
-            ]
-        );
-        //THE INTRANET!!!!
-        $estudentservice_html=HtmlDomParser::str_get_html($response_estudentservice->getBody()->getContents());
-        echo $estudentservice_html;
-        die;
+        //ACTUALL AUTHENTICATION WITH STUDENTSERVICE WITH AUTH-XML
+        try
+        {
+            $response_estudentservice = $this->client->post(Config::get("kdg.estudentservice").':443/', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                    'form_params' => [
+                        'wa' => $wa,
+                        'wresult' => $wresult,
+                        'wctx' => $wctx,
+                    ],
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        //THE SERVICE!!!!
+        return true;
     }
-
+    /**
+     * @return array @[0]=>firstname @[1]=>lastname
+     */
+    public function getNameOfUser()
+    {
+        //BROWSING TO NAME URL
+        try
+        {
+            $response_name = $this->client->get('https://intranet.student.kdg.be/', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        //GETTING NAME PAGE HTML
+        $name_html=HtmlDomParser::str_get_html($response_name->getBody()->getContents());
+        //GETTING NAME ELEMENTS TEXT
+        $forname=$name_html->find("span.firstname",0)->plaintext;
+        $lastname=$name_html->find("span.lastname",0)->plaintext;
+        //RETURNING FULL NAME
+        $name=[trim($forname),trim($lastname)];
+        return $name;
+    }
     /**
      * @return array of notifications
      */
-    public function GetNotifications()
+    public function getNotifications()
     {
         $NOTIFICATIONS=[];
         //BROWSING TO NOTIFICATIONS URL
@@ -155,7 +195,7 @@ class KdGService
     /**
      * @return null|\simplehtmldom_1_5\simple_html_dom_node|\simplehtmldom_1_5\simple_html_dom_node[]
      */
-    public function GetDayMenu()
+    public function getDayMenu()
     {
         //BROWSING TO MENU URL
         try
@@ -182,7 +222,7 @@ class KdGService
     /**
      * @return null|\simplehtmldom_1_5\simple_html_dom_node|\simplehtmldom_1_5\simple_html_dom_node[]|string
      */
-    public function GetAbscents()
+    public function getAbscents()
     {
         //BROWSING TO INTRANET URL
         try
@@ -229,7 +269,7 @@ class KdGService
     /**
      * @return null|\simplehtmldom_1_5\simple_html_dom_node|\simplehtmldom_1_5\simple_html_dom_node[]
      */
-    public function GetPrintPrices()
+    public function getPrintPrices()
     {
         //BROWSING TO PRINT.KDG
         try
@@ -249,5 +289,56 @@ class KdGService
         $printkdghtml=HtmlDomParser::str_get_html($response_printkdg->getBody()->getContents());
         $pricestable=$printkdghtml->find("table",0);
         return $pricestable;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPoints()
+    {
+        //BROWSING TO INTRANET URL
+        try
+        {
+            $response_estudentservice = $this->client->get(Config::get("kdg.estudentservice").'/Main.aspx', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $estudent_html=HtmlDomParser::str_get_html($response_estudentservice->getBody()->getContents());
+        $pointsurl=$estudent_html->find("a.mnu",10)->href;
+        try
+        {
+            $response_points = $this->client->get(Config::get("kdg.estudentservice").'/'.$pointsurl, [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $points_html=HtmlDomParser::str_get_html($response_points->getBody()->getContents())
+            ->find("table.IndivRapRapondTable",0)
+            ->find("tr");
+        $points=[];
+        foreach ($points_html as $i => $pointsrow)
+        {
+            if($i!=0)
+            {
+                if($pointsrow->find("td",0)!="")
+                {
+                    $points[$pointsrow->find("td",1)->plaintext]=$pointsrow->find("td",5)->plaintext;
+                }
+            }
+        }
+        return $points;
     }
 }
