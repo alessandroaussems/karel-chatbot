@@ -2,7 +2,7 @@
 #To repo root
 cd ..
 #Zipping files in /htdocs to release.zip (excluding vendor folder and .env file)
-cd htdocs && zip -r ../release.zip . -x vendor/**\* .env && cd ..
+cd htdocs && zip -r ../release.zip . -x vendor/**\* node_modules/**\* .env && cd ..
 #Copy release.zip to live server
 scp release.zip alessandroaussemsbe@ssh.alessandroaussems.be:subsites/dev.karel-chatbot.be/release.zip
 #SSH to live server browse to directory, unzip release in the current directory, remove release.zip and install dependencies

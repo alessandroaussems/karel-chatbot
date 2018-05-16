@@ -56,10 +56,10 @@ class WelcomeController extends Controller
 
         $sessionmessages[0]=["Hallo ik ben Karel! Stel je vragen maar!","B"];
 
-        $session = Session::create([
-            'id' => $sessionid,
-            'messages' => json_encode($sessionmessages),
-            'last_active' => date('Y-m-d')
-        ]);
+        $session= new Session();
+        $session->id=$sessionid;
+        $session->messages=json_encode($sessionmessages);
+        $session->last_active=date('Y-m-d');
+        $session->save();
     }
 }
