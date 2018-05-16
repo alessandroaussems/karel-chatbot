@@ -12,6 +12,6 @@ class Session extends Model
     protected $fillable = [
         'id',
         'messages',
-        'lastactive'
+        'last_active'
     ];
 }

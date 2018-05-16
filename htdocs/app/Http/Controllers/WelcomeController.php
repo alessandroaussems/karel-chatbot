@@ -12,64 +12,54 @@ class WelcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $length = 60*60*24*30;
     public function welcome()
     {
-        $length = 60*60*24*30;
+        if(isset($_COOKIE["visits"]))
+        {
+            setcookie("visits",$_COOKIE["visits"]+=1,time() + $this->length);
+        }
+        else
+        {
+            setcookie("visits",1,time() + $this->length);
+        }
         if(!isset($_COOKIE['chatsession']))
         {
-            $sessionid=uniqid();
-            setcookie("chatsession", $sessionid,time() + $length);
-            setcookie("visits",1,time() + $length);
-
-            $sessionmessages[0]=["Hallo ik ben Karel! Stel je vragen maar!","B"];
-
-            $session = Session::create([
-                'id' => $sessionid,
-                'messages' => json_encode($sessionmessages),
-                'lastactive' => date('Y-m-d')
-            ]);
-
+            $this->startNewSession();
             return view("chat")->with("messages",[])->with("isconnected",false);
         }
         else
         {
-            if(isset($_COOKIE["visits"]))
+            $session=Session::find($_COOKIE["chatsession"]);
+            if(!isset($session))
             {
-                setcookie("visits",$_COOKIE["visits"]+=1,time() + $length);
-            }
-            else
-            {
-                setcookie("visits",1,time() + $length);
-            }
-            if(isset($_COOKIE["chatsession"]))
-            {
-                setcookie("chatsession", $_COOKIE["chatsession"],time() + $length);
-            }
-            else
-            {
-                $sessionid=uniqid();
-                setcookie("chatsession", $sessionid,time() + $length);
-                setcookie("visits",1,time() + $length);
-
-                $sessionmessages[0]=["Hallo ik ben Karel! Stel je vragen maar!","B"];
-
-                $session = Session::create([
-                    'id' => $sessionid,
-                    'messages' => json_encode($sessionmessages),
-                    'lastactive' => date('Y-m-d')
-                ]);
-
+                $this->startNewSession();
                 return view("chat")->with("messages",[])->with("isconnected",false);
             }
+            else
+            {
+                $session->last_active=date("Y-m-d");
+                $session->save();
 
-            $session=Session::find($_COOKIE["chatsession"]);
-            $session->lastactive=date("Y-m-d");
-            $session->save();
+                $session=Session::where('id', $_COOKIE["chatsession"])->first();
+                $isconnected = (!is_null($session->login) && !is_null($session->password));
 
-            $session=Session::where('id', $_COOKIE["chatsession"])->first();
-            $isconnected = (!is_null($session->login) && !is_null($session->password));
-
-            return view("chat")->with("messages",json_decode($session->messages))->with("isconnected",$isconnected);
+                return view("chat")->with("messages",json_decode($session->messages))->with("isconnected",$isconnected);
+            }
         }
+    }
+    private function startNewSession()
+    {
+        $sessionid=uniqid();
+        setcookie("chatsession", $sessionid,time() + $this->length);
+        setcookie("visits",1,time() + $this->length);
+
+        $sessionmessages[0]=["Hallo ik ben Karel! Stel je vragen maar!","B"];
+
+        $session = Session::create([
+            'id' => $sessionid,
+            'messages' => json_encode($sessionmessages),
+            'last_active' => date('Y-m-d')
+        ]);
     }
 }

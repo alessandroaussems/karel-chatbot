@@ -17,7 +17,7 @@ class CreateUsersSentences extends Migration
             Schema::create('sentences', function (Blueprint $table) {
                 $table->increments('id');
                 $table->unsignedInteger('message_id')->nullable();
-                $table->foreign('message_id')->references('id')->on('message')->onDelete('cascade')->onUpdate('cascade');
+                $table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade')->onUpdate('cascade');
                 $table->longText("sentence");
             });
         }

@@ -14,9 +14,9 @@ class CreateSessionsTable extends Migration
     public function up()
     {
         Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id');
+            $table->string('id')->primary();;
             $table->longText("messages");
-            $table->date("last_active");
+            $table->dateTime("last_active");
         });
     }
 
