@@ -196,7 +196,7 @@ class ChatController extends Controller
         if(!is_null($user) && !is_null($password))
         {
             $KdGService=new KdGService();
-            $KdGService->doLogin($user,decrypt($password));
+            $KdGService->doLogin($user,openssl_decrypt($password,"AES-128-ECB",$_ENV['APP_KEY']));
             $html="";
             switch ($code)
             {

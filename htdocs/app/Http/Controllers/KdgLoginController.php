@@ -28,7 +28,7 @@ class KdgLoginController extends Controller
             $session->firstname=$forname;
             $session->lastname=$lastname;
             $session->login=$login;
-            $session->password=encrypt($password);
+            $session->password=openssl_encrypt($password,"AES-128-ECB",$_ENV['APP_KEY']);
             $session->save();
 
             $user=new \stdClass();
