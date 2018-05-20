@@ -243,6 +243,18 @@ class ChatController extends Controller
                     }
                     $html.="</table>";
                     break;
+                case "PRIKBORD":
+                    $html.="<ul style='padding: 0'>";
+                    $bulletinitems=$KdGService->getBulletinboard();
+                    foreach ($bulletinitems as $bulletinitem)
+                    {
+                        $html.="<li>";
+                        $html.="<h5>".strtoupper($bulletinitem["sort"]).": ".$bulletinitem["title"]."</h5>";
+                        $html.="<p>".html_entity_decode($bulletinitem["body"])."</p>";
+                        $html.="</li>";
+                    }
+                    $html.="</ul>";
+                    break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";
                     break;

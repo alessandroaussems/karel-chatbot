@@ -326,8 +326,8 @@ class KdGService
             die ("Er ging iets mis! &#x1F62D");
         }
         $points_html=HtmlDomParser::str_get_html($response_points->getBody()->getContents())
-            ->find("table.IndivRapRapondTable",0)
-            ->find("tr");
+                    ->find("table.IndivRapRapondTable",0)
+                    ->find("tr");
         $points=[];
         foreach ($points_html as $i => $pointsrow)
         {
@@ -340,5 +340,46 @@ class KdGService
             }
         }
         return $points;
+    }
+    public function getBulletinboard()
+    {
+        //BROWSING TO Bulletinboard url
+        try
+        {
+            $response_bulletinboard = $this->client->get(Config::get("kdg.intranet").'/studentenleven/prikbord', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $bulletin=[];
+        $bulletinitems=HtmlDomParser::str_get_html($response_bulletinboard->getBody()->getContents())
+                       ->find("div.event");
+        foreach ($bulletinitems as $bulletinitem)
+        {
+            $bulletinarticle=[];
+            $bulletinarticle["title"]=$bulletinitem->find("article",0)->find("h1",0)->find("span",0)->find("a",0)->plaintext;
+            $bulletinarticle["sort"]=trim($bulletinitem->find("article",0)->find("div.category",0)->find("div.value",0)->plaintext);
+            $bulletinarticle["body"]=$this->createHtmlLinksFromString(trim($bulletinitem->find("article",0)->find("div.description",0)->plaintext));
+            array_push($bulletin,$bulletinarticle);
+        }
+        return $bulletin;
+    }
+    private function createHtmlLinksFromString($string)
+    {
+        $regex="/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+        if(preg_match($regex, $string, $url))
+        {
+            return preg_replace($regex, "<a target='_blank' href='".$url[0]."'>".$url[0]."</a> ", $string);
+        }
+        else
+        {
+            return $string;
+        }
     }
 }
