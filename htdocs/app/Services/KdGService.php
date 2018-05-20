@@ -382,4 +382,32 @@ class KdGService
             return $string;
         }
     }
+    public function searchForWhoIsWho($searchterm)
+    {
+        $person=[];
+        //SEARCHING WHO IS WHO
+        try
+        {
+            $response_whoiswho = $this->client->get(Config::get("kdg.intranet").'/wieiswie?q='.rawurlencode($searchterm).'&page=1&sort=a-z', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $whosiswhosearchhtml=HtmlDomParser::str_get_html($response_whoiswho->getBody()->getContents());
+        if(!$whosiswhosearchhtml->find("div.modPerson",0))
+        {
+            return false;
+        }
+        $firstresult=$whosiswhosearchhtml->find("div.modPerson",0)->find("article",0)->find("header",0);
+        $person["name"]=trim($firstresult->find("h1",0)->plaintext);
+        $person["email"]=trim($firstresult->find("div.meta",0)->find("div.group2",0)->find("div.email",0)->find("div.value",0)->plaintext);
+        $person["image"]=$firstresult->find("div.image",0)->find("div.graphic",0)->find("div.profilePicture",0)->find("img",0)->src;
+        return $person;
+    }
 }

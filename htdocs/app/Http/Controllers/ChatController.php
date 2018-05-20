@@ -28,7 +28,7 @@ class ChatController extends Controller
             if($this->IsACode($search))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
             {
                 $code=$this->GetTheCode($search); //GET THE CODE
-                $search=str_replace($code,$this->callKdgService($code),$search);
+                $search=str_replace($code,$this->callKdgService($code,$message),$search);
                 $search=$this->SanitizeTheCode($search); //REMOVE START AND END TAG
                 echo $search;
             }
@@ -46,7 +46,7 @@ class ChatController extends Controller
                 if($this->IsACode($answer))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
                 {
                     $code=$this->GetTheCode($answer);//GET THE CODE
-                    $answer=str_replace($code,$this->callKdgService($code),$answer);
+                    $answer=str_replace($code,$this->callKdgService($code,$message),$answer);
                     $answer=$this->SanitizeTheCode($answer); //REMOVE START AND END TAG
                     echo $answer;
                 }
@@ -114,6 +114,10 @@ class ChatController extends Controller
      */
     function CheckMessagesSequential($sentencetocheck)
     {
+        if(strpos($sentencetocheck, 'Wie is') !== false)
+        {
+            return Message::where("id",Sentence::where("sentence","Wie is")->first()->message_id)->first()->answer;
+        }
         $sentences=Sentence::all();
         foreach ($sentences as $sentence => $value)
         {
@@ -188,7 +192,7 @@ class ChatController extends Controller
      * @param $code
      * @return string
      */
-    function callKdgService($code)
+    function callKdgService($code,$message)
     {
         $session=Session::find($_COOKIE["chatsession"]);
         $user=$session->login;
@@ -254,6 +258,21 @@ class ChatController extends Controller
                         $html.="</li>";
                     }
                     $html.="</ul>";
+                    break;
+                case "WIEISWIE":
+                    $searchterm=str_replace("Wie is","",$message);
+                    $person=$KdGService->searchForWhoIsWho($searchterm);
+                    if($person)
+                    {
+                        $html.="<p>Het beste resultaat dat ik kan vinden voor: ".$searchterm." is:</p><br>";
+                        $html.="<img style='max-width: 150px;' src='".$person["image"]."' alt='".$person["name"]."'>";
+                        $html.="<h5>".$person["name"]."</h5>";
+                        $html.="<p>Je kan deze persoon bereiken via email: <a href='mailto:".$person["email"]."'>".$person["email"]."</a>";
+                    }
+                    else
+                    {
+                        $html.="<p>Ik heb helaas niets gevonden met de zoekterm: ".$searchterm.", het spijt me ten zeerste!</p>";
+                    }
                     break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";
