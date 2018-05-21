@@ -100,7 +100,7 @@ class SentenceController extends Controller
      */
     public function destroy($id,$messageid)
     {
-        Sentence::where("message_id",$id)->delete();
+        Sentence::where("id",$id)->delete();
         return Redirect::to('/messages/'.$messageid);
     }
 }
