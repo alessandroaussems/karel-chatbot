@@ -2,11 +2,12 @@ var messageList=document.getElementById("messagelist");
 var BOTTHINKINGTIME=3000;
 var welcomemessage="Hallo ik ben Karel! Stel je vragen maar!";
 var allowToSend=true;
+var pusher = new Pusher('d1252be87affbc8ff537', {cluster: 'eu', encrypted: false});
 function sendMessage(value,event)
 {
-    if(event.keyCode == 13 || value=="getit")//IF ENTER KEY IS PRESSED OR SEND BUTTON
+    if(event.keyCode === 13 || value==="getit")//IF ENTER KEY IS PRESSED OR SEND BUTTON
     {
-        if(value="getit")
+        if(value==="getit")
         {
             var message=document.getElementsByClassName("userinput")[0].value;
         }
@@ -130,7 +131,7 @@ function doKdGLogin(event)
                 document.getElementById("loginerror").classList.add("display");
             }
         }
-    }
+    };
     xmlhttp.open('PUT', "./kdglogin/", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("login="+login+"&password="+password+"&chatsession="+sessionid);
@@ -144,6 +145,13 @@ function hideLoginForm(event)
 {
     document.getElementById("overlay").classList.remove("display");
 }
+function startPusherListening()
+{
+    pusher.subscribe(getCookie("chatsession")).bind('chatmessage', function(data)
+    {
+        createAnswer(data.message)
+    });
+}
 document.addEventListener("DOMContentLoaded", function(event) {
     if(getCookie("visits")!="" && getCookie("visits")==1)//CHECK IF COOKIE VISITS EXISTS AND IF FIRST TIME USER VISITS PAGE
     {
@@ -152,4 +160,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
             createAnswer(welcomemessage);
         }, 1000);
     }
+    startPusherListening();
 });

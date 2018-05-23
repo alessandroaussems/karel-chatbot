@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Sentence;
 use App\Message;
 use Illuminate\Support\Facades\Config;
+use App\Events\SendToUser;
+
 class ChatController extends Controller
 {
     /**
@@ -285,6 +287,10 @@ class ChatController extends Controller
         {
             return "<p onclick='showLoginForm(this.event)' style='cursor: pointer'><strong>Log je in bij KdG zodat ik deze informatie te weten kan komen!</strong></p>";
         }
+    }
+    function sendPusher()
+    {
+        event(new SendToUser($_COOKIE["chatsession"],"chatmessage",["message"=>"test"]));
     }
 }
 
