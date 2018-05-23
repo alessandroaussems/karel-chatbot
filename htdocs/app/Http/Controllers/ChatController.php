@@ -16,7 +16,7 @@ class ChatController extends Controller
      */
     function handleMessage($message)
     {
-        $error="Whoops dat heb ik niet verstaan!";
+        $error="Whoops dat heb ik niet verstaan! &#x1F62D&#x1F62D&#x1F62D";
         //ON ERROR: echo "ERROR";
         //RESPONSE: echo "Your response";
         $message=urldecode($message);//DECODE TO ORIGINAL STRING
