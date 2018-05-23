@@ -16,6 +16,7 @@ class SentenceController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role:editor,admin');
     }
     /**
      * Show the form for creating a new resource.

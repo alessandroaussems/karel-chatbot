@@ -2,8 +2,8 @@
 
 @section('content')
                     <form method="POST" action="{{ route('register') }}" class="register">
-                        <h3>Admin maken</h3>
-                        <small>Deze heeft dan ook toegang tot de opties van Karel!</small>
+                        <h3>Gebruiker maken</h3>
+                        <small>Deze kan Karel dan mee instellen!</small><br>
                         @csrf
                         @if ($errors->has('name'))
                             <span class="invalid-feedback">
@@ -34,6 +34,12 @@
 
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Paswoord bevestigen:</label><br>
                             <input id="password-confirm" type="password"  name="password_confirmation" required><br>
+
+                            <label for="role">Rol:</label><br>
+                            <select name="role">
+                                <option value="admin">Administrator</option>
+                                <option value="editor">Editor</option>
+                            </select>
 
                                 <button type="submit">
                                     Register

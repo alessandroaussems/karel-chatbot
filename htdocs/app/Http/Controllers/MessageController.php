@@ -16,6 +16,7 @@ class MessageController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('role:editor,admin');
     }
         /**
      * Display a listing of the resource.
