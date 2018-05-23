@@ -15,6 +15,10 @@ class WelcomeController extends Controller
     private $length = 60*60*24*30;
     public function welcome()
     {
+        if(!isset($_COOKIE["listen"]))
+        {
+            setcookie("listen","false",time() + $this->length);
+        }
         if(isset($_COOKIE["visits"]))
         {
             setcookie("visits",$_COOKIE["visits"]+=1,time() + $this->length);

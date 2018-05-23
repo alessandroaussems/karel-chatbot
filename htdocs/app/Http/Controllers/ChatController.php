@@ -276,6 +276,10 @@ class ChatController extends Controller
                         $html.="<p>Ik heb helaas niets gevonden met de zoekterm: ".$searchterm.", het spijt me ten zeerste!</p>";
                     }
                     break;
+                case "MEDEWERKER":
+                    setcookie("listen","true",time()+60*60*24*30,"/");
+                    return "startlistening";
+                    break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";
                     break;

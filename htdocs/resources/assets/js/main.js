@@ -28,7 +28,15 @@ function sendMessage(value,event)
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-                    createAnswer(this.responseText);
+                    console.log(this.responseText.replace(/<[^>]+>/g, '').replace(/\s/g, ''));
+                    if(this.responseText.replace(/<[^>]+>/g, '').replace(/\s/g, '')==="startlistening")
+                    {
+                        startPusherListening();
+                    }
+                    else
+                    {
+                       createAnswer(this.responseText);
+                    }
                 }
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 500)
                 {
@@ -160,5 +168,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             createAnswer(welcomemessage);
         }, 1000);
     }
-    startPusherListening();
+    if(getCookie("listen")==="true")
+    {
+        alert("Listening");
+        startPusherListening();
+    }
 });
