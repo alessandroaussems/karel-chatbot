@@ -32,6 +32,7 @@ function sendMessage(value,event)
                     if(this.responseText.replace(/<[^>]+>/g, '').replace(/\s/g, '')==="startlistening")
                     {
                         startPusherListening();
+                        createAnswer("Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar!")
                     }
                     else
                     {

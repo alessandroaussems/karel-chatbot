@@ -299,29 +299,54 @@ nav {
     font-size: 1vw;
     color: red; }
 
-.adminmenu {
+.menu {
   width: 50%;
   margin-left: 25%;
   margin-right: 25%;
   text-align: center; }
-  .adminmenu .options {
+  .menu .add {
+    margin-top: 1%;
+    margin-left: 90%;
+    display: table;
+    width: 10%;
+    margin-right: 0px;
+    font-family: icon;
+    color: #0c090a;
+    text-decoration: none;
+    transform: rotate(45deg); }
+  .menu .options {
     padding: 0px;
     list-style-type: none; }
-    .adminmenu .options li {
+    .menu .options li {
       margin-bottom: 3%;
       padding: 1%;
       width: 100%;
       background-color: #0c090a;
       border: 1px solid #0c090a; }
-      .adminmenu .options li a {
+      .menu .options li a {
         display: block;
         text-decoration: none;
         color: #ffffff; }
-    .adminmenu .options li:hover {
+    .menu .options li:hover {
       background-color: #ffffff;
       cursor: pointer; }
-      .adminmenu .options li:hover a {
+      .menu .options li:hover a {
         color: #0c090a; }
+
+.tagsoverview {
+  text-align: center;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%; }
+  .tagsoverview ul {
+    padding: 0;
+    display: table;
+    list-style-type: none;
+    text-align: left;
+    margin: 0 auto; }
+    .tagsoverview ul li {
+      margin-top: 5%;
+      margin-bottom: 5%; }
 
 .register {
   width: 30%;
@@ -370,42 +395,6 @@ nav {
   .register .invalid-feedback {
     font-size: 1vw;
     color: red; }
-
-.messagesoverview {
-  text-align: center;
-  width: 50%;
-  margin-left: 25%;
-  margin-right: 25%; }
-  .messagesoverview h3 {
-    margin-top: 0px; }
-  .messagesoverview .add {
-    margin-top: 1%;
-    margin-left: 90%;
-    display: table;
-    width: 10%;
-    margin-right: 0px;
-    font-family: icon;
-    color: #0c090a;
-    text-decoration: none;
-    transform: rotate(45deg); }
-  .messagesoverview ul {
-    list-style-type: none;
-    padding: 0px; }
-    .messagesoverview ul li {
-      border: 1px solid #0c090a;
-      padding: 1%;
-      margin-bottom: 3%;
-      width: 100%;
-      background-color: #0c090a; }
-      .messagesoverview ul li a {
-        display: block;
-        text-decoration: none;
-        color: #ffffff; }
-    .messagesoverview ul li:hover {
-      background-color: #ffffff;
-      cursor: pointer; }
-      .messagesoverview ul li:hover a {
-        color: #0c090a; }
 
 .messagedetail {
   width: 50%;
@@ -605,21 +594,6 @@ nav {
 
 .display {
   display: block !important; }
-
-.tagsoverview {
-  text-align: center;
-  width: 50%;
-  margin-left: 25%;
-  margin-right: 25%; }
-  .tagsoverview ul {
-    padding: 0;
-    display: table;
-    list-style-type: none;
-    text-align: left;
-    margin: 0 auto; }
-    .tagsoverview ul li {
-      margin-top: 5%;
-      margin-bottom: 5%; }
 
 /* GLOBAL */
 /* CLEARFIX */

@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('admin', 'AdminController@index');
 Route::get('tags', 'AdminController@tags');
+Route::get('chats', 'AdminController@chats');
 
 Route::resource('messages', 'MessageController');
 Route::get('messages/{id}/delete','MessageController@destroy');

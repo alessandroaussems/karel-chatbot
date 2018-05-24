@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Livechat;
 use App\Providers\KdGClientProvider;
 use App\Services\KdGService;
 use App\Session;
@@ -277,8 +278,18 @@ class ChatController extends Controller
                     }
                     break;
                 case "MEDEWERKER":
-                    setcookie("listen","true",time()+60*60*24*30,"/");
-                    return "startlistening";
+                    if($_COOKIE["listen"]=="true")
+                    {
+                        return "<p>Je bent momenteel al aan het wachten op het antwoord van een medewerker. Geduld is een mooie deugd...";
+                    }
+                    else
+                    {
+                        setcookie("listen","true",time()+60*60*24*30,"/");
+                        $livechat=new Livechat();
+                        $livechat->session_id=$_COOKIE["chatsession"];
+                        $livechat->save();
+                        return "startlistening";
+                    }
                     break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";
