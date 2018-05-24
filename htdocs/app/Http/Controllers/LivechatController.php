@@ -7,11 +7,23 @@ use App\Events\SendToUser;
 
 class LivechatController extends Controller
 {
+    /**
+     * @param $sessionid
+     * @return $this
+     */
     public function livechat($sessionid)
     {
-        $session=Session::find($_COOKIE["chatsession"]);
+        $session=Session::find($sessionid);
+        if(!isset($session))
+        {
+            abort(404);
+        }
         return view("livechat")->with("messages",json_decode($session->messages));
     }
+
+    /**
+     * @param $message
+     */
     public function handleMessage($message)
     {
         $message=urldecode($message);//DECODE TO ORIGINAL STRING

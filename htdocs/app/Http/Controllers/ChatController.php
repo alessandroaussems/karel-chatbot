@@ -25,6 +25,11 @@ class ChatController extends Controller
         $message=urldecode($message);//DECODE TO ORIGINAL STRING
 
         $this->AddToSession($message,"H");
+        if($_COOKIE["listen"]=="true")
+        {
+            event(new SendToUser($_COOKIE["chatsession"],"usermessage",["message"=>$message]));
+            die;
+        }
         $search=$this->SearchMessage($message); // FIRST CHECKING LITERALLY
         if($search!="none") // IF SUCCESFULL 100% MATCH
         {
@@ -280,7 +285,7 @@ class ChatController extends Controller
                 case "MEDEWERKER":
                     if($_COOKIE["listen"]=="true")
                     {
-                        return "<p>Je bent momenteel al aan het wachten op het antwoord van een medewerker. Geduld is een mooie deugd...";
+                        return "<p>Je bent momenteel al aan het wachten op het antwoord van een medewerker. Geduld is een mooie deugd...</p>";
                     }
                     else
                     {
@@ -288,7 +293,7 @@ class ChatController extends Controller
                         $livechat=new Livechat();
                         $livechat->session_id=$_COOKIE["chatsession"];
                         $livechat->save();
-                        return "startlistening";
+                        return "<p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar!</p>";
                     }
                     break;
                 default:

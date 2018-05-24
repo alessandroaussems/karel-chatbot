@@ -28,16 +28,13 @@ function sendMessage(value,event)
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-                    console.log(this.responseText.replace(/<[^>]+>/g, '').replace(/\s/g, ''));
-                    if(this.responseText.replace(/<[^>]+>/g, '').replace(/\s/g, '')==="startlistening")
+                    console.log(this.responseText.replace(/<[^>]+>/g, ''));
+                    if(this.responseText.replace(/<[^>]+>/g, '')==="Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar!")
                     {
                         startPusherListening();
-                        createAnswer("Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar!")
+                        alert("Listening");
                     }
-                    else
-                    {
-                       createAnswer(this.responseText);
-                    }
+                    createAnswer(this.responseText);
                 }
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 500)
                 {
@@ -131,7 +128,6 @@ function doKdGLogin(event)
                 document.getElementById("kdgconnect").classList.add("nodisplay");
                 createAnswer("Dankjewel om je KdG-account te koppelen! Ik kan je nu nog beter helpen!")
             }
-            console.log(response);
             if(!response)
             {
                 button.disabled=false;

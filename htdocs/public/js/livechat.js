@@ -63,11 +63,11 @@ function getCookie(cname) {
 }
 function startPusherListening()
 {
-    pusher.subscribe(getCookie("chatsession")).bind('chatmessage', function(data)
+    pusher.subscribe(getCookie("chatsession")).bind('usermessage', function(data)
     {
         createAnswer(data.message)
     });
 }
 document.addEventListener("DOMContentLoaded", function(event) {
-
+    startPusherListening();
 });
