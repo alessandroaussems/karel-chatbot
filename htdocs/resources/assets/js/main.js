@@ -17,9 +17,12 @@ function sendMessage(value,event)
         }
         createUserMessage(message);
         document.getElementsByClassName("userinput")[0].value="";
-        //MAKE SURE TYPEICON IS ALWAYS @ THE BOTTOM
-        removeTypeIcon();//REMOVE OLD TYPE ICON
-        createTypeIcon();//CREATE NEW TYPE ICON
+        if(getCookie("listen")!="true")
+        {
+            //MAKE SURE TYPEICON IS ALWAYS @ THE BOTTOM
+            removeTypeIcon();//REMOVE OLD TYPE ICON
+            createTypeIcon();//CREATE NEW TYPE ICON
+        }
         if(allowToSend)//CHECK IF NO PREVIOUS REQUEST IS STILL EXECUTING
         {
             allowToSend=false; // BECAUSE WE START EXECUTING A NEW REQUEST
@@ -28,13 +31,14 @@ function sendMessage(value,event)
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-                    console.log(this.responseText.replace(/<[^>]+>/g, ''));
-                    if(this.responseText.replace(/<[^>]+>/g, '')==="Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar!")
+                    if(this.responseText.replace(/<[^>]+>/g, '')==" Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! ")
                     {
                         startPusherListening();
-                        alert("Listening");
                     }
-                    createAnswer(this.responseText);
+                    if(!this.responseText=="live")
+                    {
+                        createAnswer(this.responseText);
+                    }
                 }
                 if(xmlhttp.readyState == 4 && xmlhttp.status == 500)
                 {

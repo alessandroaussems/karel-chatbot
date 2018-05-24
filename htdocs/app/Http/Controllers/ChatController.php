@@ -28,7 +28,7 @@ class ChatController extends Controller
         if($_COOKIE["listen"]=="true")
         {
             event(new SendToUser($_COOKIE["chatsession"],"usermessage",["message"=>$message]));
-            die;
+            return "live";
         }
         $search=$this->SearchMessage($message); // FIRST CHECKING LITERALLY
         if($search!="none") // IF SUCCESFULL 100% MATCH
