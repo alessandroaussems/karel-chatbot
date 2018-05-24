@@ -13,7 +13,8 @@
 
 Route::get('/','WelcomeController@welcome');
 Route::get('chat/{message}','ChatController@handleMessage');
-Route::get('live/','ChatController@sendPusher');
+Route::get('livechat/{sessionid}','LivechatController@livechat');
+Route::get('sendliveresponse/{message}','LivechatController@handleMessage');
 
 Auth::routes();
 
