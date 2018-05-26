@@ -20,6 +20,11 @@
         </div>
     </div>
     <input type="text" class="userinput" placeholder="Typ je bericht hier..." onkeypress="sendMessage(this.value,event)" autofocus>
+    @if(isset($isconnected))
+        @if(!$isconnected)
+            <span id="kdgconnect" onclick="showLoginForm(this.event)">h</span>
+        @endif
+    @endif
     <span id="send" onclick="sendMessage('getit',event)"> > </span>
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="{{asset('js/chat.js')}}"></script>

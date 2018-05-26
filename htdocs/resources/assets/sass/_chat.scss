@@ -1,5 +1,6 @@
 .chat,.livechat
 {
+  position: relative;
   border-left: 2px solid $fullblack;
   border-right: 2px solid $fullblack;
   width: 50%;
@@ -130,6 +131,28 @@
 #send:hover
 {
   cursor: pointer;
+}
+#kdgconnect
+{
+  font-family: $iconfont;
+  color: $white;
+  height: 4.5%;
+  width: 5%;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-content:center;
+  align-content:center;
+  flex-direction:column;
+  position:absolute;
+  margin-right: 35%;
+  right: -1%;
+  background-color: $black;
+  border-right: 1px solid $white;
+  &:hover
+  {
+    cursor: pointer;
+  }
 }
 .sceditor-nlf
 {

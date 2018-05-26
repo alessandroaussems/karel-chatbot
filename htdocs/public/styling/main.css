@@ -45,17 +45,9 @@ nav {
     margin-right: 1%; }
     nav #kdglogo img {
       width: 100%; }
-  nav #kdgconnect {
-    width: 20%;
-    color: #ffffff;
-    margin-left: 79%;
-    font-size: 1vw;
-    text-align: right;
-    margin-bottom: 1%; }
-  nav #kdgconnect:hover {
-    cursor: pointer; }
 
 .chat, .livechat {
+  position: relative;
   border-left: 2px solid #0c090a;
   border-right: 2px solid #0c090a;
   width: 50%;
@@ -143,11 +135,31 @@ nav {
 
 #send:hover {
   cursor: pointer; }
+
+#kdgconnect {
+  font-family: icon;
+  color: #ffffff;
+  height: 4.5%;
+  width: 5%;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  position: absolute;
+  margin-right: 35%;
+  right: -1%;
+  background-color: #1d1d1b;
+  border-right: 1px solid #ffffff; }
+  #kdgconnect:hover {
+    cursor: pointer; }
 
 .sceditor-nlf {
   display: none; }
 
 .chat, .livechat {
+  position: relative;
   border-left: 2px solid #0c090a;
   border-right: 2px solid #0c090a;
   width: 50%;
@@ -235,6 +247,25 @@ nav {
 
 #send:hover {
   cursor: pointer; }
+
+#kdgconnect {
+  font-family: icon;
+  color: #ffffff;
+  height: 4.5%;
+  width: 5%;
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  position: absolute;
+  margin-right: 35%;
+  right: -1%;
+  background-color: #1d1d1b;
+  border-right: 1px solid #ffffff; }
+  #kdgconnect:hover {
+    cursor: pointer; }
 
 .sceditor-nlf {
   display: none; }
@@ -408,6 +439,10 @@ nav {
     border-left: none;
     border-right: none;
     width: 90%; }
+
+  #kdgconnect {
+    margin-right: 10%;
+    height: 5%; }
 
   nav {
     height: 7.5%; }
