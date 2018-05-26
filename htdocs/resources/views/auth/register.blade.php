@@ -39,6 +39,7 @@
                             <select name="role">
                                 <option value="admin">Administrator</option>
                                 <option value="editor">Editor</option>
+                                <option value="chatter">Chatter</option>
                             </select>
 
                                 <button type="submit">

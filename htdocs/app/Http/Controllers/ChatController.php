@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Livechat;
 use App\Providers\KdGClientProvider;
 use App\Services\KdGService;
 use App\Session;
@@ -9,6 +10,8 @@ use Illuminate\Http\Request;
 use App\Sentence;
 use App\Message;
 use Illuminate\Support\Facades\Config;
+use App\Events\SendToUser;
+
 class ChatController extends Controller
 {
     /**
@@ -22,6 +25,22 @@ class ChatController extends Controller
         $message=urldecode($message);//DECODE TO ORIGINAL STRING
 
         $this->AddToSession($message,"H");
+        similar_text($message, "Medewerker stop", $perc);
+        if($_COOKIE["listen"]=="true" && $perc > 50 )
+        {
+            setcookie("listen","false",time()+60*60*24*30,"/");
+            Livechat::where("session_id",$_COOKIE["chatsession"])->delete();
+            event(new SendToUser("newchat","oldchatid",["id"=>$_COOKIE["chatsession"]]));
+            event(new SendToUser("newchat","chatcount",["number"=>Livechat::count()]));
+            event(new SendToUser($_COOKIE["chatsession"],"usermessage",["message"=>"stop"]));
+            $this->AddToSession("<p>Hopelijk heeft de KdG-Medewerker je kunnen helpen...Vanaf nu kan je al je vragen weer gewoon aan mij stellen, Karel dé chatbot van KdG!</p>","B");
+            return "<p>Hopelijk heeft de KdG-Medewerker je kunnen helpen...Vanaf nu kan je al je vragen weer gewoon aan mij stellen, Karel dé chatbot van KdG!</p>";
+        }
+        if($_COOKIE["listen"]=="true")
+        {
+            event(new SendToUser($_COOKIE["chatsession"],"usermessage",["message"=>$message]));
+            return "live";
+        }
         $search=$this->SearchMessage($message); // FIRST CHECKING LITERALLY
         if($search!="none") // IF SUCCESFULL 100% MATCH
         {
@@ -274,6 +293,21 @@ class ChatController extends Controller
                         $html.="<p>Ik heb helaas niets gevonden met de zoekterm: ".$searchterm.", het spijt me ten zeerste!</p>";
                     }
                     break;
+                case "MEDEWERKER":
+                    if($_COOKIE["listen"]=="true")
+                    {
+                        return "<p>Je bent momenteel al aan het wachten op het antwoord van een medewerker. Geduld is een mooie deugd...</p>";
+                    }
+                    else
+                    {
+                        setcookie("listen","true",time()+60*60*24*30,"/");
+                        $livechat=new Livechat();
+                        $livechat->session_id=$_COOKIE["chatsession"];
+                        $livechat->save();
+                        event(new SendToUser("newchat","newchatid",["id"=>$_COOKIE["chatsession"]]));
+                        event(new SendToUser("newchat","chatcount",["number"=>Livechat::count()]));
+                        return "<p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! Om de sessie te beeïndigen kan je altijd 'Medewerker stop' ingeven.</p>";
+                    }
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";
                     break;

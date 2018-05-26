@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Livechat;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -25,7 +27,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin');
+        return view('admin')->with("livechats",Livechat::count());
     }
     /**
      * Show the list of available tags.
@@ -38,5 +40,10 @@ class AdminController extends Controller
         $starttag=Config::get("kdg.starttag");
         $endtag=Config::get("kdg.endtag");
         return view("tags")->with("tags",$tags)->with("starttag",$starttag)->with("endtag",$endtag);
+    }
+    public function chats()
+    {
+        $livechats=Livechat::all();
+        return view("livechats")->with("livechats",$livechats);
     }
 }

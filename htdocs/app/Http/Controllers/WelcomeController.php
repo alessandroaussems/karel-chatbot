@@ -15,6 +15,10 @@ class WelcomeController extends Controller
     private $length = 60*60*24*30;
     public function welcome()
     {
+        if(!isset($_COOKIE["listen"]))
+        {
+            setcookie("listen","false",time() + $this->length);
+        }
         if(isset($_COOKIE["visits"]))
         {
             setcookie("visits",$_COOKIE["visits"]+=1,time() + $this->length);
@@ -26,6 +30,8 @@ class WelcomeController extends Controller
         if(!isset($_COOKIE['chatsession']))
         {
             $this->startNewSession();
+            setcookie("listen","false",time() + $this->length,"/");
+
             return view("chat")->with("messages",[])->with("isconnected",false);
         }
         else
@@ -34,6 +40,8 @@ class WelcomeController extends Controller
             if(!isset($session))
             {
                 $this->startNewSession();
+                setcookie("listen","false",time() + $this->length,"/");
+
                 return view("chat")->with("messages",[])->with("isconnected",false);
             }
             else

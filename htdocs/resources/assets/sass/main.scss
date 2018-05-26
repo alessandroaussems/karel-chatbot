@@ -25,18 +25,12 @@ $secundaryfont: Verdana, Geneva, sans-serif;
 @import "chat";
 @import "chat";
 @import "typing";
-@import "login";
 @import "adminmenu";
-@import "register";
-@import "messages";
 @import "messagedetail";
 @import "messageform";
 @import "mobile";
-@import "email";
-@import "reset";
 @import "overlay";
-@import "tags";
-/* GLOBAL */
+@import "forms";
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {
   content: "";
@@ -46,6 +40,7 @@ $secundaryfont: Verdana, Geneva, sans-serif;
 .clearfix::after {
   clear: both;
 }
+/* GLOBAL */
 body
 {
   margin: 0 auto;

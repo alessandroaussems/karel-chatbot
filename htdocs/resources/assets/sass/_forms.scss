@@ -1,4 +1,4 @@
-.register
+.email,.login,.register,.reset
 {
   width: 30%;
   margin-left: auto;
@@ -56,6 +56,12 @@
     border-color: $fullblack;
     color: $fullblack;
     cursor: pointer;
+  }
+  a
+  {
+    display: block;
+    margin-top: 5%;
+    font-size: 2vh;
   }
   .invalid-feedback
   {

@@ -1,4 +1,4 @@
-.chat
+.chat,.livechat
 {
   border-left: 2px solid $fullblack;
   border-right: 2px solid $fullblack;
@@ -81,6 +81,20 @@
       color: $fullblack;
       margin-left:auto;
       margin-right:0.5%;
+    }
+  }
+}
+.livechat
+{
+  ul
+  {
+    li
+    {
+      p
+      {
+        background-color: $accentcolor !important;
+        color: $fullblack !important;
+      }
     }
   }
 }
