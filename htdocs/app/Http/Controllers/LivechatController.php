@@ -8,6 +8,16 @@ use App\Events\SendToUser;
 class LivechatController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:chatter,admin');
+    }
+    /**
      * @param $sessionid
      * @return $this
      */
