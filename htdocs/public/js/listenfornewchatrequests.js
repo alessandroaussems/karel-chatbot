@@ -22,7 +22,6 @@ function createNewChat(id)
 }
 function removeOldChat(id)
 {
-    console.log("executed");
     var listitems=document.getElementsByTagName("li");
     for(var i=0;i<listitems.length;i++)
     {

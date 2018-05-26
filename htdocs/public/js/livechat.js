@@ -19,7 +19,7 @@ function sendMessage(value,event)
             xmlhttp.onreadystatechange = function(){
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
                 {
-                    console.log(this.responseText);
+
                 }
             };
             xmlhttp.open("GET", "/sendliveresponse/"+message+"/sessionid/"+getSessionidFromUrl(), true);
@@ -64,5 +64,4 @@ function startPusherListening()
 }
 document.addEventListener("DOMContentLoaded", function(event) {
     startPusherListening();
-    alert("Listening");
 });

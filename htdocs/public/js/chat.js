@@ -180,7 +180,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     if(getCookie("listen")==="true")
     {
-        alert("Listening");
         startPusherListening();
     }
 });
