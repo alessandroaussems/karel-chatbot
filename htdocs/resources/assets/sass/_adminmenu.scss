@@ -33,6 +33,22 @@
         text-decoration: none;
         color: $white;
       }
+      &:last-child
+      {
+        a
+        {
+          display: inline-block;
+        }
+      }
+      #chatnumber
+      {
+        color: white;
+        background-color: red;
+        border-radius: 100%;
+        padding-left: .2rem;
+        padding-right: .2rem;
+        display: inline-block;
+      }
     }
     li:hover
     {

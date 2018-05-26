@@ -327,6 +327,15 @@ nav {
         display: block;
         text-decoration: none;
         color: #ffffff; }
+      .menu .options li:last-child a {
+        display: inline-block; }
+      .menu .options li #chatnumber {
+        color: white;
+        background-color: red;
+        border-radius: 100%;
+        padding-left: .2rem;
+        padding-right: .2rem;
+        display: inline-block; }
     .menu .options li:hover {
       background-color: #ffffff;
       cursor: pointer; }

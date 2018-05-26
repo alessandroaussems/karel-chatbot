@@ -15,9 +15,10 @@
                 <li><a href="/tags">Tags</a></li>
             @endif
             @if(Auth::user()->hasRole("admin") || Auth::user()->hasRole("chatter") )
-                <li><a href="/chats">Chats</a></li>
+                <li><a href="/chats">Chats</a><span id="chatnumber">{{ $livechats }}</span></li>
             @endif
         </ul>
     </div>
-
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+    <script src="{{asset('js/countlivechats.js')}}"></script>
 @endsection

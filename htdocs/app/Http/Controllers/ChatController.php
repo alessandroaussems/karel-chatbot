@@ -293,6 +293,8 @@ class ChatController extends Controller
                         $livechat=new Livechat();
                         $livechat->session_id=$_COOKIE["chatsession"];
                         $livechat->save();
+                        event(new SendToUser("newchat","newchatid",["id"=>$_COOKIE["chatsession"]]));
+                        event(new SendToUser("newchat","chatcount",["number"=>Livechat::count()]));
                         return "<p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! Om de sessie te beeïndigen kan je altijd 'Medewerker stop' ingeven.</p>";
                     }
                     break;
