@@ -30,6 +30,8 @@ class WelcomeController extends Controller
         if(!isset($_COOKIE['chatsession']))
         {
             $this->startNewSession();
+            setcookie("listen","false",time() + $this->length,"/");
+
             return view("chat")->with("messages",[])->with("isconnected",false);
         }
         else
@@ -38,6 +40,8 @@ class WelcomeController extends Controller
             if(!isset($session))
             {
                 $this->startNewSession();
+                setcookie("listen","false",time() + $this->length,"/");
+
                 return view("chat")->with("messages",[])->with("isconnected",false);
             }
             else

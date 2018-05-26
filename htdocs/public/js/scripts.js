@@ -35,7 +35,10 @@ function sendMessage(value,event)
                     if(this.responseText=="<p> <p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! Om de sessie te beeïndigen kan je altijd 'Medewerker stop' ingeven.</p> </p>")
                     {
                         startPusherListening();
-                        alert("Started listening");
+                    }
+                    if(this.responseText=="<p>Hopelijk heeft de KdG-Medewerker je kunnen helpen...Vanaf nu kan je al je vragen weer gewoon aan mij stellen, Karel dé chatbot van KdG!</p>")
+                    {
+                        stopPusherListening();
                     }
                     if(this.responseText!="live")
                     {
@@ -162,6 +165,10 @@ function startPusherListening()
     {
         createAnswer(data.message)
     });
+}
+function stopPusherListening()
+{
+    pusher.subscribe(getCookie("chatsession")).unbind("chatsession");
 }
 document.addEventListener("DOMContentLoaded", function(event) {
     if(getCookie("visits")!="" && getCookie("visits")==1)//CHECK IF COOKIE VISITS EXISTS AND IF FIRST TIME USER VISITS PAGE

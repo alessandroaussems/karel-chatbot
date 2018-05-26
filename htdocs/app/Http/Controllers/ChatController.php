@@ -25,6 +25,17 @@ class ChatController extends Controller
         $message=urldecode($message);//DECODE TO ORIGINAL STRING
 
         $this->AddToSession($message,"H");
+        similar_text($message, "Medewerker stop", $perc);
+        if($_COOKIE["listen"]=="true" && $perc > 50 )
+        {
+            setcookie("listen","false",time()+60*60*24*30,"/");
+            Livechat::where("session_id",$_COOKIE["chatsession"])->delete();
+            event(new SendToUser("newchat","oldchatid",["id"=>$_COOKIE["chatsession"]]));
+            event(new SendToUser("newchat","chatcount",["number"=>Livechat::count()]));
+            event(new SendToUser($_COOKIE["chatsession"],"usermessage",["message"=>"stop"]));
+            $this->AddToSession("<p>Hopelijk heeft de KdG-Medewerker je kunnen helpen...Vanaf nu kan je al je vragen weer gewoon aan mij stellen, Karel dé chatbot van KdG!</p>","B");
+            return "<p>Hopelijk heeft de KdG-Medewerker je kunnen helpen...Vanaf nu kan je al je vragen weer gewoon aan mij stellen, Karel dé chatbot van KdG!</p>";
+        }
         if($_COOKIE["listen"]=="true")
         {
             event(new SendToUser($_COOKIE["chatsession"],"usermessage",["message"=>$message]));
@@ -297,7 +308,6 @@ class ChatController extends Controller
                         event(new SendToUser("newchat","chatcount",["number"=>Livechat::count()]));
                         return "<p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! Om de sessie te beeïndigen kan je altijd 'Medewerker stop' ingeven.</p>";
                     }
-                    break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";
                     break;
@@ -309,10 +319,6 @@ class ChatController extends Controller
         {
             return "<p onclick='showLoginForm(this.event)' style='cursor: pointer'><strong>Log je in bij KdG zodat ik deze informatie te weten kan komen!</strong></p>";
         }
-    }
-    function sendPusher()
-    {
-        event(new SendToUser($_COOKIE["chatsession"],"chatmessage",["message"=>"test"]));
     }
 }
 

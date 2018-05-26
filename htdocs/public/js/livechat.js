@@ -19,13 +19,17 @@ function sendMessage(value,event)
             xmlhttp.onreadystatechange = function(){
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
                 {
-
+                    console.log(this.responseText);
                 }
             };
-            xmlhttp.open("GET", "../../sendliveresponse/"+message, true);
+            xmlhttp.open("GET", "/sendliveresponse/"+message+"/sessionid/"+getSessionidFromUrl(), true);
             xmlhttp.send();
     }
 
+}
+function getSessionidFromUrl()
+{
+    return window.location.pathname.split("/")[2];
 }
 function createUserMessage(message)
 {
@@ -46,28 +50,19 @@ function createAnswer(message)
         messageList.appendChild(listitem);
         messageList.scrollIntoView(false);
 }
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
 function startPusherListening()
 {
-    pusher.subscribe(getCookie("chatsession")).bind('usermessage', function(data)
+    pusher.subscribe(getSessionidFromUrl()).bind('usermessage', function(data)
     {
+        if(data.message=="stop")
+        {
+            confirm("De gebruiker heeft de sessie beïndigd. Dit betekend dat hij niet langer hulp nodig heeft van een KdG medewerker. Je wordt omgeleid naar de overzichtspagina.");
+            window.location="/chats";
+        }
         createAnswer(data.message)
     });
 }
 document.addEventListener("DOMContentLoaded", function(event) {
     startPusherListening();
+    alert("Listening");
 });

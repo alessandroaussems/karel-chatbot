@@ -5,6 +5,10 @@ function startPusherListening()
     {
         createNewChat(data.id);
     });
+    pusher.subscribe("newchat").bind('oldchatid', function(data)
+    {
+        removeOldChat(data.id);
+    });
 }
 function createNewChat(id)
 {
@@ -15,6 +19,18 @@ function createNewChat(id)
     link.innerHTML=id;
     listitem.appendChild(link);
     document.getElementsByClassName("options")[0].appendChild(listitem);
+}
+function removeOldChat(id)
+{
+    console.log("executed");
+    var listitems=document.getElementsByTagName("li");
+    for(var i=0;i<listitems.length;i++)
+    {
+        if(listitems[i].innerHTML==id)
+        {
+            listitems[i].parentNode.removeChild(listitems[i]);
+        }
+    }
 }
 document.addEventListener("DOMContentLoaded", function(event) {
     startPusherListening();

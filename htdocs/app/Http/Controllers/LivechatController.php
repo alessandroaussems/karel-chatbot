@@ -34,24 +34,22 @@ class LivechatController extends Controller
     /**
      * @param $message
      */
-    public function handleMessage($message)
+    public function handleMessage($message,$sessionid)
     {
         $message=urldecode($message);//DECODE TO ORIGINAL STRING
-        $this->AddToSession($message,"B");
-        event(new SendToUser($_COOKIE["chatsession"],"chatmessage",["message"=>$message]));
+        $this->AddToSession($message,"B",$sessionid);
+        event(new SendToUser($sessionid,"chatmessage",["message"=>$message]));
     }
     /**
      * @param $messagetoadd
      * @param $who
      */
-    function AddToSession($messagetoadd, $who)
+    private function AddToSession($messagetoadd, $who,$sessionid)
     {
         $toadd=[$messagetoadd,$who];
-        $session=Session::select('messages')->where('id', $_COOKIE["chatsession"])->first();
+        $session=Session::select('messages')->where('id', $sessionid)->first();
         $messages=json_decode($session->messages);
-        array_push($messages,$toadd);
-        $session=Session::find($_COOKIE["chatsession"]);
-        $session->messages=json_encode($messages);
+        $session->messages=json_encode(array_push($messages,$toadd));
         $session->save();
     }
 }
