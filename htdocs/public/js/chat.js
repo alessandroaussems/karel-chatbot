@@ -68,17 +68,17 @@ function createUserMessage(message)
 }
 function createAnswer(message)
 {
-        //WAIT BOTTHIKNINGTIME THEN REMOVE TYPING ICON AND CREATE RESPONSE
-        setTimeout(function(){
-            removeTypeIcon();
-            var listitem=document.createElement("li");
-            listitem.className="botmessage";
-            //message=document.createTextNode(message);
-            listitem.innerHTML=message;
-            messageList.appendChild(listitem);
-            messageList.scrollIntoView(false);
-            allowToSend=true; // THIS REQUEST IS FINISHED SO THE NEXT ONE IS NOW ALLOWED
-        }, BOTTHINKINGTIME);
+    //WAIT BOTTHIKNINGTIME THEN REMOVE TYPING ICON AND CREATE RESPONSE
+    setTimeout(function(){
+        removeTypeIcon();
+        var listitem=document.createElement("li");
+        listitem.className="botmessage";
+        //message=document.createTextNode(message);
+        listitem.innerHTML=message;
+        messageList.appendChild(listitem);
+        messageList.scrollIntoView(false);
+        allowToSend=true; // THIS REQUEST IS FINISHED SO THE NEXT ONE IS NOW ALLOWED
+    }, BOTTHINKINGTIME);
 }
 function createTypeIcon()
 {
