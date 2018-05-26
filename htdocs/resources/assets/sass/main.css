@@ -55,7 +55,7 @@ nav {
   nav #kdgconnect:hover {
     cursor: pointer; }
 
-.chat {
+.chat, .livechat {
   border-left: 2px solid #0c090a;
   border-right: 2px solid #0c090a;
   width: 50%;
@@ -66,50 +66,54 @@ nav {
   overflow-y: scroll;
   display: flex;
   flex-direction: column-reverse; }
-  .chat .opener {
+  .chat .opener, .livechat .opener {
     display: table;
     width: 100%;
     text-align: center;
     border-bottom: 1px solid #0c090a; }
-    .chat .opener img {
+    .chat .opener img, .livechat .opener img {
       width: 20%;
       height: auto; }
-    .chat .opener h2 {
+    .chat .opener h2, .livechat .opener h2 {
       font-family: KdG;
       font-size: 3vw;
       margin-bottom: 3%;
       margin-top: 0px; }
-  .chat ul {
+  .chat ul, .livechat ul {
     list-style-type: none;
     padding: 0px; }
-    .chat ul li {
+    .chat ul li, .livechat ul li {
       text-align: left;
       display: table;
       max-width: 60%;
       padding: 1%;
       margin-bottom: 2%; }
-      .chat ul li p {
+      .chat ul li p, .livechat ul li p {
         color: #ffffff !important;
         background-color: #0c090a !important; }
-      .chat ul li table {
+      .chat ul li table, .livechat ul li table {
         border-collapse: collapse;
         border-color: #ffffff; }
-    .chat ul .botmessage {
+    .chat ul .botmessage, .livechat ul .botmessage {
       margin-left: 0.5%;
       background-color: #0c090a;
       color: #ffffff; }
-      .chat ul .botmessage a {
+      .chat ul .botmessage a, .livechat ul .botmessage a {
         color: inherit; }
-      .chat ul .botmessage a:hover {
+      .chat ul .botmessage a:hover, .livechat ul .botmessage a:hover {
         text-decoration: underline; }
-      .chat ul .botmessage img {
+      .chat ul .botmessage img, .livechat ul .botmessage img {
         width: 100%;
         height: auto; }
-    .chat ul .usermessage {
+    .chat ul .usermessage, .livechat ul .usermessage {
       background-color: #00b2e2;
       color: #0c090a;
       margin-left: auto;
       margin-right: 0.5%; }
+
+.livechat ul li p {
+  background-color: #00b2e2 !important;
+  color: #0c090a !important; }
 
 .userinput {
   width: 40%;
@@ -143,7 +147,7 @@ nav {
 .sceditor-nlf {
   display: none; }
 
-.chat {
+.chat, .livechat {
   border-left: 2px solid #0c090a;
   border-right: 2px solid #0c090a;
   width: 50%;
@@ -154,50 +158,54 @@ nav {
   overflow-y: scroll;
   display: flex;
   flex-direction: column-reverse; }
-  .chat .opener {
+  .chat .opener, .livechat .opener {
     display: table;
     width: 100%;
     text-align: center;
     border-bottom: 1px solid #0c090a; }
-    .chat .opener img {
+    .chat .opener img, .livechat .opener img {
       width: 20%;
       height: auto; }
-    .chat .opener h2 {
+    .chat .opener h2, .livechat .opener h2 {
       font-family: KdG;
       font-size: 3vw;
       margin-bottom: 3%;
       margin-top: 0px; }
-  .chat ul {
+  .chat ul, .livechat ul {
     list-style-type: none;
     padding: 0px; }
-    .chat ul li {
+    .chat ul li, .livechat ul li {
       text-align: left;
       display: table;
       max-width: 60%;
       padding: 1%;
       margin-bottom: 2%; }
-      .chat ul li p {
+      .chat ul li p, .livechat ul li p {
         color: #ffffff !important;
         background-color: #0c090a !important; }
-      .chat ul li table {
+      .chat ul li table, .livechat ul li table {
         border-collapse: collapse;
         border-color: #ffffff; }
-    .chat ul .botmessage {
+    .chat ul .botmessage, .livechat ul .botmessage {
       margin-left: 0.5%;
       background-color: #0c090a;
       color: #ffffff; }
-      .chat ul .botmessage a {
+      .chat ul .botmessage a, .livechat ul .botmessage a {
         color: inherit; }
-      .chat ul .botmessage a:hover {
+      .chat ul .botmessage a:hover, .livechat ul .botmessage a:hover {
         text-decoration: underline; }
-      .chat ul .botmessage img {
+      .chat ul .botmessage img, .livechat ul .botmessage img {
         width: 100%;
         height: auto; }
-    .chat ul .usermessage {
+    .chat ul .usermessage, .livechat ul .usermessage {
       background-color: #00b2e2;
       color: #0c090a;
       margin-left: auto;
       margin-right: 0.5%; }
+
+.livechat ul li p {
+  background-color: #00b2e2 !important;
+  color: #0c090a !important; }
 
 .userinput {
   width: 40%;

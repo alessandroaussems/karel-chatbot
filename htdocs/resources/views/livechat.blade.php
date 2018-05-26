@@ -1,6 +1,6 @@
 @extends('partials.master')
 @section('content')
-    <div class="chat">
+    <div class="livechat">
         <ul id="messagelist">
             @foreach($messages as $key => $value)
                 @if($value[1]=="H")
