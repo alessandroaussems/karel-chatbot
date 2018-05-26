@@ -30,12 +30,14 @@ function sendMessage(value,event)
             var xmlhttp;
             xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function(){
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
-                    if(this.responseText.replace(/<[^>]+>/g, '')==" Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! ")
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                {
+                    if(this.responseText=="<p> <p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! Om de sessie te beeïndigen kan je altijd 'Medewerker stop' ingeven.</p> </p>")
                     {
                         startPusherListening();
+                        alert("Started listening");
                     }
-                    if(!this.responseText=="live")
+                    if(this.responseText!="live")
                     {
                         createAnswer(this.responseText);
                     }
