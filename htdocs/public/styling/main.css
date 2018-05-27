@@ -8,10 +8,12 @@
 /* VARIABLES */
 /* PARTIALS */
 nav {
-  background-color: #1d1d1b; }
+  background-color: #1d1d1b;
+  height: 10%;
+  overflow: hidden;
+  display: flex; }
   nav * {
-    float: left;
-    width: 33.33333333%; }
+    float: left; }
   nav #settings {
     width: 1%;
     font-family: icon;
@@ -23,28 +25,33 @@ nav {
   nav #settings:hover {
     transform: translateY(-10%); }
   nav #botlogo {
-    width: 4%;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    margin-left: 0%; }
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;
+    margin-left: 0%;
+    height: 80%;
+    width: auto; }
     nav #botlogo img {
-      width: 100%; }
+      height: 100%;
+      width: auto; }
   nav h1 {
-    margin-left: 29.5%;
-    margin-right: 19%;
     font-family: KdG;
     font-weight: normal;
-    width: 30%;
     color: #ffffff;
-    margin-top: 1%;
-    margin-bottom: 0px;
-    font-size: 3.5vw;
+    margin-top: 0;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 100;
+    font-size: 3vmax;
     text-align: center; }
   nav #kdglogo {
-    width: 15%;
-    margin-right: 1%; }
+    margin-right: 1%;
+    height: 100%;
+    width: auto; }
     nav #kdglogo img {
-      width: 100%; }
+      height: 100%;
+      width: auto; }
 
 .chat, .livechat {
   position: relative;
@@ -126,7 +133,7 @@ nav {
   background-color: #1d1d1b;
   height: 5.6%;
   width: 10%;
-  font-size: 20px;
+  font-size: 1.5vmax;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -139,9 +146,9 @@ nav {
 #kdgconnect {
   font-family: icon;
   color: #ffffff;
-  height: 4.5%;
+  height: 5%;
   width: 5%;
-  font-size: 20px;
+  font-size: 1.5vmax;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -238,7 +245,7 @@ nav {
   background-color: #1d1d1b;
   height: 5.6%;
   width: 10%;
-  font-size: 20px;
+  font-size: 1.5vmax;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -251,9 +258,9 @@ nav {
 #kdgconnect {
   font-family: icon;
   color: #ffffff;
-  height: 4.5%;
+  height: 5%;
   width: 5%;
-  font-size: 20px;
+  font-size: 1.5vmax;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -441,18 +448,14 @@ nav {
     width: 90%; }
 
   #kdgconnect {
-    margin-right: 10%;
-    height: 5%; }
+    margin-right: 10%; }
 
-  nav {
-    height: 7.5%; }
-    nav #settings {
-      display: none; }
-    nav #botlogo {
-      margin-left: 1.5%; }
-
-  main {
-    height: 92.5vh !important; } }
+  nav #settings {
+    display: none; }
+  nav #botlogo {
+    margin-left: 1.5%; }
+  nav #kdglogo {
+    margin-right: 1.5%; } }
 #overlay {
   position: fixed;
   display: none;
@@ -562,8 +565,11 @@ body {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 16px; }
 
+html, body {
+  height: 100%; }
+
 main {
-  height: 85vh; }
+  height: 89%; }
 
 small {
   opacity: 0.5; }

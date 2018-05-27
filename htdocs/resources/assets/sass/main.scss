@@ -49,9 +49,12 @@ body
   font-family: $secundaryfont;
   font-size: 16px;
 }
+html, body{
+  height: 100%;
+}
 main
 {
-  height: 85vh;
+  height: 89%;
 
 }
 small

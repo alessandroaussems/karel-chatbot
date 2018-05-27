@@ -17,11 +17,9 @@
   #kdgconnect
   {
     margin-right: 10%;
-    height: 5%;
   }
   nav
   {
-    height: 7.5%;
     #settings
     {
       display: none;
@@ -30,9 +28,9 @@
     {
       margin-left: 1.5%;
     }
-  }
-  main
-  {
-    height: 92.5vh !important;
+    #kdglogo
+    {
+      margin-right: 1.5%;
+    }
   }
 }
