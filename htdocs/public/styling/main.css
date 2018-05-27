@@ -286,8 +286,8 @@ nav {
   position: relative;
   animation: 2s bulge infinite ease-out; }
   .typing-indicator span {
-    height: 0.5vw;
-    width: 0.5vw;
+    height: 0.5vmax;
+    width: 0.5vmax;
     float: left;
     margin: 0 1px;
     background-color: #ffffff;
