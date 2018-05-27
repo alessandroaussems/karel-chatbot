@@ -6,6 +6,22 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Karel-Chatbot" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="description" content="Karel-Chatbot" />
+
+    <meta property="og:title" content="Karel-Chatbot" />
+    <meta property="og:site_name" content="Karel-Chatbot" />
+    <meta property="og:description" content="Dé chatbot van KdG" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{{asset('img/logo_white.png')}}" />
+
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:title" content="Karel-Chatbot" />
+    <meta property="twitter:description" content="Dé chatbot van KdG" />
+    <meta property="twitter:image" content="{{asset('img/logo_white.png')}}" />
+
     <title>{{ config('app.name') }}  - Chatbot</title>
     <link rel="icon" type="image/png" href="{{asset('img/logo_black.png')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('styling/main.css')}}">

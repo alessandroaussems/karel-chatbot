@@ -165,7 +165,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('5b098855af0f8','[[\"Hallo ik ben Karel! Stel je vragen maar!\",\"B\"]]','2018-05-26 00:00:00',NULL,NULL,NULL,NULL);
+INSERT INTO `sessions` VALUES ('5b098855af0f8','[[\"Hallo ik ben Karel! Stel je vragen maar!\",\"B\"],[\"Test\",\"H\"],[\"Whoops dat heb ik niet verstaan! &#x1F62D&#x1F62D&#x1F62D\",\"B\"],[\"LOL\",\"H\"],[\"Whoops dat heb ik niet verstaan! &#x1F62D&#x1F62D&#x1F62D\",\"B\"],[\"test\",\"H\"],[\"Whoops dat heb ik niet verstaan! &#x1F62D&#x1F62D&#x1F62D\",\"B\"],[\"LOL\",\"H\"],[\"Whoops dat heb ik niet verstaan! &#x1F62D&#x1F62D&#x1F62D\",\"B\"],[\"LOL\",\"H\"],[\"Whoops dat heb ik niet verstaan! &#x1F62D&#x1F62D&#x1F62D\",\"B\"],[\"LOL\",\"H\"],[\"Whoops dat heb ik niet verstaan! &#x1F62D&#x1F62D&#x1F62D\",\"B\"],[\"Test\",\"H\"],[\"Whoops dat heb ik niet verstaan! &#x1F62D&#x1F62D&#x1F62D\",\"B\"],[\"Test\",\"H\"],[\"Whoops dat heb ik niet verstaan! &#x1F62D&#x1F62D&#x1F62D\",\"B\"],[\"LOL\",\"H\"],[\"Whoops dat heb ik niet verstaan! &#x1F62D&#x1F62D&#x1F62D\",\"B\"]]','2018-05-27 00:00:00',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -233,4 +233,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-26 18:31:11
+-- Dump completed on 2018-05-27 15:25:43
