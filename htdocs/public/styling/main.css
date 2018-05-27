@@ -122,7 +122,10 @@ nav {
   border-color: #1d1d1b;
   height: 5%;
   font-size: 16px;
-  float: left; }
+  float: left;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0; }
 
 .userinput:focus {
   outline: none; }
@@ -234,7 +237,10 @@ nav {
   border-color: #1d1d1b;
   height: 5%;
   font-size: 16px;
-  float: left; }
+  float: left;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  border-radius: 0; }
 
 .userinput:focus {
   outline: none; }
