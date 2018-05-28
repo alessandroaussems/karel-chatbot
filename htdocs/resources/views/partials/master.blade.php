@@ -22,7 +22,7 @@
     <meta property="twitter:description" content="Dé chatbot van KdG" />
     <meta property="twitter:image" content="{{asset('img/logo_white.png')}}" />
 
-    <title>{{ config('app.name') }}  - Chatbot</title>
+    <title>{{ config('app.name') }}</title>
     <link rel="icon" type="image/png" href="{{asset('img/logo_black.png')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('styling/main.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sceditor/2.1.3/themes/modern.min.css">

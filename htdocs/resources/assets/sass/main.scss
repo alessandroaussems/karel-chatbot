@@ -23,7 +23,6 @@ $secundaryfont: Verdana, Geneva, sans-serif;
 /* PARTIALS */
 @import "header";
 @import "chat";
-@import "chat";
 @import "typing";
 @import "adminmenu";
 @import "messagedetail";
@@ -32,6 +31,7 @@ $secundaryfont: Verdana, Geneva, sans-serif;
 @import "overlay";
 @import "help";
 @import "forms";
+@import "cookie";
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {
   content: "";

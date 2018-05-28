@@ -1,0 +1,39 @@
+#cookie
+{
+  font-size: 1vmax;
+  width: 20%;
+  margin-left: 1.5%;
+  border: 3px solid $fullblack;
+  padding: 1%;
+  position: absolute;
+  bottom: 2.5%;
+  background-color: $white;
+  z-index: 5;
+  a
+  {
+    color: $black;
+  }
+  #closecookie
+  {
+    background-color: $fullblack;
+    padding: 5%;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    color: $white;
+    cursor: pointer;
+  }
+}
+.cookiegone
+{
+  animation: moveout 0.37s ease-in-out forwards;
+}
+@keyframes moveout
+{
+  100%
+  {
+    margin-left: -25%;
+    display: none;
+  }
+  
+}
