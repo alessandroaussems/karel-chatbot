@@ -30,6 +30,7 @@ $secundaryfont: Verdana, Geneva, sans-serif;
 @import "messageform";
 @import "mobile";
 @import "overlay";
+@import "help";
 @import "forms";
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {
@@ -51,6 +52,8 @@ body
 }
 html, body{
   height: 100%;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 main
 {

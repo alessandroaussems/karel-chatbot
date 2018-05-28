@@ -1,5 +1,6 @@
 @extends('partials.master')
 @section('content')
+    @include("partials.help")
     <div class="chat">
         <ul id="messagelist">
             @foreach($messages as $key => $value)
@@ -28,4 +29,5 @@
     <span id="send" onclick="sendMessage('getit',event)"> > </span>
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="{{asset('js/chat.js')}}"></script>
+    <script src="{{asset('js/help.js')}}"></script>
 @endsection

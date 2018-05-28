@@ -502,6 +502,71 @@ nav {
 .display {
   display: block !important; }
 
+#help {
+  top: 0;
+  bottom: 0;
+  width: 24%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin-left: 96%; }
+  #help > * {
+    float: left; }
+  #help #pullout {
+    cursor: pointer;
+    text-align: center;
+    padding: 5%;
+    width: 10%;
+    background-color: #0c090a;
+    color: #ffffff; }
+  #help #inner {
+    width: 90%;
+    background-color: #ffffff;
+    border: 3px solid #0c090a;
+    padding: 1%; }
+    #help #inner h4 {
+      white-space: nowrap;
+      margin-top: 1%;
+      margin-bottom: 1%;
+      font-size: 1.12vmax; }
+    #help #inner p {
+      white-space: nowrap;
+      font-size: 1vmax;
+      margin-top: 0;
+      margin-bottom: 1%; }
+    #help #inner #examples {
+      width: 100%; }
+      #help #inner #examples > * {
+        float: left; }
+      #help #inner #examples #next, #help #inner #examples #previous {
+        color: #ffffff;
+        text-align: center;
+        width: 10%;
+        font-size: 1vmax;
+        background-color: #0c090a;
+        cursor: pointer; }
+      #help #inner #examples p {
+        white-space: nowrap;
+        font-size: 1vmax;
+        width: 80%;
+        text-align: center; }
+
+.showhelp {
+  animation: slidein 0.37s ease-in-out forwards; }
+
+@keyframes slidein {
+  0% {
+    margin-left: 96%; }
+  100% {
+    margin-left: 76%; } }
+.hidehelp {
+  animation: slideout 0.37s ease-in-out forwards; }
+
+@keyframes slideout {
+  0% {
+    margin-left: 76%; }
+  100% {
+    margin-left: 96%; } }
 .email, .login, .register, .reset {
   width: 30%;
   margin-left: auto;
@@ -572,7 +637,9 @@ body {
   font-size: 16px; }
 
 html, body {
-  height: 100%; }
+  height: 100%;
+  overflow-x: hidden;
+  max-width: 100%; }
 
 main {
   height: 89%; }

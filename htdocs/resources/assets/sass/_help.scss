@@ -1,0 +1,98 @@
+#help
+{
+  top: 0;
+  bottom: 0;
+  width: 24%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin-left: 96%;
+  > *
+  {
+    float: left;
+  }
+  #pullout
+  {
+    cursor: pointer;
+    text-align: center;
+    padding: 5%;
+    width: 10%;
+    background-color: $fullblack;
+    color: $white;
+  }
+  #inner
+  {
+    width: 90%;
+    background-color: $white;
+    border: 3px solid $fullblack;
+    padding: 1%;
+    h4
+    {
+      white-space:nowrap;
+      margin-top: 1%;
+      margin-bottom: 1%;
+      font-size: 1.12vmax;
+    }
+    p
+    {
+      white-space:nowrap;
+      font-size: 1vmax;
+      margin-top: 0;
+      margin-bottom: 1%;
+    }
+    #examples
+    {
+      width: 100%;
+      > *
+      {
+        float: left;
+      }
+      #next,#previous
+      {
+        color: $white;
+        text-align: center;
+        width: 10%;
+        font-size: 1vmax;
+        background-color: $fullblack;
+        cursor: pointer;
+      }
+      p
+      {
+        white-space:nowrap;
+        font-size: 1vmax;
+        width: 80%;
+        text-align: center;
+      }
+    }
+  }
+}
+.showhelp
+{
+  animation: slidein 0.37s ease-in-out forwards;
+}
+@keyframes slidein {
+  0%
+  {
+    margin-left: 96%;
+  }
+  100%
+  {
+    margin-left: 76%;
+  }
+
+}
+.hidehelp
+{
+  animation: slideout 0.37s ease-in-out forwards;
+}
+@keyframes slideout {
+  0%
+  {
+    margin-left: 76%;
+  }
+  100%
+  {
+    margin-left: 96%;
+  }
+
+}
