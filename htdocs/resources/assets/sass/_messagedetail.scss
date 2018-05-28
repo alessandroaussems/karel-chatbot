@@ -9,6 +9,10 @@
     border: 1px solid black;
     height: 300px;
     overflow-y: scroll;
+    li
+    {
+      display: list-item;
+    }
   }
   .edit,.delete
   {

@@ -45,7 +45,6 @@
       max-width: 60%;
       padding: 1%;
       margin-bottom: 2%;
-      //font-size: 1.25vw;
       p
       {
         color: $white !important;
@@ -74,6 +73,16 @@
       {
         width: 100%;
         height: auto;
+      }
+      li::before
+      {
+        content: "\002022";
+        color: $white;
+        margin-right: 5%;
+      }
+      li
+      {
+        white-space: nowrap;
       }
     }
     .usermessage
