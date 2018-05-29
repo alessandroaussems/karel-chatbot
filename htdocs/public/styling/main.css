@@ -404,7 +404,7 @@ nav {
 
 #help {
   z-index: 5;
-  top: 0;
+  top: 10%;
   bottom: 0;
   width: 24%;
   position: absolute;
