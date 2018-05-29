@@ -150,7 +150,7 @@ function doKdGLogin(event)
             }
         }
     };
-    xmlhttp.open('PUT', "./kdglogin/", true);
+    xmlhttp.open('PUT', "./kdglogin", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("login="+login+"&password="+password+"&chatsession="+sessionid);
 
