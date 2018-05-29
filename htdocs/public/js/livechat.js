@@ -22,7 +22,7 @@ function sendMessage(value,event)
 
                 }
             };
-            xmlhttp.open("GET", "/sendliveresponse/"+message+"/sessionid/"+getSessionidFromUrl(), true);
+            xmlhttp.open("GET", "/sendliveresponse/"+encodeURIComponent(message)+"/sessionid/"+getSessionidFromUrl(), true);
             xmlhttp.send();
     }
 

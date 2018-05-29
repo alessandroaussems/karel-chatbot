@@ -54,7 +54,7 @@ function sendMessage(value,event)
                     createAnswer("<p>Whoops er ging iets fout. Je mag nu een mail sturen naar <a href='mailto:alessandro.aussems@student.kdg.be'>alessandro.aussems@student.kdg.be</a></p>");
                 }
             };
-            xmlhttp.open("GET", "./chat/"+message, true);
+            xmlhttp.open("GET", "./chat/"+encodeURIComponent(message), true);
             xmlhttp.send();
         }
     }
