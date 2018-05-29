@@ -89,8 +89,8 @@ nav {
       padding: 1%;
       margin-bottom: 2%; }
       .chat ul .botmessage p, .chat ul .usermessage p, .livechat ul .botmessage p, .livechat ul .usermessage p {
-        color: #ffffff !important;
-        background-color: #0c090a !important; }
+        color: #ffffff;
+        background-color: #0c090a; }
       .chat ul .botmessage table, .chat ul .usermessage table, .livechat ul .botmessage table, .livechat ul .usermessage table {
         border-collapse: collapse;
         border-color: #ffffff; }
