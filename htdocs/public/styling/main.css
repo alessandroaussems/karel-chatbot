@@ -104,12 +104,6 @@ nav {
       .chat ul .botmessage img, .livechat ul .botmessage img {
         width: 100%;
         height: auto; }
-      .chat ul .botmessage li::before, .livechat ul .botmessage li::before {
-        content: "\002022";
-        color: #ffffff;
-        margin-right: 5%; }
-      .chat ul .botmessage li, .livechat ul .botmessage li {
-        white-space: nowrap; }
     .chat ul .usermessage, .livechat ul .usermessage {
       background-color: #00b2e2;
       color: #0c090a;
