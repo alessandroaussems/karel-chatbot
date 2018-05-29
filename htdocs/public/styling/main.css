@@ -553,17 +553,14 @@ nav {
   clear: both; }
 
 /* GLOBAL */
-body {
-  margin: 0 auto;
-  background-color: #ffffff;
-  overflow-x: hidden;
-  font-family: Verdana, Geneva, sans-serif;
-  font-size: 16px; }
-
 html, body {
   height: 100%;
   overflow-x: hidden;
-  max-width: 100%; }
+  margin: 0 auto;
+  background-color: #ffffff;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 16px;
+  position: relative; }
 
 main {
   height: 89%; }
