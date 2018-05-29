@@ -156,6 +156,7 @@ class ChatController extends Controller
      */
     function AddToSession($messagetoadd, $who)
     {
+        $messagetoadd=mb_convert_encoding($messagetoadd, 'UTF-8', 'UTF-8'); //Fix possible errors in encoding
         $toadd=[$messagetoadd,$who];
         $session=Session::select('messages')->where('id', $_COOKIE["chatsession"])->first();
         $messages=json_decode($session->messages);
