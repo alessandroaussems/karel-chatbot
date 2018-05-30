@@ -29,6 +29,10 @@ function sendMessage(value,event)
         }
         if(allowToSend)//CHECK IF NO PREVIOUS REQUEST IS STILL EXECUTING
         {
+            if(getCookie("listen")!="true")
+            {
+                allowToSend=false; // BECAUSE WE START EXECUTING A NEW REQUEST
+            }
             //AJAX CALL TO OUR API
             var xmlhttp;
             xmlhttp = new XMLHttpRequest();
