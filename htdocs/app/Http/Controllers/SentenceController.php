@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class SentenceController extends Controller
 {
+    /**
+     * SentenceController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -27,7 +30,6 @@ class SentenceController extends Controller
     {
         return view("sentenceadd")->with("messageid",$messageid);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -63,7 +65,6 @@ class SentenceController extends Controller
         $sentence = Sentence::where("id",$id)->first();
         return view("sentenceedit")->with('messageid', $messageid)->with("sentence",$sentence);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -92,7 +93,6 @@ class SentenceController extends Controller
             return Redirect::to('messages/'.Input::get("messageid"));
         }
     }
-
     /**
      * Remove the specified resource from storage.
      *

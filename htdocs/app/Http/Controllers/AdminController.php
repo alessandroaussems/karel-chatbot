@@ -42,6 +42,12 @@ class AdminController extends Controller
         $endtag=Config::get("kdg.endtag");
         return view("tags")->with("tags",$tags)->with("starttag",$starttag)->with("endtag",$endtag);
     }
+
+    /**
+     * Show the list of available chats.
+     *
+     * @return $this
+     */
     public function chats()
     {
         $livechats=Livechat::paginate(9);

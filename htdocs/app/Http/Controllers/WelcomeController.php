@@ -13,6 +13,9 @@ class WelcomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     private $length = 60*60*24*30;
+    /**
+     * @return $this
+     */
     public function welcome()
     {
         if(!isset($_COOKIE["listen"]))
@@ -56,6 +59,9 @@ class WelcomeController extends Controller
             }
         }
     }
+    /**
+     * start new session
+     */
     private function startNewSession()
     {
         $sessionid=uniqid();

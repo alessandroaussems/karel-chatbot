@@ -8,22 +8,37 @@ class SendToUser implements ShouldBroadcast
     public $channel;
     public $event;
 
-    public function __construct($channel,$event,$data)
+    /**
+     * SendToUser constructor.
+     * @param $channel
+     * @param $event
+     * @param $data
+     */
+    public function __construct($channel, $event, $data)
     {
         $this->channel = $channel;
         $this->event=$event;
         $this->data=$data;
     }
-
-
+    /**
+     * @return array
+     */
     public function broadcastOn()
     {
         return $this->channel;
     }
+
+    /**
+     * @return mixed
+     */
     public function broadcastAs()
     {
         return $this->event;
     }
+
+    /**
+     * @return mixed
+     */
     public function broadcastWith()
     {
         return $this->data;

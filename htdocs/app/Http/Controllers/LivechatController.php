@@ -30,21 +30,20 @@ class LivechatController extends Controller
         }
         return view("livechat")->with("messages",json_decode($session->messages));
     }
-
     /**
      * @param $message
      */
     public function handleMessage($message,$sessionid)
     {
         $message=urldecode($message);//DECODE TO ORIGINAL STRING
-        $this->AddToSession($message,"B",$sessionid);
+        $this->addToSession($message,"B",$sessionid);
         event(new SendToUser($sessionid,"chatmessage",["message"=>$message]));
     }
     /**
      * @param $messagetoadd
      * @param $who
      */
-    private function AddToSession($messagetoadd, $who,$sessionid)
+    private function addToSession($messagetoadd, $who, $sessionid)
     {
         $messagetoadd=mb_convert_encoding($messagetoadd, 'UTF-8', 'UTF-8'); //Fix possible errors in encoding
         $toadd=[$messagetoadd,$who];

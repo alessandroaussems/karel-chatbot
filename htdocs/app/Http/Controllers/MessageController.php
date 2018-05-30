@@ -13,12 +13,15 @@ use Illuminate\Support\Facades\Redirect;
 
 class MessageController extends Controller
 {
+    /**
+     * MessageController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('role:editor,admin');
     }
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -42,7 +45,6 @@ class MessageController extends Controller
         }
         return view("messages")->with('messages',$messages)->with("search",$search)->with("error",$error);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -52,7 +54,6 @@ class MessageController extends Controller
     {
         return view("messageadd");
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -77,7 +78,6 @@ class MessageController extends Controller
             return Redirect::to('messages/');
         }
     }
-
     /**
      * Display the specified resource.
      *
@@ -98,7 +98,6 @@ class MessageController extends Controller
         }
 
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -117,7 +116,6 @@ class MessageController extends Controller
             abort(404);
         }
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -143,7 +141,6 @@ class MessageController extends Controller
             return Redirect::to('messages/'.$id);
         }
     }
-
     /**
      * Remove the specified resource from storage.
      *

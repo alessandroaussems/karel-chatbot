@@ -24,7 +24,7 @@ class ChatController extends Controller
         //RESPONSE: echo "Your response";
         $message=urldecode($message);//DECODE TO ORIGINAL STRING
 
-        $this->AddToSession($message,"H");
+        $this->addToSession($message,"H");
         similar_text($message, "Medewerker stop", $perc);
         if($_COOKIE["listen"]=="true" && $perc > 50 )
         {
@@ -33,7 +33,7 @@ class ChatController extends Controller
             event(new SendToUser("newchat","oldchatid",["id"=>$_COOKIE["chatsession"]]));
             event(new SendToUser("newchat","chatcount",["number"=>Livechat::count()]));
             event(new SendToUser($_COOKIE["chatsession"],"usermessage",["message"=>"stop"]));
-            $this->AddToSession("<p>Hopelijk heeft de KdG-Medewerker je kunnen helpen...Vanaf nu kan je al je vragen weer gewoon aan mij stellen, Karel dé chatbot van KdG!</p>","B");
+            $this->addToSession("<p>Hopelijk heeft de KdG-Medewerker je kunnen helpen...Vanaf nu kan je al je vragen weer gewoon aan mij stellen, Karel dé chatbot van KdG!</p>","B");
             return "<p>Hopelijk heeft de KdG-Medewerker je kunnen helpen...Vanaf nu kan je al je vragen weer gewoon aan mij stellen, Karel dé chatbot van KdG!</p>";
         }
         if($_COOKIE["listen"]=="true")
@@ -41,44 +41,44 @@ class ChatController extends Controller
             event(new SendToUser($_COOKIE["chatsession"],"usermessage",["message"=>$message,"id"=>$_COOKIE["chatsession"]]));
             return "live";
         }
-        $search=$this->SearchMessage($message); // FIRST CHECKING LITERALLY
+        $search=$this->searchMessage($message); // FIRST CHECKING LITERALLY
         if($search!="none") // IF SUCCESFULL 100% MATCH
         {
-            if($this->IsACode($search))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
+            if($this->isACode($search))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
             {
-                $code=$this->GetTheCode($search); //GET THE CODE
+                $code=$this->getTheCode($search); //GET THE CODE
                 $search=str_replace($code,$this->callKdgService($code,$message),$search);
-                $search=$this->SanitizeTheCode($search); //REMOVE START AND END TAG
+                $search=$this->sanitizeTheCode($search); //REMOVE START AND END TAG
                 echo $search;
             }
             else
             {
                 echo $search; //ECHO THE RESEMBLANCE
             }
-            $this->AddToSession($search,"B");
+            $this->addToSession($search,"B");
         }
         else // NO 100% MATCH
         {
-            $answer=$this->CheckMessagesSequential($message); //LOOP AND CHECK IF RESEMBLANCE
+            $answer=$this->checkMessagesSequential($message); //LOOP AND CHECK IF RESEMBLANCE
             if($answer!="none") //SOME RESEMBLANCE FOUND
             {
-                if($this->IsACode($answer))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
+                if($this->isACode($answer))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
                 {
-                    $code=$this->GetTheCode($answer);//GET THE CODE
+                    $code=$this->getTheCode($answer);//GET THE CODE
                     $answer=str_replace($code,$this->callKdgService($code,$message),$answer);
-                    $answer=$this->SanitizeTheCode($answer); //REMOVE START AND END TAG
+                    $answer=$this->sanitizeTheCode($answer); //REMOVE START AND END TAG
                     echo $answer;
                 }
                 else
                 {
                     echo $answer; //ECHO THE RESEMBLANCE
                 }
-                $this->AddToSession($answer,"B");
+                $this->addToSession($answer,"B");
             }
             else
             {
                 echo $error; //NO 100% MATCH AND NOT RESEMBLANCE
-                $this->AddToSession($error,"B");
+                $this->addToSession($error,"B");
             }
         }
 
@@ -105,7 +105,7 @@ class ChatController extends Controller
      * @param $sentence
      * @return string
      */
-    function SearchMessage($sentence)
+    function searchMessage($sentence)
     {
         $sentence=Sentence::where("sentence",$sentence)->first();
         if($sentence)
@@ -126,12 +126,11 @@ class ChatController extends Controller
         }
 
     }
-
     /**
      * @param $sentencetocheck
      * @return string
      */
-    function CheckMessagesSequential($sentencetocheck)
+    function checkMessagesSequential($sentencetocheck)
     {
         if(strpos($sentencetocheck, 'Wie is') !== false)
         {
@@ -154,7 +153,7 @@ class ChatController extends Controller
      * @param $messagetoadd
      * @param $who
      */
-    function AddToSession($messagetoadd, $who)
+    function addToSession($messagetoadd, $who)
     {
         $messagetoadd=mb_convert_encoding($messagetoadd, 'UTF-8', 'UTF-8'); //Fix possible errors in encoding
         $toadd=[$messagetoadd,$who];
@@ -164,12 +163,11 @@ class ChatController extends Controller
         $session->messages=json_encode($messages);
         $session->save();
     }
-
     /**
      * @param $answer
      * @return bool
      */
-    function IsACode($answer)
+    function isACode($answer)
     {
         $answer=html_entity_decode(strip_tags($answer));
         if(strpos($answer,Config::get("kdg.starttag"))!==false && strpos($answer,Config::get("kdg.endtag"))!==false)
@@ -181,12 +179,11 @@ class ChatController extends Controller
             return false;
         }
     }
-
     /**
      * @param $answer
      * @return mixed|string
      */
-    function GetTheCode($answer)
+    function getTheCode($answer)
     {
         $string = ' ' . html_entity_decode(strip_tags($answer));
         $ini = strpos($string, Config::get("kdg.starttag"));
@@ -195,18 +192,16 @@ class ChatController extends Controller
         $len = strpos($string, Config::get("kdg.endtag"), $ini) - $ini;
         return substr($string, $ini, $len);
     }
-
     /**
      * @param $answer
      * @return mixed
      */
-    function SanitizeTheCode($answer)
+    function sanitizeTheCode($answer)
     {
         $answer=str_replace(Config::get("kdg.starttag")," ",$answer);
         $answer=str_replace(Config::get("kdg.endtag")," ",$answer);
         return $answer;
     }
-
     /**
      * @param $code
      * @return string
