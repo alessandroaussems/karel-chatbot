@@ -48,9 +48,10 @@ class LivechatController extends Controller
     {
         $messagetoadd=mb_convert_encoding($messagetoadd, 'UTF-8', 'UTF-8'); //Fix possible errors in encoding
         $toadd=[$messagetoadd,$who];
-        $session=Session::select('messages')->where('id', $sessionid)->first();
+        $session=Session::find($sessionid);
         $messages=json_decode($session->messages);
-        $session->messages=json_encode(array_push($messages,$toadd));
+        array_push($messages,$toadd);
+        $session->messages=json_encode($messages);
         $session->save();
     }
 }
