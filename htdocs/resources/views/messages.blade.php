@@ -13,4 +13,5 @@
             @endforeach
         </ul>
     </div>
+    {{ $messages->links() }}
 @endsection

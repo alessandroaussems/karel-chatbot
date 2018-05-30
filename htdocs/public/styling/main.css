@@ -611,4 +611,20 @@ small {
   width: 100%;
   text-align: center; }
 
+.pagination {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+  width: 50%;
+  margin: auto; }
+  .pagination * {
+    display: inline-block; }
+  .pagination a {
+    color: #0c090a;
+    text-decoration: none; }
+  .pagination a:hover {
+    text-decoration: underline; }
+  .pagination .active span {
+    text-decoration: underline !important; }
+
 /*# sourceMappingURL=main.css.map */

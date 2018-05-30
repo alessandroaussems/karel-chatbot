@@ -44,7 +44,7 @@ class AdminController extends Controller
     }
     public function chats()
     {
-        $livechats=Livechat::all();
+        $livechats=Livechat::paginate(9);
         return view("livechats")->with("livechats",$livechats);
     }
 }

@@ -70,3 +70,31 @@ small
   width: 100%;
   text-align: center;
 }
+.pagination
+{
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+  width: 50%;
+  margin: auto;
+  *
+  {
+    display: inline-block;
+  }
+  a
+  {
+    color: $fullblack;
+    text-decoration: none;
+  }
+  a:hover
+  {
+    text-decoration: underline;
+  }
+  .active
+  {
+    span
+    {
+      text-decoration: underline !important;
+    }
+  }
+}

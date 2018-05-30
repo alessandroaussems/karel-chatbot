@@ -10,6 +10,7 @@
             @endforeach
         </ul>
     </div>
+    {{ $livechats->links() }}
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="{{asset('js/listenfornewchatrequests.js')}}"></script>
 @endsection
