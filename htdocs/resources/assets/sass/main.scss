@@ -32,6 +32,7 @@ $secundaryfont: Verdana, Geneva, sans-serif;
 @import "help";
 @import "forms";
 @import "cookie";
+@import "notify";
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {
   content: "";

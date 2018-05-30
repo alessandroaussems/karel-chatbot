@@ -543,6 +543,42 @@ nav {
   100% {
     margin-left: -25%;
     display: none; } }
+#notify {
+  font-size: 1vmax;
+  width: 20%;
+  border: 3px solid #0c090a;
+  padding: 1%;
+  position: absolute;
+  bottom: 30%;
+  background-color: #ffffff;
+  z-index: 5;
+  margin-left: 100%; }
+  #notify #view {
+    background-color: #0c090a;
+    padding: 3%;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer; }
+
+.shownotification {
+  animation: .5s notifyin ease-in-out forwards; }
+
+@keyframes notifyin {
+  0% {
+    margin-left: 100%; }
+  100% {
+    margin-left: 77.5%; } }
+.hidenotification {
+  animation: .5s notifyout ease-in-out forwards; }
+
+@keyframes notifyout {
+  0% {
+    margin-left: 77.5%; }
+  100% {
+    margin-left: 100%; } }
 /* CLEARFIX */
 .clearfix::before, .clearfix::after {
   content: "";

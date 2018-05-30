@@ -1,0 +1,51 @@
+#notify
+{
+  font-size: 1vmax;
+  width: 20%;
+  border: 3px solid $fullblack;
+  padding: 1%;
+  position: absolute;
+  bottom: 30%;
+  background-color: $white;
+  z-index: 5;
+  margin-left: 100%;
+  #view
+  {
+    background-color: $fullblack;
+    padding: 3%;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    color: $white;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+.shownotification
+{
+  animation: .5s notifyin ease-in-out forwards;
+}
+@keyframes notifyin {
+  0%
+  {
+    margin-left: 100%;
+  }
+  100%
+  {
+    margin-left: 77.5%;
+  }
+}
+.hidenotification
+{
+  animation: .5s notifyout ease-in-out forwards;
+}
+@keyframes notifyout {
+  0%
+  {
+    margin-left: 77.5%;
+  }
+  100%
+  {
+    margin-left: 100%;
+  }
+}

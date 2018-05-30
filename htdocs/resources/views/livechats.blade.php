@@ -1,6 +1,6 @@
 @extends('partials.master')
-
 @section('content')
+    @include("partials.notify")
     <div class="menu">
         <h3>Livechats</h3>
         <small>Een overzicht van alle chats die een medewerker antwoord nodig hebben.</small>

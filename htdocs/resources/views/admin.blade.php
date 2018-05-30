@@ -1,6 +1,7 @@
 @extends('partials.master')
 
 @section('content')
+    @include("partials.notify")
     <div class="menu">
         <h3>Welkom! {{Auth::user()->name}}</h3>    <a href="{{ route('logout') }}"> Logout </a>
         <p>Hier kan je de instellingen aanpassen voor Karel-Chatbot:</p>
@@ -15,7 +16,7 @@
                 <li><a href="/tags">Tags</a></li>
             @endif
             @if(Auth::user()->hasRole("admin") || Auth::user()->hasRole("chatter") )
-                <li><a href="/chats">Chats&nbsp;</a><span id="chatnumber">{{ $livechats }}</span></li>
+                <li><a href="/chats">Chats&nbsp;</a><span id="chatnumber">{{ $livechatscount }}</span></li>
             @endif
         </ul>
     </div>

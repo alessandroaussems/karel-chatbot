@@ -27,7 +27,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin')->with("livechats",Livechat::count());
+        $livechats=Livechat::all();
+        return view('admin')->with("livechatscount",Livechat::count())->with("livechats",$livechats);
     }
     /**
      * Show the list of available tags.
