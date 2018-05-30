@@ -12,6 +12,10 @@ function sendMessage(value,event)
         {
             var message=value;
         }
+        if(!/[a-zA-Z]/.test(message))
+        {
+            return
+        }
         createUserMessage(message);
         document.getElementsByClassName("userinput")[0].value="";
             var xmlhttp;
