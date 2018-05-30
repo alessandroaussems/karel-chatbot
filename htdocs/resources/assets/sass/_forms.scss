@@ -1,4 +1,4 @@
-.email,.login,.register,.reset
+.email,.login,.register,.reset,.search
 {
   width: 30%;
   margin-left: auto;
@@ -67,5 +67,22 @@
   {
     font-size: 1vw;
     color: red;
+  }
+}
+.search
+{
+  width: 100%;
+  input, button
+  {
+    display: inline-block;
+  }
+  input
+  {
+    width: 87%;
+  }
+  button
+  {
+    margin: 0;
+    width: 10%;
   }
 }

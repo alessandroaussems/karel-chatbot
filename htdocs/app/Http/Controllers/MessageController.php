@@ -23,10 +23,24 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $messages = Message::paginate(9);
-        return view("messages")->with('messages',$messages);
+        $error="";
+        if($request->get("search"))
+        {
+            $search=$request->get("search");
+            $messages=Message::where('answer', 'LIKE', '%'.$search.'%')->paginate(9);
+            if(count($messages)==0)
+            {
+                $error="Er zijn geen zoekresultaten gevonden...<br><a href='./messages'>Terug naar overzicht</a>";
+            }
+        }
+        else
+        {
+            $messages = Message::paginate(9);
+            $search="";
+        }
+        return view("messages")->with('messages',$messages)->with("search",$search)->with("error",$error);
     }
 
     /**
