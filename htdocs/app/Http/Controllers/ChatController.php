@@ -46,8 +46,11 @@ class ChatController extends Controller
         {
             if($this->isACode($search))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
             {
-                $code=$this->getTheCode($search); //GET THE CODE
-                $search=str_replace($code,$this->callKdgService($code,$message),$search);
+                $codes=$this->getTheCode($search); //GET THE CODES
+                foreach ($codes as $code)
+                {
+                    $search=str_replace($code,$this->callKdgService($code,$message),$search);
+                }
                 $search=$this->sanitizeTheCode($search); //REMOVE START AND END TAG
                 echo $search;
             }
@@ -64,8 +67,11 @@ class ChatController extends Controller
             {
                 if($this->isACode($answer))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
                 {
-                    $code=$this->getTheCode($answer);//GET THE CODE
-                    $answer=str_replace($code,$this->callKdgService($code,$message),$answer);
+                    $codes=$this->getTheCode($answer); //GET THE CODES
+                    foreach ($codes as $code)
+                    {
+                        $answer=str_replace($code,$this->callKdgService($code,$message),$answer);
+                    }
                     $answer=$this->sanitizeTheCode($answer); //REMOVE START AND END TAG
                     echo $answer;
                 }
@@ -185,12 +191,22 @@ class ChatController extends Controller
      */
     function getTheCode($answer)
     {
-        $string = ' ' . html_entity_decode(strip_tags($answer));
-        $ini = strpos($string, Config::get("kdg.starttag"));
-        if ($ini == 0) return '';
-        $ini += strlen(Config::get("kdg.starttag"));
-        $len = strpos($string, Config::get("kdg.endtag"), $ini) - $ini;
-        return substr($string, $ini, $len);
+        $startDelimiter=Config::get("kdg.starttag");
+        $endDelimiter=Config::get("kdg.endtag");
+        $contents = array();
+        $startDelimiterLength = strlen($startDelimiter);
+        $endDelimiterLength = strlen($endDelimiter);
+        $startFrom = $contentStart = $contentEnd = 0;
+        while (false !== ($contentStart = strpos($answer, $startDelimiter, $startFrom))) {
+            $contentStart += $startDelimiterLength;
+            $contentEnd = strpos($answer, $endDelimiter, $contentStart);
+            if (false === $contentEnd) {
+                break;
+            }
+            $contents[] = substr($answer, $contentStart, $contentEnd - $contentStart);
+            $startFrom = $contentEnd + $endDelimiterLength;
+        }
+        return $contents;
     }
     /**
      * @param $answer
