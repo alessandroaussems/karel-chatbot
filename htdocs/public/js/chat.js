@@ -1,6 +1,6 @@
 var messageList=document.getElementById("messagelist");
 var BOTTHINKINGTIME=3000;
-var welcomemessage="Hallo ik ben Karel! Stel je vragen maar!";
+var welcomemessage="Hallo ik ben Karel! Stel je vragen maar! Weet je niet wat vragen? Dan kan je altijd 'Help' typen!";
 var allowToSend=true;
 var pusher = new Pusher('d1252be87affbc8ff537', {cluster: 'eu', encrypted: false});
 function sendMessage(value,event)

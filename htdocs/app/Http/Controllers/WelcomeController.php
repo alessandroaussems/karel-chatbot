@@ -68,7 +68,7 @@ class WelcomeController extends Controller
         setcookie("chatsession", $sessionid,time() + $this->length);
         setcookie("visits",1,time() + $this->length);
 
-        $sessionmessages[0]=["Hallo ik ben Karel! Stel je vragen maar!","B"];
+        $sessionmessages[0]=["Hallo ik ben Karel! Stel je vragen maar! Weet je niet wat vragen? Dan kan je altijd 'Help' typen!","B"];
 
         $session= new Session();
         $session->id=$sessionid;
