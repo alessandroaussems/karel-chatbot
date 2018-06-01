@@ -1,6 +1,6 @@
 var next=document.getElementById("next");
 var previous=document.getElementById("previous");
-var helpitems=["Mijn meldingen","Dagmenu","Afwezige docenten","Printen","Mijn punten", "Prikbord","Wie is","Medewerker"];
+var helpitems=["Mijn meldingen","Dagmenu","Afwezige docenten","Printen","Mijn punten", "Prikbord","Wie is","Medewerker","Mijn campus"];
 function slide(direction)
 {
     var currentindex=0;

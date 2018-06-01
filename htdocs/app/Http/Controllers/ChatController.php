@@ -319,6 +319,13 @@ class ChatController extends Controller
                         event(new SendToUser("newchat","chatcount",["number"=>Livechat::count()]));
                         return "<p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! Om de sessie te beeïndigen kan je altijd 'Medewerker stop' ingeven.</p>";
                     }
+                    break;
+                case "CAMPUS":
+                        $campusinfo=$KdGService->getCampusInfo();
+                        $html.="<p>Adres:&nbsp;<a target='_blank' title='Navigeren' href='https://www.google.com/maps/dir/?api=1&amp;destination=".rawurlencode(str_replace(' ', '', $campusinfo["address"]))."&amp;travelmode=transit'>".$campusinfo["address"]."</a>&nbsp;<a id='marker' target='_blank' title='Navigeren' href='https://www.google.com/maps/dir/?api=1&amp;destination=".rawurlencode(str_replace(' ', '', $campusinfo["address"]))."&amp;travelmode=transit'>j</a>";
+                        $html.="<p>Openingsuren van de campus:</p>";
+                        $html.=$campusinfo["openinghours"];
+                break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";
                     break;

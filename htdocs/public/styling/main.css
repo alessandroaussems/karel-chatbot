@@ -169,6 +169,10 @@ nav {
 .sceditor-nlf {
   display: none; }
 
+#marker {
+  font-family: icon;
+  text-decoration: none; }
+
 .typing-indicator {
   background-color: #0c090a;
   will-change: transform;

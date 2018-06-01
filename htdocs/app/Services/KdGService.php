@@ -409,4 +409,80 @@ class KdGService
         $person["image"]=$firstresult->find("div.image",0)->find("div.graphic",0)->find("div.profilePicture",0)->find("img",0)->src;
         return $person;
     }
+    public function getCampusInfo()
+    {
+        $campusinfo=[];
+        try
+        {
+            $response_mainpage = $this->client->get('https://intranet.student.kdg.be/', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $mainpagehtml=HtmlDomParser::str_get_html($response_mainpage->getBody()->getContents());
+        try
+        {
+            $response_campuspage = $this->client->get($mainpagehtml->find("div.modCampus",0)->find("a#pagemain_0_homefooter_0_MyStudyfieldRepeater_CampusLink_0",0)->href, [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $campuspage_html=HtmlDomParser::str_get_html($response_campuspage->getBody()->getContents());
+        $campusinfo["address"]=trim($campuspage_html->find('div.address',0)->find("div.value",0)->plaintext);
+        $campusinfo["openinghours"]=$this->openingsHoursOfCampus($campuspage_html);
+        return $campusinfo;
+    }
+    private function openingsHoursOfCampus($campuspage_html)
+    {
+        try
+        {
+            $response_openinhoursservice = $this->client->get(Config::get("kdg.openinghoursservice").$this->findEntityIdOfCampus($campuspage_html), [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $openinghours_html=HtmlDomParser::str_get_html($response_openinhoursservice->getBody()->getContents());
+        $table="<table border='1' style='width: 80%; margin: 0 auto'";
+        $days=$openinghours_html->find("div.day");
+        foreach($days as $day)
+        {
+            $table.="<tr>";
+            $table.="<td>".trim($day->find("div.dayname",0)->plaintext)."</td>";
+            if(trim($day->find("div.openings",0)->plaintext)=="")
+            {
+                $table.="<td>Gesloten</td>";
+            }
+            else
+            {
+                $table.="<td>".trim($day->find("div.openings",0)->plaintext)."</td>";
+            }
+            $table.="</tr>";
+        }
+        $table.="</table>";
+        return $table;
+    }
+    private function findEntityIdOfCampus($campushtml)
+    {
+        $searchfor='enitiyid="';
+        return substr($campushtml,strlen($searchfor)+strpos($campushtml,$searchfor),2);
+    }
+
 }
