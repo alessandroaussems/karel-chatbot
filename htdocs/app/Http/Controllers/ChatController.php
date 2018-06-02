@@ -326,6 +326,10 @@ class ChatController extends Controller
                         $html.="<p>Openingsuren van de campus:</p>";
                         $html.=$campusinfo["openinghours"];
                 break;
+                case "LEERKREDIET":
+                    $KdGService->eStudentserviceAuthentication();
+                    $html.="<p>".$KdGService->getStudyCredit()."</p><br><small>Dit is de meest recente raadpleging.</small>";
+                    break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";
                     break;

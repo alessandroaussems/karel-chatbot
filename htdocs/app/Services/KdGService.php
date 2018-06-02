@@ -484,5 +484,25 @@ class KdGService
         $searchfor='enitiyid="';
         return substr($campushtml,strlen($searchfor)+strpos($campushtml,$searchfor),2);
     }
+    public function getStudyCredit()
+    {
+        //BROWSING TO INTRANET URL
+        try
+        {
+            $response_estudentservice = $this->client->get(Config::get("kdg.estudentservice").'/Main.aspx', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $estudent_html=HtmlDomParser::str_get_html($response_estudentservice->getBody()->getContents());
+        $credit=$estudent_html->find("div.card-lk-stand",0)->plaintext;
+        return $credit;
+    }
 
 }
