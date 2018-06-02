@@ -31,4 +31,7 @@ Route::get('sentences/{id}/delete/message/{messageid}','SentenceController@destr
 Route::get('sentences/create/{messageid}','SentenceController@create');
 Route::get('sentences/edit/{id}/message/{messageid}','SentenceController@edit');
 
+Route::resource('users', 'UserController');
+Route::get('users/{id}/delete','UserController@destroy');
+
 Route::put("kdglogin",'KdgLoginController@login');

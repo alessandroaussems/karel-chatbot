@@ -247,6 +247,14 @@ nav {
       cursor: pointer; }
       .menu .options li:hover a {
         color: #0c090a; }
+  .menu table {
+    width: 100%;
+    border-collapse: collapse; }
+    .menu table .edit, .menu table .delete {
+      display: inline-block;
+      font-family: icon;
+      color: #0c090a;
+      text-decoration: none; }
 
 .tagsoverview {
   text-align: center;
@@ -469,21 +477,21 @@ nav {
     margin-left: 76%; }
   100% {
     margin-left: 96%; } }
-.email, .login, .register, .reset, .search {
+.email, .login, .register, .reset, .search, .useredit, .edituserheader {
   width: 30%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2.5%; }
-  .email > input, .login > input, .register > input, .reset > input, .search > input {
+  .email > input, .login > input, .register > input, .reset > input, .search > input, .useredit > input, .edituserheader > input {
     font-family: Verdana, Geneva, sans-serif;
     width: 100%;
     height: 3vh;
     margin-top: 2%;
     margin-bottom: 2%;
     border: 3px solid #0c090a; }
-  .email > input:focus, .login > input:focus, .register > input:focus, .reset > input:focus, .search > input:focus {
+  .email > input:focus, .login > input:focus, .register > input:focus, .reset > input:focus, .search > input:focus, .useredit > input:focus, .edituserheader > input:focus {
     outline: none; }
-  .email > select, .login > select, .register > select, .reset > select, .search > select {
+  .email > select, .login > select, .register > select, .reset > select, .search > select, .useredit > select, .edituserheader > select {
     padding-left: 1%;
     width: 102%;
     height: 3.5vh;
@@ -495,9 +503,9 @@ nav {
     background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
     background-position: 100% 50%;
     background-repeat: no-repeat; }
-  .email > select:focus, .login > select:focus, .register > select:focus, .reset > select:focus, .search > select:focus {
+  .email > select:focus, .login > select:focus, .register > select:focus, .reset > select:focus, .search > select:focus, .useredit > select:focus, .edituserheader > select:focus {
     outline: none; }
-  .email > button, .login > button, .register > button, .reset > button, .search > button {
+  .email > button, .login > button, .register > button, .reset > button, .search > button, .useredit > button, .edituserheader > button {
     padding: 1%;
     color: #ffffff;
     background-color: #0c090a;
@@ -506,19 +514,21 @@ nav {
     margin-left: 30%;
     margin-right: 30%;
     font-family: Verdana, Geneva, sans-serif; }
-  .email > button:focus, .login > button:focus, .register > button:focus, .reset > button:focus, .search > button:focus {
+  .email > button:focus, .login > button:focus, .register > button:focus, .reset > button:focus, .search > button:focus, .useredit > button:focus, .edituserheader > button:focus {
     outline: none; }
-  .email > button:hover, .login > button:hover, .register > button:hover, .reset > button:hover, .search > button:hover {
+  .email > button:hover, .login > button:hover, .register > button:hover, .reset > button:hover, .search > button:hover, .useredit > button:hover, .edituserheader > button:hover {
     background-color: #ffffff;
     border-color: #0c090a;
     color: #0c090a;
     cursor: pointer; }
-  .email a, .login a, .register a, .reset a, .search a {
+  .email a, .login a, .register a, .reset a, .search a, .useredit a, .edituserheader a {
     display: block;
     margin-top: 5%;
     font-size: 2vh; }
-  .email .invalid-feedback, .login .invalid-feedback, .register .invalid-feedback, .reset .invalid-feedback, .search .invalid-feedback {
+  .email .invalid-feedback, .login .invalid-feedback, .register .invalid-feedback, .reset .invalid-feedback, .search .invalid-feedback, .useredit .invalid-feedback, .edituserheader .invalid-feedback {
     font-size: 1vw;
+    color: red; }
+  .email #important, .login #important, .register #important, .reset #important, .search #important, .useredit #important, .edituserheader #important {
     color: red; }
 
 .search {

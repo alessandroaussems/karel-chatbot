@@ -1,4 +1,4 @@
-.email,.login,.register,.reset,.search
+.email,.login,.register,.reset,.search,.useredit,.edituserheader
 {
   width: 30%;
   margin-left: auto;
@@ -66,6 +66,10 @@
   .invalid-feedback
   {
     font-size: 1vw;
+    color: red;
+  }
+  #important
+  {
     color: red;
   }
 }

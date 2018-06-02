@@ -7,7 +7,7 @@
         <p>Hier kan je de instellingen aanpassen voor Karel-Chatbot:</p>
         <ul class="options">
             @if(Auth::user()->hasRole("admin") )
-            <li><a href="/register">Gebruiker maken</a></li>
+            <li><a href="/users">Gebruikers</a></li>
             @endif
             @if(Auth::user()->hasRole("admin") || Auth::user()->hasRole("editor") )
                 <li><a href="/messages">Berichten</a></li>
