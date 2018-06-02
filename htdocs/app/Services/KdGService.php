@@ -504,5 +504,50 @@ class KdGService
         $credit=$estudent_html->find("div.card-lk-stand",0)->plaintext;
         return $credit;
     }
+    public function getStudyNecessities()
+    {
+        $necessities=[];
+        //BROWSING TO INTRANET URL
+        try
+        {
+            $response_estudentservice = $this->client->get(Config::get("kdg.estudentservice").'/Main.aspx', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $estudent_html=HtmlDomParser::str_get_html($response_estudentservice->getBody()->getContents());
+        $necessitiesurl=$estudent_html->find("a.mnu",8)->href;
+        try
+        {
+            $response_points = $this->client->get(Config::get("kdg.estudentservice").'/'.$necessitiesurl, [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $necessitie_html=HtmlDomParser::str_get_html($response_points->getBody()->getContents());
+        $necessitie_divs=$necessitie_html->find("div.StudMat-rechts");
+        foreach ($necessitie_divs as $necessitie_div)
+        {
+            $necessitie=[];
+            $necessitie["title"]=$necessitie_div->find("div.StudMat-titel",0)->plaintext;
+            $necessitie["details"]=$necessitie_div->find("div.StudMat-details",0)->text();
+            $necessitie["lesson"]=$necessitie_div->find("div.StudMat-olod",0)->plaintext;
+            $necessitie["period"]=$necessitie_div->find("div#dStudMatOLODdetails",0)->plaintext;
+            array_push($necessities,$necessitie);
+        }
+        return $necessities;
+    }
 
 }

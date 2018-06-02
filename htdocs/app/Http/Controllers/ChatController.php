@@ -325,10 +325,23 @@ class ChatController extends Controller
                         $html.="<p>Adres:&nbsp;<a target='_blank' title='Navigeren' href='https://www.google.com/maps/dir/?api=1&amp;destination=".rawurlencode(str_replace(' ', '', $campusinfo["address"]))."&amp;travelmode=transit'>".$campusinfo["address"]."</a>&nbsp;<a id='marker' target='_blank' title='Navigeren' href='https://www.google.com/maps/dir/?api=1&amp;destination=".rawurlencode(str_replace(' ', '', $campusinfo["address"]))."&amp;travelmode=transit'>j</a>";
                         $html.="<p>Openingsuren van de campus:</p>";
                         $html.=$campusinfo["openinghours"];
-                break;
+                    break;
                 case "LEERKREDIET":
                     $KdGService->eStudentserviceAuthentication();
                     $html.="<p>".$KdGService->getStudyCredit()."</p><br><small>Dit is de meest recente raadpleging.</small>";
+                    break;
+                case "BENODIGDHEDEN":
+                    $KdGService->eStudentserviceAuthentication();
+                    $necessities=$KdGService->getStudyNecessities();
+                    foreach ($necessities as $necessity)
+                    {
+                        $html.="<div>";
+                        $html.="<h5>".$necessity["title"]."</h5>";
+                        $html.="<p>".nl2br($necessity["details"])."</p>";
+                        $html.="<p>Opleidingsonderdeel:&nbsp;".$necessity["lesson"]."</p>";
+                        $html.="<p>".$necessity["period"]."</p>";
+                        $html.="</div>";
+                    }
                     break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";
