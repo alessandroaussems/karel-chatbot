@@ -18,7 +18,8 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:editor,admin');
+        $this->middleware("role:editor,admin")->only('tags');
+        $this->middleware("role:chatter,admin")->only('chats');
     }
     /**
      * Show the application dashboard.
@@ -42,7 +43,6 @@ class AdminController extends Controller
         $endtag=Config::get("kdg.endtag");
         return view("tags")->with("tags",$tags)->with("starttag",$starttag)->with("endtag",$endtag);
     }
-
     /**
      * Show the list of available chats.
      *
