@@ -8,12 +8,14 @@ class KdGService
 {
     private $client;
     private $cookieJar;
+    /**
+     * KdGService constructor.
+     */
     public function __construct()
     {
         $this->client=new Client();
         $this->cookieJar=new \GuzzleHttp\Cookie\CookieJar();
     }
-
     /**
      * @return bool indicating if login was successful
      */
@@ -190,7 +192,6 @@ class KdGService
         return array_slice($NOTIFICATIONS, 0, 3);
 
     }
-
     /**
      * @return null|\simplehtmldom_1_5\simple_html_dom_node|\simplehtmldom_1_5\simple_html_dom_node[]
      */
@@ -217,7 +218,6 @@ class KdGService
         //RETURNING MENU
         return $menu;
     }
-
     /**
      * @return null|\simplehtmldom_1_5\simple_html_dom_node|\simplehtmldom_1_5\simple_html_dom_node[]|string
      */
@@ -264,7 +264,6 @@ class KdGService
         $ABSCENTS.="</ul>";
         return $ABSCENTS;
     }
-
     /**
      * @return null|\simplehtmldom_1_5\simple_html_dom_node|\simplehtmldom_1_5\simple_html_dom_node[]
      */
@@ -289,7 +288,6 @@ class KdGService
         $pricestable=$printkdghtml->find("table",0);
         return $pricestable;
     }
-
     /**
      * @return array
      */
@@ -340,6 +338,9 @@ class KdGService
         }
         return $points;
     }
+    /**
+     * @return array
+     */
     public function getBulletinboard()
     {
         //BROWSING TO Bulletinboard url
@@ -369,6 +370,10 @@ class KdGService
         }
         return $bulletin;
     }
+    /**
+     * @param $string
+     * @return null|string|string[]
+     */
     private function createHtmlLinksFromString($string)
     {
         $regex="/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
@@ -381,6 +386,10 @@ class KdGService
             return $string;
         }
     }
+    /**
+     * @param $searchterm
+     * @return array|bool
+     */
     public function searchForWhoIsWho($searchterm)
     {
         $person=[];
@@ -409,6 +418,9 @@ class KdGService
         $person["image"]=$firstresult->find("div.image",0)->find("div.graphic",0)->find("div.profilePicture",0)->find("img",0)->src;
         return $person;
     }
+    /**
+     * @return array
+     */
     public function getCampusInfo()
     {
         $campusinfo=[];
@@ -444,6 +456,10 @@ class KdGService
         $campusinfo["openinghours"]=$this->openingsHoursOfCampus($campuspage_html);
         return $campusinfo;
     }
+    /**
+     * @param $campuspage_html
+     * @return string
+     */
     private function openingsHoursOfCampus($campuspage_html)
     {
         try
@@ -479,11 +495,18 @@ class KdGService
         $table.="</table>";
         return $table;
     }
+    /**
+     * @param $campushtml
+     * @return bool|string
+     */
     private function findEntityIdOfCampus($campushtml)
     {
         $searchfor='enitiyid="';
         return substr($campushtml,strlen($searchfor)+strpos($campushtml,$searchfor),2);
     }
+    /**
+     * @return bool|mixed|string
+     */
     public function getStudyCredit()
     {
         //BROWSING TO INTRANET URL
@@ -504,6 +527,9 @@ class KdGService
         $credit=$estudent_html->find("div.card-lk-stand",0)->plaintext;
         return $credit;
     }
+    /**
+     * @return array
+     */
     public function getStudyNecessities()
     {
         $necessities=[];
