@@ -8,25 +8,11 @@ nav
   {
     float: left;
   }
-  #settings
-  {
-    width: 1%;
-    font-family: $iconfont;
-    color: $white;
-    text-decoration: none;
-    font-size: 1.25vw;
-    margin-top: 0.5%;
-    margin-left: 0.5%;
-  }
-  #settings:hover
-  {
-    transform: translateY(-10%);
-  }
   #botlogo
   {
     margin-top: 0.5%;
     margin-bottom: 0.5%;
-    margin-left: 0%;
+    margin-left: 1%;
     height: 80%;
     width: auto;
     img

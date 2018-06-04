@@ -14,20 +14,10 @@ nav {
   display: flex; }
   nav * {
     float: left; }
-  nav #settings {
-    width: 1%;
-    font-family: icon;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1.25vw;
-    margin-top: 0.5%;
-    margin-left: 0.5%; }
-  nav #settings:hover {
-    transform: translateY(-10%); }
   nav #botlogo {
     margin-top: 0.5%;
     margin-bottom: 0.5%;
-    margin-left: 0%;
+    margin-left: 1%;
     height: 80%;
     width: auto; }
     nav #botlogo img {
@@ -357,13 +347,6 @@ nav {
 
   #kdgconnect {
     margin-right: 10%; }
-
-  nav #settings {
-    display: none; }
-  nav #botlogo {
-    margin-left: 1.5%; }
-  nav #kdglogo {
-    margin-right: 1.5%; }
 
   #help {
     display: none !important; }
