@@ -353,7 +353,11 @@ nav {
 
   #cookie {
     bottom: 6% !important;
-    margin-left: 40% !important; } }
+    margin-left: 40% !important; }
+
+  .login {
+    width: 90% !important;
+    margin-top: 15% !important; } }
 #overlay {
   position: fixed;
   display: none;
@@ -471,7 +475,8 @@ nav {
     height: 3vh;
     margin-top: 2%;
     margin-bottom: 2%;
-    border: 3px solid #0c090a; }
+    border: 3px solid #0c090a;
+    font-size: 16px; }
   .email > input:focus, .login > input:focus, .register > input:focus, .reset > input:focus, .search > input:focus, .useredit > input:focus, .edituserheader > input:focus {
     outline: none; }
   .email > select, .login > select, .register > select, .reset > select, .search > select, .useredit > select, .edituserheader > select {

@@ -34,7 +34,6 @@
         <?php
         echo "var helpitems = ". json_encode($helpitems) . ";\n";
         ?>
-        console.log(helpitems);
     </script>
     <script src="{{asset('js/help.js')}}"></script>
     <script src="{{asset('js/cookie.js')}}"></script>
