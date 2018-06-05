@@ -575,11 +575,14 @@ class KdGService
         }
         return $necessities;
     }
+    /**
+     * @return array|bool
+     */
     public function getDayLessons()
     {
         $today=date('d');
         $todayslessons=[];
-        $lessonsoptions=["UserId"=>"","NumberOfVisibleElements"=>-1,"RemainingTime"=>0];
+        $lessonsoptions=["UserId"=>$this->findUserId(),"NumberOfVisibleElements"=>-1,"RemainingTime"=>0];
         try
         {
             $response_lessons = $this->client->post(Config::get("kdg.lessons"), [
@@ -615,6 +618,28 @@ class KdGService
             }
         }
         return $todayslessons;
+    }
+    /**
+     * @return bool|string
+     */
+    public function findUserId()
+    {
+        try
+        {
+            $response_mainpage = $this->client->get('https://intranet.student.kdg.be/', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $mainpagehtml=HtmlDomParser::str_get_html($response_mainpage->getBody()->getContents());
+        $searchfor="userId = '";
+        return substr($mainpagehtml,strlen($searchfor)+strpos($mainpagehtml,$searchfor),24);
     }
 
 }
