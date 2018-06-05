@@ -306,14 +306,22 @@ class ChatController extends Controller
                     $person=$KdGService->searchForWhoIsWho($searchterm);
                     if($person)
                     {
-                        if($searchterm==implode(" ",$KdGService->getNameOfUser()))
+                        $currentuser=implode(" ",$KdGService->getNameOfUser());
+                        if($searchterm==$currentuser)
                         {
                             $html.="<p>Je eigen even opzoeken, over narcisme gesproken...</p>";
                         }
                         $html.="<p>Het beste resultaat dat ik kan vinden voor: ".$searchterm." is:</p><br>";
                         $html.="<img style='max-width: 150px;' src='".$person["image"]."' alt='".$person["name"]."'>";
                         $html.="<h5>".$person["name"]."</h5>";
-                        $html.="<p>Je kan deze persoon bereiken via email: <a href='mailto:".$person["email"]."'>".$person["email"]."</a>";
+                        if($searchterm==$currentuser)
+                        {
+                            $html.="<p>Je kan jezelf mailen op: <a href='mailto:".$person["email"]."'>".$person["email"]."</a>, al zie ik geen reden waarom je jezelf zou willen mailen.</p>";
+                        }
+                        else
+                        {
+                            $html.="<p>Je kan deze persoon bereiken via email: <a href='mailto:".$person["email"]."'>".$person["email"]."</a>";
+                        }
                     }
                     else
                     {
