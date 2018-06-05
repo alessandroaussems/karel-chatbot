@@ -302,9 +302,14 @@ class ChatController extends Controller
                 case "WIEISWIE":
                     $searchterm=str_replace("Wie is","",$message);
                     $searchterm=str_replace("wie is","",$searchterm);
+                    $searchterm=trim($searchterm);
                     $person=$KdGService->searchForWhoIsWho($searchterm);
                     if($person)
                     {
+                        if($searchterm==implode(" ",$KdGService->getNameOfUser()))
+                        {
+                            $html.="<p>Je eigen even opzoeken, over narcisme gesproken...</p>";
+                        }
                         $html.="<p>Het beste resultaat dat ik kan vinden voor: ".$searchterm." is:</p><br>";
                         $html.="<img style='max-width: 150px;' src='".$person["image"]."' alt='".$person["name"]."'>";
                         $html.="<h5>".$person["name"]."</h5>";
