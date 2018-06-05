@@ -575,5 +575,46 @@ class KdGService
         }
         return $necessities;
     }
+    public function getDayLessons()
+    {
+        $today=date('d');
+        $todayslessons=[];
+        $lessonsoptions=["UserId"=>"","NumberOfVisibleElements"=>-1,"RemainingTime"=>0];
+        try
+        {
+            $response_lessons = $this->client->post(Config::get("kdg.lessons"), [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                    'content-type' => 'application/json',
+                    'body'=> json_encode($lessonsoptions)
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $responseobject=json_decode($response_lessons->getBody()->getContents());
+        if(count($responseobject->Days)==0)
+        {
+          return false;
+        }
+        foreach ($responseobject->Days as $day)
+        {
+            if(preg_replace('/\D/', '', $day->DayOfWeek)==$today)
+            {
+               $lesson=[];
+               foreach ($day->Hours as $lessonobj)
+               {
+                    $lesson["title"]=$lessonobj->Title;
+                    $lesson["location"]=$lessonobj->Location;
+                    $lesson["time"]=$lessonobj->Time;
+                    array_push($todayslessons,$lesson);
+               }
+            }
+        }
+        return $todayslessons;
+    }
 
 }

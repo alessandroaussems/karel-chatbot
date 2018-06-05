@@ -253,7 +253,17 @@ class ChatController extends Controller
                     $html.="<p>".$session->firstname." ".$session->lastname."</p>";
                     break;
                 case "LESSEN":
-                    $html.="<p>Deze functie is nog in ontwikkeling...</p>";
+                    $lessons=$KdGService->getDayLessons();
+                    if(!$lessons)
+                    {
+                        return "Voor vandaag staat er niets gepland! Je kan gezellig thuis blijven!";
+                    }
+                    foreach ($lessons as $lesson)
+                    {
+                        $html.="<h4>".$lesson["title"]."</h4>";
+                        $html.="</p>".$lesson["time"]."</p>";
+                        $html.="<p>".$lesson["location"]."</p>";
+                    }
                     break;
                 case "AFWEZIGEN":
                     $html.="<ul style='list-style-type: none; padding: 0'>";
