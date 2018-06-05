@@ -415,7 +415,22 @@ class KdGService
         $firstresult=$whosiswhosearchhtml->find("div.modPerson",0)->find("article",0)->find("header",0);
         $person["name"]=trim($firstresult->find("h1",0)->plaintext);
         $person["email"]=trim($firstresult->find("div.meta",0)->find("div.group2",0)->find("div.email",0)->find("div.value",0)->plaintext);
-        $person["image"]=$firstresult->find("div.image",0)->find("div.graphic",0)->find("div.profilePicture",0)->find("img",0)->src;
+        $person["image"]="/img/intranet/anonymous.png";
+        $imgname=hash("sha256",time());
+        try
+        {
+            $response_image = $this->client->get($firstresult->find("div.image",0)->find("div.graphic",0)->find("div.profilePicture",0)->find("img",0)->src, [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                    "sink" => "./img/intranet/".$imgname.".jpeg"
+                ]
+            );
+            $person["image"]="/img/intranet/".$imgname.".jpeg";
+        }
+        catch (\Exception $e)
+        {
+            $person["image"]="/img/intranet/anonymous.png";
+        }
         return $person;
     }
     /**
