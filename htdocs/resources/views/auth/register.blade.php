@@ -2,8 +2,8 @@
 
 @section('content')
                     <form method="POST" action="{{ route('register') }}" class="register">
-                        <h3>Gebruiker maken</h3>
-                        <small>Deze kan Karel dan mee instellen!</small><br>
+                        <h3>Beheerder toevoegen</h3>
+                        <small>Deze kan Karel-Chatbot dan mee instellen!</small><br>
                         @csrf
                         @if ($errors->has('name'))
                             <span class="invalid-feedback">
@@ -43,7 +43,7 @@
                             </select>
 
                                 <button type="submit">
-                                    Register
+                                    Beheerder toevoegen
                                 </button>
                     </form>
 @endsection

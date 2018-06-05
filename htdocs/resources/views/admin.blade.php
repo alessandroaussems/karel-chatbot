@@ -3,11 +3,11 @@
 @section('content')
     @include("partials.notify")
     <div class="menu">
-        <h3>Welkom! {{Auth::user()->name}}</h3>    <a href="{{ route('logout') }}"> Logout </a>
+        <h3>Welkom! {{Auth::user()->name}}</h3><a href="{{ route('logout') }}">Uitloggen</a>
         <p>Hier kan je de instellingen aanpassen voor Karel-Chatbot:</p>
         <ul class="options">
             @if(Auth::user()->hasRole("admin") )
-            <li><a href="/users">Gebruikers</a></li>
+            <li><a href="/users">Beheerders</a></li>
             @endif
             @if(Auth::user()->hasRole("admin") || Auth::user()->hasRole("editor") )
                 <li><a href="/messages">Berichten</a></li>

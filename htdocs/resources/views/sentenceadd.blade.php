@@ -3,7 +3,7 @@
 @section('content')
     <div class="messageform">
         <h3>Zin toevoegen!</h3>
-        <small>Hier kan je een zin toevoegen waarop Karel zal reageren.</small>
+        <small>Hier kan je een zin toevoegen waarop Karel-Chatbot zal reageren.</small>
         {{ Html::ul($errors->all(), array('class' => 'errors'))}}
 
         {{ Form::open(['url' => 'sentences'])}}
@@ -13,7 +13,7 @@
         {{ Form::text('sentence', null, array('class' => 'form-control')) }}
         <br>
 
-        {{ Form::button('Zin toevoegen!', array('type' => 'submit')) }}
+        {{ Form::button('Zin toevoegen', array('type' => 'submit')) }}
 
         {{ Form::close() }}
 

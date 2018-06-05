@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="edituserheader">
-        <h3>Gebruiker aanpassen</h3>
-        <small>Deze kan Karel dan mee instellen!</small><br>
+        <h3>Beheerder aanpassen</h3>
+        <small>Deze kan Karel-Chatbot dan mee instellen!</small><br>
         <small id="important">*Opmerking: Omwille van veiligheidsredenen is het niet toegestaan om het paswoord te wijzigen</small>
         {{ Html::ul($errors->all(), array('class' => 'errors'))}}
     </div>
@@ -18,7 +18,7 @@
             {{ Form::select('role', array('admin' => 'Admin', 'editor' => 'Editor', 'chatter' => 'Chatter'),null, ['class' => 'field']) }}
         <br>
 
-        {{ Form::button('Gebruiker aanpassen!', array('type' => 'submit')) }}
+        {{ Form::button('Beheerder aanpassen', array('type' => 'submit')) }}
 
         {{ Form::close() }}
 @endsection

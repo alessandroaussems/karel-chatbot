@@ -3,7 +3,7 @@
 @section('content')
     <div class="messageform">
         <h3>Antwoord toevoegen</h3>
-        <small>Hier kan je een antwoord van Karel toevoegen.</small>
+        <small>Hier kan je een antwoord van Karel-Chatbot toevoegen.</small>
         {{ Html::ul($errors->all(), array('class' => 'errors'))}}
 
         {{ Form::open(['url' => 'messages'])}}
@@ -13,7 +13,7 @@
         {{ Form::textarea('answer', null, ['class' => 'field']) }}
         <br>
 
-        {{ Form::button('Antwoord toevoegen!', array('type' => 'submit')) }}
+        {{ Form::button('Antwoord toevoegen', array('type' => 'submit')) }}
 
         {{ Form::close() }}
 

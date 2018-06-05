@@ -3,7 +3,7 @@
 @section('content')
     <div class="messageform">
         <h3>Antwoord aanpassen</h3>
-        <small>Hier kan je het antwoord van Karel aanpassen.</small>
+        <small>Hier kan je het antwoord van Karel-Chatbot aanpassen.</small>
         {{ Html::ul($errors->all(), array('class' => 'errors'))}}
 
         {{ Form::model($message, array('route' => array('messages.update', $message->id), 'method' => 'PUT')) }}
@@ -12,7 +12,7 @@
         {{ Form::textarea('answer', null, ['class' => 'field']) }}
         <br>
 
-        {{ Form::button('Antwoord aanpassen!', array('type' => 'submit')) }}
+        {{ Form::button('Antwoord aanpassen', array('type' => 'submit')) }}
 
         {{ Form::close() }}
 

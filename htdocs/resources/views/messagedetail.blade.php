@@ -3,7 +3,7 @@
 @section('content')
     <div class="messagedetail">
         <h3>Bericht</h3>
-        <small>Hier zie je wat Karel antwoord op bepaalde berichten</small>
+        <small>Hier zie je wat Karel-Chatbot antwoord op bepaalde berichten</small>
         <h5>Antwoord:</h5>
         <a class="edit pullright" href="/messages/{{$message->id}}/edit">3</a>
         <a class="delete" href="/messages/{{$message->id}}/delete">n</a>

@@ -640,7 +640,8 @@ small {
   padding: 0;
   text-align: center;
   width: 50%;
-  margin: auto; }
+  margin: auto;
+  margin-bottom: 2.5%; }
   .pagination * {
     display: inline-block; }
   .pagination a {
