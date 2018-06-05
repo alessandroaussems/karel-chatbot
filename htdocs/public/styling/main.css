@@ -357,7 +357,17 @@ nav {
 
   .login {
     width: 90% !important;
-    margin-top: 15% !important; } }
+    margin-top: 15% !important; }
+
+  .email, .register, .reset, .search, .useredit, .edituserheader {
+    width: 90% !important; }
+
+  .menu, .messagedetail, .messageform, .tagsoverview {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%; }
+    .menu table, .messagedetail table, .messageform table, .tagsoverview table {
+      font-size: 1vmax; } }
 #overlay {
   position: fixed;
   display: none;

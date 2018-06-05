@@ -32,4 +32,18 @@
     width: 90% !important;
     margin-top: 15% !important;
   }
+  .email,.register,.reset,.search,.useredit,.edituserheader
+  {
+    width: 90% !important;
+  }
+  .menu,.messagedetail,.messageform,.tagsoverview
+  {
+    table
+    {
+      font-size: 1vmax;
+    }
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
 }
