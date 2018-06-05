@@ -138,7 +138,7 @@ class ChatController extends Controller
      */
     function checkMessagesSequential($sentencetocheck)
     {
-        if(strpos($sentencetocheck, 'Wie is') !== false)
+        if(strpos($sentencetocheck, 'Wie is') !== false || strpos($sentencetocheck, 'wie is') !== false )
         {
             return Message::where("id",Sentence::where("sentence","Wie is")->first()->message_id)->first()->answer;
         }
@@ -301,6 +301,7 @@ class ChatController extends Controller
                     break;
                 case "WIEISWIE":
                     $searchterm=str_replace("Wie is","",$message);
+                    $searchterm=str_replace("wie is","",$searchterm);
                     $person=$KdGService->searchForWhoIsWho($searchterm);
                     if($person)
                     {
