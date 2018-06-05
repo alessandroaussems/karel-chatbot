@@ -303,13 +303,14 @@ class ChatController extends Controller
                     $searchterm=str_replace("Wie is","",$message);
                     $searchterm=str_replace("wie is","",$searchterm);
                     $searchterm=trim($searchterm);
+                    $searchterm=ucwords($searchterm);
                     $person=$KdGService->searchForWhoIsWho($searchterm);
                     if($person)
                     {
                         $currentuser=implode(" ",$KdGService->getNameOfUser());
                         if($searchterm==$currentuser)
                         {
-                            $html.="<p>Je eigen even opzoeken, over narcisme gesproken...</p>";
+                            $html.="<p>Weet je na al die jaren nog niet wie je bent?</p>";
                         }
                         $html.="<p>Het beste resultaat dat ik kan vinden voor: ".$searchterm." is:</p><br>";
                         $html.="<img style='max-width: 150px;' src='".$person["image"]."' alt='".$person["name"]."'>";
