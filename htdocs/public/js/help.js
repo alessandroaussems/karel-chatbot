@@ -50,3 +50,7 @@ function showHelp(event)
         document.getElementById("help").classList.remove("hidehelp");
     }
 }
+function clickToInput(event)
+{
+    document.getElementsByClassName("userinput")[0].value=event.target.innerHTML;
+}

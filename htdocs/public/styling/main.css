@@ -457,6 +457,8 @@ nav {
         font-size: 1vmax;
         width: 80%;
         text-align: center; }
+      #help #inner #examples p:hover {
+        cursor: pointer; }
 
 .showhelp {
   animation: slidein 0.37s ease-in-out forwards; }

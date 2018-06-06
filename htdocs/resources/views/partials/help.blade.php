@@ -5,7 +5,7 @@
         <p>Hier enkele voorbeelden:</p>
         <div id="examples">
             <span id="previous" onclick="slide('backwards')"><</span>
-            <p id="currenthelptext">Mijn meldingen</p>
+            <p id="currenthelptext" onclick="clickToInput(event)">Mijn meldingen</p>
             <span id="next" onclick="slide('forward')">></span>
         </div>
     </div>
