@@ -26,7 +26,7 @@ class ChatController extends Controller
 
         $this->addToSession($message,"H");
         similar_text($message, "Medewerker stop", $perc);
-        if($_COOKIE["listen"]=="true" && $perc > 50 )
+        if($_COOKIE["listen"]=="true" && $perc > 80)
         {
             setcookie("listen","false",time()+60*60*24*30,"/");
             Livechat::where("session_id",$_COOKIE["chatsession"])->delete();
