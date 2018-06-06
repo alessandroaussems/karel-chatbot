@@ -88,6 +88,9 @@ nav {
       margin-left: 0.5%;
       background-color: #0c090a;
       color: #ffffff; }
+      .chat ul .botmessage *, .livechat ul .botmessage * {
+        overflow-wrap: break-word;
+        word-break: break-word; }
       .chat ul .botmessage a, .livechat ul .botmessage a {
         color: inherit; }
       .chat ul .botmessage a:hover, .livechat ul .botmessage a:hover {
