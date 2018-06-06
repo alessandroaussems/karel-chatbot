@@ -73,8 +73,9 @@ function createUserMessage(message)
     messageList.appendChild(listitem);
     messageList.scrollIntoView(false);
 }
-function createAnswer(message)
+function createAnswer(message,timeout)
 {
+    timeout=timeout || BOTTHINKINGTIME;
     //WAIT BOTTHIKNINGTIME THEN REMOVE TYPING ICON AND CREATE RESPONSE
     setTimeout(function(){
         removeTypeIcon();
@@ -85,7 +86,7 @@ function createAnswer(message)
         messageList.appendChild(listitem);
         messageList.scrollIntoView(false);
         allowToSend=true; // THIS REQUEST IS FINISHED SO THE NEXT ONE IS NOW ALLOWED
-    }, BOTTHINKINGTIME);
+    }, timeout);
 }
 function createTypeIcon()
 {
@@ -142,7 +143,7 @@ function doKdGLogin(event)
             {
                 document.getElementById("overlay").classList.remove("display");
                 document.getElementById("kdgconnect").classList.add("nodisplay");
-                createAnswer("Dankjewel om je KdG-account te koppelen! Ik kan je nu nog beter helpen!")
+                createAnswer("Dankjewel om je KdG-account te koppelen! Ik kan je nu nog beter helpen!",1)
             }
             if(!response)
             {
