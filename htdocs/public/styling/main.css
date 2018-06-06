@@ -446,7 +446,8 @@ nav {
       margin-top: 0;
       margin-bottom: 1%; }
     #help #inner #examples {
-      width: 100%; }
+      width: 100%;
+      p: hober; }
       #help #inner #examples > * {
         float: left; }
       #help #inner #examples #next, #help #inner #examples #previous {
@@ -461,8 +462,6 @@ nav {
         font-size: 1vmax;
         width: 80%;
         text-align: center; }
-      #help #inner #examples p:hover {
-        cursor: pointer; }
 
 .showhelp {
   animation: slidein 0.37s ease-in-out forwards; }
@@ -592,6 +591,8 @@ nav {
     color: #ffffff;
     text-decoration: none;
     cursor: pointer; }
+  #notify #sessionlink {
+    color: #0c090a; }
 
 .shownotification {
   animation: .5s notifyin ease-in-out forwards; }
