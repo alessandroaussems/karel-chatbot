@@ -11,7 +11,15 @@
     <meta name="apple-mobile-web-app-title" content="Karel-Chatbot" />
     <meta name="apple-mobile-web-app-status-bar-style" content="white" />
     <link rel="apple-touch-icon" href="{{asset('img/appicon.png')}}">
-    <meta name="description" content="Karel-Chatbot" />
+
+    <meta name="description" content="Dé chatbot van KdG" />
+    <meta name="title" content="Karel-Chatbot">
+    <meta name="locale" content="nl">
+    <meta name="keywords" content="KdG,Karel De Grote Hogeschool,Chatbot,Karel-Chatbot,Karel,Hogeschool">
+    <meta name="author" content="Alessandro Aussems">
+    <meta name="publisher" content="Alessandro Aussems">
+    <meta name="robots" content="all">
+    <link rel="canonical" href="https://karel-chatbot.be">
 
     <meta property="og:title" content="Karel-Chatbot" />
     <meta property="og:site_name" content="Karel-Chatbot" />
@@ -28,11 +36,11 @@
 <body>
 @extends("partials.overlay")
 <nav class="clearfix">
-    <a href="/" id="botlogo">
+    <a href="/" id="botlogo" title="Karel-Chatbot">
     <img src="{{asset('img/logo_white.png')}}" alt="Logo van Karel - Chatbot" title="Logo van Karel - Chatbot">
     </a>
     <h1>Karel - Chatbot</h1>
-    <a href="https://www.kdg.be/" id="kdglogo" target="_blank">
+    <a href="https://www.kdg.be/" id="kdglogo" target="_blank" title="Karel De Grote Hogeschool">
     <img  src="{{asset('img/logo_kdg_white.png')}}" alt="Logo van KdG" title="Logo van KdG">
     </a>
 </nav>
