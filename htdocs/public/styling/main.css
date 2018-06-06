@@ -113,6 +113,7 @@ nav {
   margin-left: 25%;
   margin-right: 0;
   padding: 0px;
+  padding-left: 0.5%;
   border-color: #1d1d1b;
   height: 5%;
   font-size: 16px;
@@ -129,7 +130,7 @@ nav {
   float: left;
   background-color: #1d1d1b;
   height: 5.6%;
-  width: 10%;
+  width: 9.5%;
   font-size: 1.5vmax;
   text-align: center;
   display: flex;
