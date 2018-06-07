@@ -368,6 +368,14 @@ class ChatController extends Controller
                         $html.="</div>";
                     }
                     break;
+                case "VAKKEN":
+                    $KdGService->eStudentserviceAuthentication();
+                    $subjects=$KdGService->getSubjectsWithECTSLink();
+                    foreach ($subjects as $subject)
+                    {
+                        $html.="<h5>".$subject["title"]."<a href='".$subject["ectslink"]."' target='_blank'>(ECTS)</a></h5>";
+                    }
+                    break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";
                     break;

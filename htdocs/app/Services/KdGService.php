@@ -637,7 +637,7 @@ class KdGService
     /**
      * @return bool|string
      */
-    public function findUserId()
+    private function findUserId()
     {
         try
         {
@@ -655,6 +655,51 @@ class KdGService
         $mainpagehtml=HtmlDomParser::str_get_html($response_mainpage->getBody()->getContents());
         $searchfor="userId = '";
         return substr($mainpagehtml,strlen($searchfor)+strpos($mainpagehtml,$searchfor),24);
+    }
+    public function getSubjectsWithECTSLink()
+    {
+        $allsubjects=[];
+        //BROWSING TO INTRANET URL
+        try
+        {
+            $response_estudentservice = $this->client->get(Config::get("kdg.estudentservice").'/Main.aspx', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $estudent_html=HtmlDomParser::str_get_html($response_estudentservice->getBody()->getContents());
+        $subjectsurl=$estudent_html->find("a.mnu",6)->href;
+        try
+        {
+            $response_subjects = $this->client->get(Config::get("kdg.estudentservice").'/'.$subjectsurl, [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $subjectshtml=HtmlDomParser::str_get_html($response_subjects->getBody()->getContents());
+        $subjects=$subjectshtml->find("div.MSOLOD>div.MSLESOLOD");
+        foreach ($subjects as $subject)
+        {
+            $asubject=[];
+            $asubject["title"]=$subject->find("span",1)->plaintext;
+            preg_match('#\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))#',$subject->find("div.xOLODDetailIcon",0)->onclick,$linkfromdiv);
+            $asubject["ectslink"]=$linkfromdiv[0];
+            $asubject["studypoints"]=preg_replace('/\D/', '',$subject->find("div.studieomvang",0)->find('strong',0)->plaintext);
+            array_push($allsubjects,$asubject);
+        }
+        return $allsubjects;
     }
 
 }
