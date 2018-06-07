@@ -701,5 +701,55 @@ class KdGService
         }
         return $allsubjects;
     }
+    public function getGradeOfMerit()
+    {
+        $totalofresultsmultipliedbystudypoints=0;
+        $totalstudypoints=0;
+        try
+        {
+            $response_estudentservice = $this->client->get(Config::get("kdg.estudentservice").'/Main.aspx', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $estudent_html=HtmlDomParser::str_get_html($response_estudentservice->getBody()->getContents());
+        $studyoverviewurl=$estudent_html->find("a.mnu",7)->href;
+        try
+        {
+            $response_studyoverview = $this->client->get(Config::get("kdg.estudentservice").'/'.$studyoverviewurl, [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $studieoverview_html=HtmlDomParser::str_get_html($response_studyoverview->getBody()->getContents());
+        $studieoverview_html=$studieoverview_html->find("table",2);
+        $subjectsfromresulttable=$studieoverview_html->find("tr.rowBody");
+        foreach ($subjectsfromresulttable as $subjectfromresulttable)
+        {
+            $studypoints=preg_replace('/^([^,]*).*$/', '$1', $subjectfromresulttable->find("td",3)->plaintext);
+            $result=$subjectfromresulttable->find("td",8)->plaintext;
+            if($result!="&nbsp;")
+            {
+                $multiply=intval($studypoints)*intval($result);
+                $totalofresultsmultipliedbystudypoints+=$multiply;
+                $totalstudypoints+=$studypoints;
+            }
+        }
+        $gradeofmerit=$totalofresultsmultipliedbystudypoints/$totalstudypoints;
+        $gradeofmerit*=5;
+        return $gradeofmerit;
+    }
 
 }
