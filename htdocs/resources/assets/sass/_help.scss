@@ -64,7 +64,11 @@
         width: 80%;
         text-align: center;
       }
-      p:hober
+      p:hover
+      {
+        cursor: pointer;
+        text-decoration: underline;
+      }
     }
   }
 }

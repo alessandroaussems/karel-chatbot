@@ -446,8 +446,7 @@ nav {
       margin-top: 0;
       margin-bottom: 1%; }
     #help #inner #examples {
-      width: 100%;
-      p: hober; }
+      width: 100%; }
       #help #inner #examples > * {
         float: left; }
       #help #inner #examples #next, #help #inner #examples #previous {
@@ -462,6 +461,9 @@ nav {
         font-size: 1vmax;
         width: 80%;
         text-align: center; }
+      #help #inner #examples p:hover {
+        cursor: pointer;
+        text-decoration: underline; }
 
 .showhelp {
   animation: slidein 0.37s ease-in-out forwards; }

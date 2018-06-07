@@ -53,4 +53,5 @@ function showHelp(event)
 function clickToInput(event)
 {
     document.getElementsByClassName("userinput")[0].value=event.target.innerHTML;
+    sendMessage('getit',event);
 }
