@@ -46,7 +46,15 @@ class SentenceController extends Controller
             return Redirect::to('sentences/create/' . Input::get("messageid"))
                 ->withErrors($validator)
                 ->withInput();
-        } else {
+        }
+        else
+        {
+            if($this->checkIfSimilarSentence(Input::get('sentence')))
+            {
+                return Redirect::to('sentences/create/' . Input::get("messageid"))
+                    ->withErrors("Er is al een andere zin die te hard op deze zin lijkt! Dit kan voor conflicten zorgen.")
+                    ->withInput();
+            }
             $sentence = new Sentence();
             $sentence->sentence = Input::get('sentence');
             $sentence->message_id = Input::get("messageid");
@@ -86,6 +94,12 @@ class SentenceController extends Controller
         }
         else
         {
+            if($this->checkIfSimilarSentence(Input::get('sentence')))
+            {
+                return Redirect::to('sentences/create/' . Input::get("messageid"))
+                    ->withErrors("Er is al een andere zin die te hard op deze zin lijkt! Dit kan voor conflicten zorgen.")
+                    ->withInput();
+            }
             $sentence = Sentence::find($id);
             $sentence->sentence = Input::get('sentence');
             $sentence->message_id=Input::get("messageid");
@@ -103,5 +117,23 @@ class SentenceController extends Controller
     {
         Sentence::where("id",$id)->delete();
         return Redirect::to('/messages/'.$messageid);
+    }
+    //HELPER FUNCTIONS BELOW
+    /**
+     * @param $sentencetocheck
+     * @return bool indicating if result similar to param is found.
+     */
+    private function checkIfSimilarSentence($sentencetocheck)
+    {
+        $sentences=Sentence::all();
+        foreach ($sentences as $sentence => $value)
+        {
+            similar_text($sentencetocheck,$value->sentence,$percent);
+            if($percent>70)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
