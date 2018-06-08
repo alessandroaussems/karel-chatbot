@@ -378,7 +378,9 @@ class ChatController extends Controller
                     break;
                 case "VERDIENSTELIJKHEID":
                     $KdGService->eStudentserviceAuthentication();
-                    $html.="<p>".$KdGService->getGradeOfMerit()."</p>";
+                    $meritinfo=$KdGService->getGradeOfMerit();
+                    $html.="<p><strong>".$meritinfo[0]."%</strong></p>";
+                    $html.="<p>Dit betekend: <strong>".$meritinfo[1]."</strong></p>";
                     break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";

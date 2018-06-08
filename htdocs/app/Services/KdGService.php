@@ -766,7 +766,24 @@ class KdGService
         }
         $gradeofmerit=$totalofresultsmultipliedbystudypoints/$totalstudypoints;
         $gradeofmerit*=5;
-        return $gradeofmerit;
+        $meaning="";
+        if ($gradeofmerit>50)
+        {
+            $meaning="Voldoende";
+        }
+        if($gradeofmerit>65)
+        {
+            $meaning="Onderscheiding";
+        }
+        if($gradeofmerit>75)
+        {
+            $meaning="Grote onderscheiding";
+        }
+        if($gradeofmerit>85)
+        {
+            $meaning="Grootste onderscheiding";
+        }
+        return [round($gradeofmerit,0),$meaning];
     }
 
 }
