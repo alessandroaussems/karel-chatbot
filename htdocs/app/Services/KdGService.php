@@ -656,6 +656,10 @@ class KdGService
         $searchfor="userId = '";
         return substr($mainpagehtml,strlen($searchfor)+strpos($mainpagehtml,$searchfor),24);
     }
+
+    /**
+     * @return array
+     */
     public function getSubjectsWithECTSLink()
     {
         $allsubjects=[];
@@ -701,6 +705,10 @@ class KdGService
         }
         return $allsubjects;
     }
+
+    /**
+     * @return float|int
+     */
     public function getGradeOfMerit()
     {
         $totalofresultsmultipliedbystudypoints=0;
@@ -739,7 +747,16 @@ class KdGService
         foreach ($subjectsfromresulttable as $subjectfromresulttable)
         {
             $studypoints=preg_replace('/^([^,]*).*$/', '$1', $subjectfromresulttable->find("td",3)->plaintext);
-            $result=$subjectfromresulttable->find("td",8)->plaintext;
+            if($subjectfromresulttable->find("td",9)->plaintext=="C")//CHECK IF PASSED FOR THE SUBJECTS
+            {
+                //IF PASSED GRAB RESULT
+                $result=$subjectfromresulttable->find("td",8)->plaintext;
+            }
+            else
+            {
+                //IF NOT PASSED GRAB RESULT OF RETRY
+                $result=$subjectfromresulttable->find("td",11)->plaintext;
+            }
             if($result!="&nbsp;")
             {
                 $multiply=intval($studypoints)*intval($result);
