@@ -332,7 +332,7 @@ class KdGService
             {
                 if($pointsrow->find("td",0)!="")
                 {
-                    $points[$pointsrow->find("td",1)->plaintext]=$pointsrow->find("td",5)->plaintext;
+                    $points[$pointsrow->find("td",1)->plaintext]=$pointsrow->last_child()->prev_sibling()->plaintext;
                 }
             }
         }
@@ -705,9 +705,8 @@ class KdGService
         }
         return $allsubjects;
     }
-
     /**
-     * @return float|int
+     * @return array
      */
     public function getGradeOfMerit()
     {
