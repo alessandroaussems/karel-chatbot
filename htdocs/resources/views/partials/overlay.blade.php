@@ -4,8 +4,8 @@
         <h3>Inloggen bij KdG</h3>
         <small>Log hier in met je KdG-account en Karel-Chatbot wordt nog slimmer!</small>
         <small id="loginerror">Whoops! Er iets fout gegaan! Ben je zeker dat al je gegevens juist zijn?</small>
-        <input type="text" name="login" id="login">
-        <input type="password" name="password" id="password">
+        <input type="text" name="login" id="login" placeholder="vb: jan.janssens@student.kdg.be">
+        <input type="password" name="password" id="password" placeholder="Wachtwoord">
         <span id="loading">k</span>
         <button type="submit" name="login" id="loginbutton" onclick="doKdGLogin(this.event)">Login</button>
     </div>
