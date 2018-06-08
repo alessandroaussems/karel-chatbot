@@ -380,7 +380,7 @@ class ChatController extends Controller
                     $KdGService->eStudentserviceAuthentication();
                     $meritinfo=$KdGService->getGradeOfMerit();
                     $html.="<p><strong>".$meritinfo[0]."%</strong></p>";
-                    $html.="<p>Dit betekend: <strong>".$meritinfo[1]."</strong></p>";
+                    $html.="<p>Dit betekent: <strong>".$meritinfo[1]."</strong></p>";
                     break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";
