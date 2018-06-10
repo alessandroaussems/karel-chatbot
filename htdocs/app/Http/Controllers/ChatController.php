@@ -12,6 +12,7 @@ use App\Sentence;
 use App\Message;
 use Illuminate\Support\Facades\Config;
 use App\Events\SendToUser;
+use Illuminate\Support\Facades\Mail;
 
 class ChatController extends Controller
 {
@@ -406,7 +407,6 @@ class ChatController extends Controller
     {
         $onlineusers=[];
         $users=User::where("role","chatter")->orWhere("role","admin")->get();
-        dump($users);
         foreach ($users as $user)
         {
             date_default_timezone_set("Europe/Brussels");
@@ -415,11 +415,23 @@ class ChatController extends Controller
             {
                 array_push($onlineusers,$user);
             }
+            else
+            {
+                $admin=new \stdClass();
+                $admin->email=$user->email;
+                $admin->name=$user->name;
+                $admin->sessionid=$_COOKIE["chatsession"];
+                Mail::send('mail.newlivechat', ['user' => $admin], function ($m) use ($admin) {
+
+                    $m->to($admin->email)->subject('Nieuw livechat vraag!');
+                });
+            }
         }
         if(count($onlineusers)!=0)
         {
             return true;
         }
+
         return false;
     }
 }
