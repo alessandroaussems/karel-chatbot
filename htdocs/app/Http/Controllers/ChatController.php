@@ -240,8 +240,8 @@ class ChatController extends Controller
                     foreach ($meldingen as $melding)
                     {
                         $html.="<li>";
-                        $html.="<h5><a href='".$melding[2]."' target='blank'>".$melding[0]."</a></h5>";
-                        $html.="<p>".substr($melding[1],0,150)."...</p>";
+                        $html.="<h5><a href='".$melding["url"]."' target='blank'>".$melding["title"]."</a></h5>";
+                        $html.="<p>".substr($melding["body"],0,150)."...</p>";
                         $html.="</li>";
                     }
                     $html.="</ul>";
@@ -379,8 +379,8 @@ class ChatController extends Controller
                 case "VERDIENSTELIJKHEID":
                     $KdGService->eStudentserviceAuthentication();
                     $meritinfo=$KdGService->getGradeOfMerit();
-                    $html.="<p><strong>".$meritinfo[0]."%</strong></p>";
-                    $html.="<p>Dit betekent: <strong>".$meritinfo[1]."</strong></p>";
+                    $html.="<p><strong>".$meritinfo["grade"]."%</strong></p>";
+                    $html.="<p>Dit betekent: <strong>".$meritinfo["meaning"]."</strong></p>";
                     break;
                 default:
                     $html.="Er is iets fout gegaan! &#x1F62D";

@@ -17,7 +17,11 @@ class KdGService
         $this->cookieJar=new \GuzzleHttp\Cookie\CookieJar();
     }
     /**
-     * @return bool indicating if login was successful
+     * Indicates if user is succesfully logged in
+     *
+     * @param $USER
+     * @param $PASS
+     * @return bool
      */
     public function doLogin($USER, $PASS)
     {
@@ -81,6 +85,8 @@ class KdGService
         }
     }
     /**
+     * Indicates if user is succesfully logged in
+     *
      * @return bool
      */
     public function eStudentserviceAuthentication()
@@ -131,7 +137,9 @@ class KdGService
         return true;
     }
     /**
-     * @return array @[0]=>firstname @[1]=>lastname
+     * Returns name of the current user
+     *
+     * @return array ["firstname"] & ["lastname"]
      */
     public function getNameOfUser()
     {
@@ -151,19 +159,19 @@ class KdGService
         }
         //GETTING NAME PAGE HTML
         $name_html=HtmlDomParser::str_get_html($response_name->getBody()->getContents());
-        //GETTING NAME ELEMENTS TEXT
-        $forname=$name_html->find("span.firstname",0)->plaintext;
-        $lastname=$name_html->find("span.lastname",0)->plaintext;
         //RETURNING FULL NAME
-        $name=[trim($forname),trim($lastname)];
+        $name["firstname"]=trim($name_html->find("span.firstname",0)->plaintext);
+        $name["lastname"]=trim($name_html->find("span.lastname",0)->plaintext);
         return $name;
     }
     /**
-     * @return array of notifications
+     * Returns the current user's notifications
+     *
+     * @return array of notifications with notification ["title"] & ["body"] & ["url"]
      */
     public function getNotifications()
     {
-        $NOTIFICATIONS=[];
+        $allnotifications=[];
         //BROWSING TO NOTIFICATIONS URL
         try
         {
@@ -184,17 +192,20 @@ class KdGService
         //ADDING ALL NOTIFICATIONS TO OUR ARRAY
         foreach($notifications as $notification)
         {
-            $NOTIFICATION=[];
-            array_push($NOTIFICATION,$notification->find("a",0)->plaintext);
-            array_push($NOTIFICATION,$notification->find("div.textblock",0)->plaintext);
-            array_push($NOTIFICATION,$notification->find("a",0)->href);
-            array_push($NOTIFICATIONS,$NOTIFICATION);
+            $notificationtoadd=[];
+            $notificationtoadd["title"]=$notification->find("a",0)->plaintext;
+            $notificationtoadd["body"]=$notification->find("div.textblock",0)->plaintext;
+            $notificationtoadd["url"]=$notification->find("a",0)->href;
+
+            array_push($allnotifications,$notificationtoadd);
         }
-        return array_slice($NOTIFICATIONS, 0, 3);
+        return array_slice($allnotifications, 0, 3);
 
     }
     /**
-     * @return null|\simplehtmldom_1_5\simple_html_dom_node|\simplehtmldom_1_5\simple_html_dom_node[]
+     * Returns the current day menu for the main campus of the current user
+     *
+     * @return string
      */
     public function getDayMenu()
     {
@@ -220,7 +231,9 @@ class KdGService
         return $menu;
     }
     /**
-     * @return null|\simplehtmldom_1_5\simple_html_dom_node|\simplehtmldom_1_5\simple_html_dom_node[]|string
+     * Return abscents for the main education of the current user
+     *
+     * @return string
      */
     public function getAbscents()
     {
@@ -257,16 +270,11 @@ class KdGService
         $abscentshtml=HtmlDomParser::str_get_html($response_abscents_frame->getBody()->getContents());
         $abscents=$abscentshtml->find("li");
         return $abscents;
-        $ABSCENTS="<ul style='list-style-type: none; padding: 0'>";
-        foreach ($abscentshtml as $abscent)
-        {
-            $ABSCENTS.=html_entity_decode($abscent);
-        }
-        $ABSCENTS.="</ul>";
-        return $ABSCENTS;
     }
     /**
-     * @return null|\simplehtmldom_1_5\simple_html_dom_node|\simplehtmldom_1_5\simple_html_dom_node[]
+     * Returns the current printprices in a html table
+     *
+     * @return string
      */
     public function getPrintPrices()
     {
@@ -290,7 +298,9 @@ class KdGService
         return $pricestable;
     }
     /**
-     * @return array
+     * Returns the current users points for this year
+     *
+     * @return array ["nameofthelesson"] => value is the point on 20
      */
     public function getPoints()
     {
@@ -340,7 +350,9 @@ class KdGService
         return $points;
     }
     /**
-     * @return array
+     * Returns the current user's bulletinboard items
+     *
+     * @return array of bulletinitems ["title"] & ["sort"] & ["body"]
      */
     public function getBulletinboard()
     {
@@ -372,8 +384,10 @@ class KdGService
         return $bulletin;
     }
     /**
+     * Converts all links in a string to real clickable html links
+     *
      * @param $string
-     * @return null|string|string[]
+     * @return string
      */
     private function createHtmlLinksFromString($string)
     {
@@ -388,8 +402,10 @@ class KdGService
         }
     }
     /**
+     * Search for the param on 'Wie is Wie'
+     *
      * @param $searchterm
-     * @return array|bool
+     * @return array ["name"] & ["email"] & ["image"] | bool
      */
     public function searchForWhoIsWho($searchterm)
     {
@@ -435,7 +451,9 @@ class KdGService
         return $person;
     }
     /**
-     * @return array
+     * Returns more information about the main campus of the current user
+     *
+     * @return array ["address"] & ["openinghours"]
      */
     public function getCampusInfo()
     {
@@ -473,6 +491,8 @@ class KdGService
         return $campusinfo;
     }
     /**
+     * Creates table of openinghours for a campus
+     *
      * @param $campuspage_html
      * @return string
      */
@@ -512,6 +532,8 @@ class KdGService
         return $table;
     }
     /**
+     * Returns the entityid of the current user's main campus
+     *
      * @param $campushtml
      * @return bool|string
      */
@@ -521,7 +543,9 @@ class KdGService
         return substr($campushtml,strlen($searchfor)+strpos($campushtml,$searchfor),2);
     }
     /**
-     * @return bool|mixed|string
+     * Returns the current user remaining studycredit
+     *
+     * @return string
      */
     public function getStudyCredit()
     {
@@ -544,7 +568,9 @@ class KdGService
         return $credit;
     }
     /**
-     * @return array
+     * Returns the current user necessities for this year
+     *
+     * @return array of necessities ["title"] & ["details"] & ["lesson"] & ["period"]
      */
     public function getStudyNecessities()
     {
@@ -592,7 +618,9 @@ class KdGService
         return $necessities;
     }
     /**
-     * @return array|bool
+     * Returns the current user's lessons of today
+     *
+     * @return array ["title"] & ["location"] & ["time"] | bool
      */
     public function getDayLessons()
     {
@@ -636,6 +664,8 @@ class KdGService
         return $todayslessons;
     }
     /**
+     * Returns the current user's userid
+     *
      * @return bool|string
      */
     private function findUserId()
@@ -657,9 +687,10 @@ class KdGService
         $searchfor="userId = '";
         return substr($mainpagehtml,strlen($searchfor)+strpos($mainpagehtml,$searchfor),24);
     }
-
     /**
-     * @return array
+     * Returns the current user's subjects with link to ECTS-fiche
+     *
+     * @return array of subjects ["title"] & ["ectslink"] & ["studypoints"]
      */
     public function getSubjectsWithECTSLink()
     {
@@ -707,7 +738,9 @@ class KdGService
         return $allsubjects;
     }
     /**
-     * @return array
+     * Returns the current user's grade of merit
+     *
+     * @return array ["grade"] & ["meaning"]
      */
     public function getGradeOfMerit()
     {
@@ -783,7 +816,7 @@ class KdGService
         {
             $meaning="Grootste onderscheiding";
         }
-        return [round($gradeofmerit,0),$meaning];
+        return ["grade"=>round($gradeofmerit,0),"meaning"=>$meaning];
     }
 
 }

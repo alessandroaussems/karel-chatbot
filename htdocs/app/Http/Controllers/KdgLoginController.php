@@ -21,19 +21,17 @@ class KdgLoginController extends Controller
         if($KdGService->doLogin($login,$password))
         {
             $fullname=$KdGService->getNameOfUser();
-            $forname=$fullname[0];
-            $lastname=$fullname[1];
 
             $session=Session::find($chatsession);
-            $session->firstname=$forname;
-            $session->lastname=$lastname;
+            $session->firstname=
+            $session->lastname=$fullname["lastname"];
             $session->login=$login;
             $session->password=openssl_encrypt($password,"AES-128-ECB",$_ENV['APP_KEY']);
             $session->save();
 
             $user=new \stdClass();
             $user->email=$login;
-            $user->name=$forname;
+            $user->name=$fullname["firstname"];;
             Mail::send('mail.thanksintranetconnect', ['user' => $user], function ($m) use ($user) {
 
                 $m->to($user->email)->subject('Intranet gekoppeld!');
