@@ -22,4 +22,5 @@
     </div>
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="{{asset('js/countlivechats.js')}}"></script>
+    <script src="{{asset('js/adminheartbleed.js')}}"></script>
 @endsection

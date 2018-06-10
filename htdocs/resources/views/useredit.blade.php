@@ -21,4 +21,5 @@
         {{ Form::button('Beheerder aanpassen', array('type' => 'submit')) }}
 
         {{ Form::close() }}
+    <script src="{{asset('js/adminheartbleed.js')}}"></script>
 @endsection

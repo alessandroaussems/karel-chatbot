@@ -6,6 +6,7 @@ use App\Livechat;
 use App\Providers\KdGClientProvider;
 use App\Services\KdGService;
 use App\Session;
+use App\User;
 use Illuminate\Http\Request;
 use App\Sentence;
 use App\Message;
@@ -342,7 +343,14 @@ class ChatController extends Controller
                         $livechat->save();
                         event(new SendToUser("newchat","newchatid",["id"=>$_COOKIE["chatsession"]]));
                         event(new SendToUser("newchat","chatcount",["number"=>Livechat::count()]));
-                        return "<p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! Om de sessie te beeïndigen kan je altijd 'Medewerker stop' ingeven.</p>";
+                        if($this->checkIfAdminOnline())
+                        {
+                            return "<p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! Om de sessie te beeïndigen kan je altijd 'Medewerker stop' ingeven.</p>";
+                        }
+                        else
+                        {
+                            return "<p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! Om de sessie te beeïndigen kan je altijd 'Medewerker stop' ingeven. Er is momenteel <strong>GEEN</strong> medewerker online. Je kan je vraag alsnog stellen, ik stuur je dan een mailtje als je antwoord hebt!</p>";
+                        }
                     }
                     break;
                 case "CAMPUS":
@@ -393,6 +401,25 @@ class ChatController extends Controller
         {
             return "<p onclick='showLoginForm(this.event)' style='cursor: pointer'><strong>Log je in bij KdG<span style='font-family: icon; border: 1px solid white; margin-left: 1%; margin-right: 1%; padding: 1%' onclick='showLoginForm(this.event)'> h </span> zodat ik deze informatie te weten kan komen!</strong></p>";
         }
+    }
+    private function checkIfAdminOnline()
+    {
+        $onlineusers=[];
+        $users=User::all();
+        foreach ($users as $user)
+        {
+            date_default_timezone_set("Europe/Brussels");
+            $differce=round(abs( strtotime(date("Y-m-d H:i:s")) - strtotime($user->last_active)) / 60,0);
+            if($differce<4)
+            {
+                array_push($onlineusers,$user);
+            }
+        }
+        if(count($onlineusers)!=0)
+        {
+            return true;
+        }
+        return false;
     }
 }
 

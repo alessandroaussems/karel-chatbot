@@ -21,4 +21,5 @@
         </ul>
         <a class="add" href="/sentences/create/{{$message->id}}">n</a><br>
     </div>
+    <script src="{{asset('js/adminheartbleed.js')}}"></script>
 @endsection
