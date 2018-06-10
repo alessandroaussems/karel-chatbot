@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Session;
 use App\Events\SendToUser;
+use Illuminate\Support\Facades\Mail;
 
 class LivechatController extends Controller
 {
@@ -35,9 +36,20 @@ class LivechatController extends Controller
      */
     public function handleMessage($message,$sessionid)
     {
+        $session=Session::find($sessionid);
         $message=urldecode($message);//DECODE TO ORIGINAL STRING
         $this->addToSession($message,"B",$sessionid);
         event(new SendToUser($sessionid,"chatmessage",["message"=>$message]));
+        if($this->userIsOffline($sessionid))
+        {
+            $user=new \stdClass();
+            $user->email=$session->login;
+            $user->name=$session->firstname;
+            Mail::send('mail.newchatmessage', ['user' => $user], function ($m) use ($user) {
+
+                $m->to($user->email)->subject('Nieuw bericht!');
+            });
+        }
     }
     /**
      * @param $messagetoadd
@@ -52,5 +64,16 @@ class LivechatController extends Controller
         array_push($messages,$toadd);
         $session->messages=json_encode($messages);
         $session->save();
+    }
+    private function userIsOffline($session)
+    {
+        date_default_timezone_set("Europe/Brussels");
+        $session=Session::find($session);
+        $differce=round(abs( strtotime(date("Y-m-d H:i:s")) - strtotime($session->last_active)) / 60,0);
+        if($differce>4)
+        {
+            return true;
+        }
+        return false;
     }
 }
