@@ -187,6 +187,7 @@ class KdGService
             $NOTIFICATION=[];
             array_push($NOTIFICATION,$notification->find("a",0)->plaintext);
             array_push($NOTIFICATION,$notification->find("div.textblock",0)->plaintext);
+            array_push($NOTIFICATION,$notification->find("a",0)->href);
             array_push($NOTIFICATIONS,$NOTIFICATION);
         }
         return array_slice($NOTIFICATIONS, 0, 3);

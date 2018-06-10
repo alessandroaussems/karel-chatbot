@@ -240,7 +240,7 @@ class ChatController extends Controller
                     foreach ($meldingen as $melding)
                     {
                         $html.="<li>";
-                        $html.="<h5>".$melding[0]."</h5>";
+                        $html.="<h5><a href='".$melding[2]."' target='blank'>".$melding[0]."</a></h5>";
                         $html.="<p>".substr($melding[1],0,150)."...</p>";
                         $html.="</li>";
                     }
