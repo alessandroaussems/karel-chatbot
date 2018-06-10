@@ -818,5 +818,52 @@ class KdGService
         }
         return ["grade"=>round($gradeofmerit,0),"meaning"=>$meaning];
     }
+    /**
+     * Returns the current user's phone number
+     *
+     * @return string
+     */
+    public function getPhonenumber()
+    {
+        $phonenumber="";
+        try
+        {
+            $response_estudentservice = $this->client->get(Config::get("kdg.estudentservice").'/Main.aspx', [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $estudent_html=HtmlDomParser::str_get_html($response_estudentservice->getBody()->getContents());
+        $userdataurl=$estudent_html->find("a.mnu",5)->href;
+        try
+        {
+            $response_userdata = $this->client->get(Config::get("kdg.estudentservice").'/'.$userdataurl, [
+                    'allow_redirects' => true,
+                    'cookies' => $this->cookieJar,
+                ]
+            );
+        }
+        catch (\Exception $e)
+        {
+            //die($e->getMessage());
+            die ("Er ging iets mis! &#x1F62D");
+        }
+        $userdatahtml=HtmlDomParser::str_get_html($response_userdata->getBody()->getContents());
+        $userdata=$userdatahtml->find("div.md-item");
+        foreach ($userdata as $data)
+        {
+            if(trim($data->find("span.md-label",0)->plaintext)=="Student:")
+            {
+                $phonenumber=preg_replace('/\D/', '', $data->find("span.md-value",0)->plaintext);
+            }
+        }
+        return $phonenumber;
+    }
 
 }
