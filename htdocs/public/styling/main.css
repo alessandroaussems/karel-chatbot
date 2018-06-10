@@ -92,7 +92,8 @@ nav {
         overflow-wrap: break-word;
         word-break: break-word; }
       .chat ul .botmessage a, .livechat ul .botmessage a {
-        color: inherit; }
+        color: inherit;
+        text-decoration: none; }
       .chat ul .botmessage a:hover, .livechat ul .botmessage a:hover {
         text-decoration: underline; }
       .chat ul .botmessage img, .livechat ul .botmessage img {
