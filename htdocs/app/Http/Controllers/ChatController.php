@@ -405,7 +405,8 @@ class ChatController extends Controller
     private function checkIfAdminOnline()
     {
         $onlineusers=[];
-        $users=User::all();
+        $users=User::where("role","chatter")->orWhere("role","admin")->get();
+        dump($users);
         foreach ($users as $user)
         {
             date_default_timezone_set("Europe/Brussels");
