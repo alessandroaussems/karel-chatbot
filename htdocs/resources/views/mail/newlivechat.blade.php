@@ -19,10 +19,9 @@
                                 <tr>
                                     <td>
                                         <p>Hallo {!! $user->name !!}</p>
-                                        <p>Ik ben Karel-Chatbot! Dé chatbot van KdG voor al je vragen!</p>
-                                        <p>Bedankt om je KdG-account te koppelen! Ik kan je nu nog beter helpen.</p>
-                                        <p>Weten wat ik allemaal kan? Kom het <a href="https://karel-chatbot.be/">hier</a> te weten!</p>
-                                        <p>Tot de volgende!<br>Karel-Chatbot<p>
+                                        <p>Een gebruiker heeft een vraag gesteld in livechat. Er was niemand online, daarmee dat ik je het laat weten.</p>
+                                        <p>Open de chat <a href="https://karel-chatbot.be/livechat/{{$user->sessionid}}">hier</a></p>
+                                        <p>Groetjes!<br>Karel-Chatbot<p>
                                     </td>
                                 </tr>
                             </table>

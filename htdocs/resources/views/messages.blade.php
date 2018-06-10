@@ -19,4 +19,5 @@
         </ul>
     </div>
     {{ $messages->links() }}
+    <script src="{{asset('js/adminheartbleed.js')}}"></script>
 @endsection

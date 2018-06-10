@@ -18,4 +18,5 @@
         {{ Form::close() }}
 
     </div>
+    <script src="{{asset('js/adminheartbleed.js')}}"></script>
 @endsection

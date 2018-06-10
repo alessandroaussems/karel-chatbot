@@ -25,4 +25,5 @@
     emoticonsRoot: window.location.origin+"/img/"
     });
     </script>
+    <script src="{{asset('js/adminheartbleed.js')}}"></script>
 @endsection

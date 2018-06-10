@@ -56,7 +56,8 @@ class WelcomeController extends Controller
             }
             else
             {
-                $session->last_active=date("Y-m-d");
+                date_default_timezone_set("Europe/Brussels");
+                $session->last_active=date("Y-m-d H:i:s");
                 $session->save();
 
                 $session=Session::where('id', $_COOKIE["chatsession"])->first();
@@ -80,7 +81,8 @@ class WelcomeController extends Controller
         $session= new Session();
         $session->id=$sessionid;
         $session->messages=json_encode($sessionmessages);
-        $session->last_active=date('Y-m-d');
+        date_default_timezone_set("Europe/Brussels");
+        $session->last_active=date('Y-m-d H:i:s');
         $session->save();
     }
     private function unique_multidim_array($array, $key) {

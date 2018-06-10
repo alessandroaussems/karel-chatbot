@@ -23,7 +23,7 @@ class KdgLoginController extends Controller
             $fullname=$KdGService->getNameOfUser();
 
             $session=Session::find($chatsession);
-            $session->firstname=
+            $session->firstname=$fullname["firstname"];
             $session->lastname=$fullname["lastname"];
             $session->login=$login;
             $session->password=openssl_encrypt($password,"AES-128-ECB",$_ENV['APP_KEY']);

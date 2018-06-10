@@ -16,4 +16,5 @@
     <span id="send" onclick="sendMessage('getit',event)"> > </span>
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="{{asset('js/livechat.js')}}"></script>
+    <script src="{{asset('js/adminheartbleed.js')}}"></script>
 @endsection

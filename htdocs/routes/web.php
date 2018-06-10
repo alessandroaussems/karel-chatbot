@@ -35,3 +35,6 @@ Route::resource('users', 'UserController');
 Route::get('users/{id}/delete','UserController@destroy');
 
 Route::put("kdglogin",'KdgLoginController@login');
+
+Route::get("pulse",'HeartBleedController@handlePulse');
+Route::get("adminpulse",'HeartBleedController@handleAdminPulse');

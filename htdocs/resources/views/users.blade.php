@@ -17,4 +17,5 @@
         </table>
     </div>
     {{ $users->links() }}
+    <script src="{{asset('js/adminheartbleed.js')}}"></script>
 @endsection
