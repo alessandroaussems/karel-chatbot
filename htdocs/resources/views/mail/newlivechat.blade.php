@@ -19,7 +19,7 @@
                                 <tr>
                                     <td>
                                         <p>Hallo {!! $user->name !!}</p>
-                                        <p>Een gebruiker heeft een vraag gesteld in livechat. Er was niemand online, daarmee dat ik je het laat weten</p>
+                                        <p>Een gebruiker heeft een vraag gesteld in livechat. Er was niemand online, daarmee dat ik je het laat weten.</p>
                                         <p>Open de chat <a href="https://karel-chatbot.be/livechat/{{$user->sessionid}}">hier</a></p>
                                         <p>Groetjes!<br>Karel-Chatbot<p>
                                     </td>

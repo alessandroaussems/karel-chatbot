@@ -20,7 +20,7 @@
                                     <td>
                                         <p>Hallo {!! $user->name !!}</p>
                                         <p>Ik ben Karel-Chatbot! Dé chatbot van KdG voor al je vragen!</p>
-                                        <p>Bedankt om je KdG-account te koppelen! Ik kan je nu nog beter helpen</p>
+                                        <p>Bedankt om je KdG-account te koppelen! Ik kan je nu nog beter helpen.</p>
                                         <p>Weten wat ik allemaal kan? Kom het <a href="https://karel-chatbot.be/">hier</a> te weten!</p>
                                         <p>Tot de volgende!<br>Karel-Chatbot<p>
                                     </td>
