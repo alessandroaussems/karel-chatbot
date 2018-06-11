@@ -68,13 +68,25 @@ class WelcomeController extends Controller
         }
     }
     /**
+     * @param $sessionidfromurl
+     * @return  /
+     */
+    public function loadsession($sessionidfromurl)
+    {
+        $sessionidfromurl=openssl_decrypt($sessionidfromurl,"AES-128-ECB",$_ENV['APP_KEY']);
+        setcookie("chatsession", $sessionidfromurl,time() + $this->length,"/");
+        setcookie("listen","true",time() + $this->length,"/");
+        setcookie("visits",2,time() + $this->length,"/");
+        return redirect("/");
+    }
+    /**
      * start new session
      */
     private function startNewSession()
     {
         $sessionid=uniqid();
         setcookie("chatsession", $sessionid,time() + $this->length);
-        setcookie("visits",1,time() + $this->length);
+        setcookie("visits", 1,time() + $this->length);
 
         $sessionmessages[0]=["Hallo ik ben Karel! Stel je vragen maar! Weet je niet wat vragen? Dan kan je altijd 'Help' typen!","B"];
 
@@ -85,6 +97,11 @@ class WelcomeController extends Controller
         $session->last_active=date('Y-m-d H:i:s');
         $session->save();
     }
+    /**
+     * @param $array
+     * @param $key
+     * @return array
+     */
     private function unique_multidim_array($array, $key) {
     $temp_array = array();
     $i = 0;

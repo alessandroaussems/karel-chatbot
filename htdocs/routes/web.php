@@ -12,6 +12,7 @@
 */
 
 Route::get('/','WelcomeController@welcome');
+Route::get('session/{sessionidfromurl}','WelcomeController@loadsession');
 Route::get('chat/{message}','ChatController@handleMessage');
 Route::get('livechat/{sessionid}','LivechatController@livechat');
 Route::get('sendliveresponse/{message}/sessionid/{sessionid}','LivechatController@handleMessage');

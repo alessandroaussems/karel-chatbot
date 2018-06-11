@@ -44,9 +44,11 @@ class LivechatController extends Controller
         event(new SendToUser($sessionid,"chatmessage",["message"=>$message]));
         if($this->userIsOffline($sessionid))
         {
+            echo "kay";
             $user=new \stdClass();
             $user->email=$session->login;
             $user->name=$session->firstname;
+            $user->sessionid=rawurlencode(openssl_encrypt($sessionid,"AES-128-ECB",$_ENV['APP_KEY']));
             Mail::send('mail.newchatmessage', ['user' => $user], function ($m) use ($user) {
 
                 $m->to($user->email)->subject('Nieuw bericht!');
@@ -59,7 +61,7 @@ class LivechatController extends Controller
             Nexmo::message()->send([
                 'to'   => $phonenumber,
                 'from' => '32471448210',
-                'text' => 'Karel-Chatbot: Een medewerker heeft geantwoord op je vraag! Surf naar: https://karel-chatbot.be om het antwoord te lezen!'
+                'text' => 'Karel-Chatbot: Een medewerker heeft geantwoord op je vraag! Surf naar: https://karel-chatbot.be/session'. $user->sessionid.'om het antwoord te lezen!'
             ]);
             */
         }
