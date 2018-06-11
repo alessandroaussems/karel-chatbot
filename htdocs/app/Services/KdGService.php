@@ -304,6 +304,7 @@ class KdGService
      */
     public function getPoints()
     {
+        $this->eStudentserviceAuthentication();
         //BROWSING TO INTRANET URL
         try
         {
@@ -549,6 +550,7 @@ class KdGService
      */
     public function getStudyCredit()
     {
+        $this->eStudentserviceAuthentication();
         //BROWSING TO INTRANET URL
         try
         {
@@ -574,6 +576,7 @@ class KdGService
      */
     public function getStudyNecessities()
     {
+        $this->eStudentserviceAuthentication();
         $necessities=[];
         //BROWSING TO INTRANET URL
         try
@@ -694,6 +697,7 @@ class KdGService
      */
     public function getSubjectsWithECTSLink()
     {
+        $this->eStudentserviceAuthentication();
         $allsubjects=[];
         //BROWSING TO INTRANET URL
         try
@@ -744,6 +748,7 @@ class KdGService
      */
     public function getGradeOfMerit()
     {
+        $this->eStudentserviceAuthentication();
         $totalofresultsmultipliedbystudypoints=0;
         $totalstudypoints=0;
         try
@@ -825,6 +830,7 @@ class KdGService
      */
     public function getPhonenumber()
     {
+        $this->eStudentserviceAuthentication();
         $phonenumber="";
         try
         {

@@ -280,7 +280,6 @@ class ChatController extends Controller
                     $html.=$KdGService->getPrintPrices();
                     break;
                 case "PUNTEN":
-                    $KdGService->eStudentserviceAuthentication();
                     $points=$KdGService->getPoints();
                     $html.="<table border='1' style='width: 80%; margin: 0 auto'>";
                     foreach ($points as $lecture => $point)
@@ -361,11 +360,9 @@ class ChatController extends Controller
                         $html.=$campusinfo["openinghours"];
                     break;
                 case "LEERKREDIET":
-                    $KdGService->eStudentserviceAuthentication();
                     $html.="<p>".$KdGService->getStudyCredit()."</p><br><small>Dit is de meest recente raadpleging.</small>";
                     break;
                 case "BENODIGDHEDEN":
-                    $KdGService->eStudentserviceAuthentication();
                     $necessities=$KdGService->getStudyNecessities();
                     foreach ($necessities as $necessity)
                     {
@@ -378,7 +375,6 @@ class ChatController extends Controller
                     }
                     break;
                 case "VAKKEN":
-                    $KdGService->eStudentserviceAuthentication();
                     $subjects=$KdGService->getSubjectsWithECTSLink();
                     foreach ($subjects as $subject)
                     {
@@ -386,7 +382,6 @@ class ChatController extends Controller
                     }
                     break;
                 case "VERDIENSTELIJKHEID":
-                    $KdGService->eStudentserviceAuthentication();
                     $meritinfo=$KdGService->getGradeOfMerit();
                     $html.="<p><strong>".$meritinfo["grade"]."%</strong></p>";
                     $html.="<p>Dit betekent: <strong>".$meritinfo["meaning"]."</strong></p>";
