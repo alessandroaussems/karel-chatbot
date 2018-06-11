@@ -233,7 +233,7 @@ class KdGService
     /**
      * Return abscents for the main education of the current user
      *
-     * @return string
+     * @return array of abscents
      */
     public function getAbscents()
     {
