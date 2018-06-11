@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\KdGService;
 use App\Session;
 use App\Events\SendToUser;
 use Illuminate\Support\Facades\Mail;
+use Nexmo\Laravel\Facade\Nexmo;
 
 class LivechatController extends Controller
 {
@@ -49,6 +51,17 @@ class LivechatController extends Controller
 
                 $m->to($user->email)->subject('Nieuw bericht!');
             });
+            /*$KdGService=new KdGService();
+            $KdGService->doLogin($session->login,openssl_decrypt($session->password,"AES-128-ECB",$_ENV['APP_KEY']));
+            $KdGService->eStudentserviceAuthentication();
+            $phonenumber=$KdGService->getPhonenumber();
+            $phonenumber=preg_replace("/0/", "32", $phonenumber, 1); //Correct Nexmo format
+            Nexmo::message()->send([
+                'to'   => $phonenumber,
+                'from' => '32471448210',
+                'text' => 'Karel-Chatbot: Een medewerker heeft geantwoord op je vraag! Surf naar: https://karel-chatbot.be om het antwoord te lezen!'
+            ]);
+            */
         }
     }
     /**
