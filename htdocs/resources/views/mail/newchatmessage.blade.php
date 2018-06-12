@@ -20,7 +20,7 @@
                                     <td>
                                         <p>Hallo {!! $user->name !!}</p>
                                         <p>Een medewerker heeft geantwoord op je vraag!</p>
-                                        <p>Surf snel naar <a href="https://karel-chatbot.be/session/{{$user->sessionid}}">karel-chatbot.be</a> om het antwoord te lezen!</p>
+                                        <p>Surf snel naar <a href="https://karel-chatbot.be/session/?sessionid={{$user->sessionid}}">karel-chatbot.be</a> om het antwoord te lezen!</p>
                                         <p>Tot de volgende!<br>Karel-Chatbot<p>
                                     </td>
                                 </tr>
