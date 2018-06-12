@@ -32,7 +32,6 @@ class DailyUpdate extends Command
     {
         parent::__construct();
     }
-
     /**
      * Execute the console command.
      *
