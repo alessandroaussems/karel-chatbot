@@ -21,7 +21,7 @@
                                         <p>Hallo {!! $user->name !!}</p>
                                         <p>Ik ben Karel-Chatbot! Dé chatbot van KdG voor al je vragen!</p>
                                         <p>Bedankt om je KdG-account te koppelen! Ik kan je nu nog beter helpen.</p>
-                                        <p>Weten wat ik allemaal kan? Kom het <a href="https://karel-chatbot.be/">hier</a> te weten!</p>
+                                        <p>Weten wat ik allemaal kan? Kom het <a href="https://karel-chatbot.be/session/?sessionid={{$user->sessionid}}">hier</a> te weten!</p>
                                         <p>Tot de volgende!<br>Karel-Chatbot<p>
                                     </td>
                                 </tr>
@@ -33,6 +33,6 @@
         </td>
     </tr>
 </table>
-<div class="footer"> <table border="0" cellpadding="0" cellspacing="0"> <tr> <td class="content-block"> <br>This is an automated e-mail via <a href="https://karel-chatbot.be/">karel-chatbot.be</a>. <br></td></tr><tr> <td class="content-block powered-by"> <br><a href="https://karel-chatbot.be/">Karel-Chatbot</a> </td></tr></table></div>
+<div class="footer"> <table border="0" cellpadding="0" cellspacing="0"> <tr> <td class="content-block"> <br>This is an automated e-mail via <a href="https://karel-chatbot.be/">karel-chatbot.be</a>. <br></td></tr><tr> <td class="content-block powered-by"> <br><a href="https://karel-chatbot.be/">Karel-Chatbot</a></td></tr><tr><td>Om je uit te schrijven klik <a href="https://karel-chatbot.be/notifications?sessionid={{$user->sessionid}}">hier.</a> </td></tr></table></div>
 </body>
 </html>

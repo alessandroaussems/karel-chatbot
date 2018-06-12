@@ -44,26 +44,31 @@ class LivechatController extends Controller
         event(new SendToUser($sessionid,"chatmessage",["message"=>$message]));
         if($this->userIsOffline($sessionid))
         {
-            echo "kay";
             $user=new \stdClass();
             $user->email=$session->login;
             $user->name=$session->firstname;
             $user->sessionid=rawurlencode(openssl_encrypt($sessionid,"AES-128-ECB",$_ENV['APP_KEY']));
-            Mail::send('mail.newchatmessage', ['user' => $user], function ($m) use ($user) {
+            if($session->sendmail)
+            {
+                Mail::send('mail.newchatmessage', ['user' => $user], function ($m) use ($user) {
 
-                $m->to($user->email)->subject('Nieuw bericht!');
-            });
-            /*$KdGService=new KdGService();
-            $KdGService->doLogin($session->login,openssl_decrypt($session->password,"AES-128-ECB",$_ENV['APP_KEY']));
-            $KdGService->eStudentserviceAuthentication();
-            $phonenumber=$KdGService->getPhonenumber();
-            $phonenumber=preg_replace("/0/", "32", $phonenumber, 1); //Correct Nexmo format
-            Nexmo::message()->send([
+                    $m->to($user->email)->subject('Nieuw bericht!');
+                });
+            }
+            if($session->sendsms)
+            {
+                /*$KdGService=new KdGService();
+                $KdGService->doLogin($session->login,openssl_decrypt($session->password,"AES-128-ECB",$_ENV['APP_KEY']));
+                $KdGService->eStudentserviceAuthentication();
+                $phonenumber=$KdGService->getPhonenumber();
+                $phonenumber=preg_replace("/0/", "32", $phonenumber, 1); //Correct Nexmo format
+                Nexmo::message()->send([
                 'to'   => $phonenumber,
                 'from' => '32471448210',
                 'text' => 'Karel-Chatbot: Een medewerker heeft geantwoord op je vraag! Surf naar: https://karel-chatbot.be/session'. $user->sessionid.'om het antwoord te lezen!'
-            ]);
-            */
+                ]);
+                */
+            }
         }
     }
     /**

@@ -42,14 +42,14 @@ class DailyUpdate extends Command
         $sessions=Session::all();
         foreach($sessions as $session)
         {
-            if(isset($session->login))
+            if(isset($session->login) && $session->sendmail)
             {
                 $KdGService=new KdGService();
                 $KdGService->doLogin($session->login,openssl_decrypt($session->password,"AES-128-ECB",$_ENV['APP_KEY']));
                 $data=new \stdClass();
                 $data->email=$session->login;
                 $data->name=$session->firstname;
-                $data->sessionid=rawurlencode(openssl_encrypt($session->getAttributes()["id"],"AES-128-ECB",$_ENV['APP_KEY']));
+                $data->sessionid=rawurlencode(openssl_encrypt($session->id,"AES-128-ECB",$_ENV['APP_KEY']));
                 $data->notifications=$KdGService->getNotifications();
                 $data->abscents=$KdGService->getAbscents();
                 Mail::send('mail.dailyupdate', ['data' => $data], function ($m) use ($data) {

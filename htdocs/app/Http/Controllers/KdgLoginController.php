@@ -31,13 +31,15 @@ class KdgLoginController extends Controller
 
             $user=new \stdClass();
             $user->email=$login;
-            $user->name=$fullname["firstname"];;
-            Mail::send('mail.thanksintranetconnect', ['user' => $user], function ($m) use ($user) {
+            $user->name=$fullname["firstname"];
+            $user->sessionid=rawurlencode(openssl_encrypt($session->id,"AES-128-ECB",$_ENV['APP_KEY']));
+            if($session->sendmail)
+            {
+                Mail::send('mail.thanksintranetconnect', ['user' => $user], function ($m) use ($user) {
 
-                $m->to($user->email)->subject('Intranet gekoppeld!');
-            });
-
-
+                    $m->to($user->email)->subject('Intranet gekoppeld!');
+                });
+            }
             echo json_encode(true);
         }
         else

@@ -9,6 +9,7 @@ class Session extends Model
     protected $table = 'sessions';
     public $timestamps = false;
     protected $primaryKey = 'id';
+    public $incrementing = false;
     protected $fillable = [
         'id',
         'messages',
