@@ -17,6 +17,8 @@ class CreateSessionsTable extends Migration
             $table->string('id')->primary();;
             $table->longText("messages");
             $table->dateTime("last_active");
+            $table->boolean("sendmail");
+            $table->boolean("sendsms");
         });
     }
 

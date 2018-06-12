@@ -40,7 +40,7 @@ class DailyUpdate extends Command
     public function handle()
     {
         $sessions=Session::all();
-        foreach ($sessions as $session)
+        foreach($sessions as $session)
         {
             if(isset($session->login))
             {
@@ -49,7 +49,7 @@ class DailyUpdate extends Command
                 $data=new \stdClass();
                 $data->email=$session->login;
                 $data->name=$session->firstname;
-                $data->sessionid=rawurlencode(openssl_encrypt($session->id,"AES-128-ECB",$_ENV['APP_KEY']));
+                $data->sessionid=rawurlencode(openssl_encrypt($session->getAttributes()["id"],"AES-128-ECB",$_ENV['APP_KEY']));
                 $data->notifications=$KdGService->getNotifications();
                 $data->abscents=$KdGService->getAbscents();
                 Mail::send('mail.dailyupdate', ['data' => $data], function ($m) use ($data) {

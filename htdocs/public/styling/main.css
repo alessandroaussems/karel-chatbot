@@ -482,12 +482,12 @@ nav {
     margin-left: 76%; }
   100% {
     margin-left: 96%; } }
-.email, .login, .register, .reset, .search, .useredit, .edituserheader {
+.email, .login, .register, .reset, .search, .useredit, .edituserheader, .notificationedit {
   width: 30%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 2.5%; }
-  .email > input, .login > input, .register > input, .reset > input, .search > input, .useredit > input, .edituserheader > input {
+  .email > input, .login > input, .register > input, .reset > input, .search > input, .useredit > input, .edituserheader > input, .notificationedit > input {
     font-family: Verdana, Geneva, sans-serif;
     width: 100%;
     height: 3vh;
@@ -495,9 +495,9 @@ nav {
     margin-bottom: 2%;
     border: 3px solid #0c090a;
     font-size: 16px; }
-  .email > input:focus, .login > input:focus, .register > input:focus, .reset > input:focus, .search > input:focus, .useredit > input:focus, .edituserheader > input:focus {
+  .email > input:focus, .login > input:focus, .register > input:focus, .reset > input:focus, .search > input:focus, .useredit > input:focus, .edituserheader > input:focus, .notificationedit > input:focus {
     outline: none; }
-  .email > select, .login > select, .register > select, .reset > select, .search > select, .useredit > select, .edituserheader > select {
+  .email > select, .login > select, .register > select, .reset > select, .search > select, .useredit > select, .edituserheader > select, .notificationedit > select {
     padding-left: 1%;
     width: 102%;
     height: 3.5vh;
@@ -509,9 +509,9 @@ nav {
     background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='#444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
     background-position: 100% 50%;
     background-repeat: no-repeat; }
-  .email > select:focus, .login > select:focus, .register > select:focus, .reset > select:focus, .search > select:focus, .useredit > select:focus, .edituserheader > select:focus {
+  .email > select:focus, .login > select:focus, .register > select:focus, .reset > select:focus, .search > select:focus, .useredit > select:focus, .edituserheader > select:focus, .notificationedit > select:focus {
     outline: none; }
-  .email > button, .login > button, .register > button, .reset > button, .search > button, .useredit > button, .edituserheader > button {
+  .email > button, .login > button, .register > button, .reset > button, .search > button, .useredit > button, .edituserheader > button, .notificationedit > button {
     padding: 1%;
     color: #ffffff;
     background-color: #0c090a;
@@ -520,21 +520,21 @@ nav {
     margin-left: 30%;
     margin-right: 30%;
     font-family: Verdana, Geneva, sans-serif; }
-  .email > button:focus, .login > button:focus, .register > button:focus, .reset > button:focus, .search > button:focus, .useredit > button:focus, .edituserheader > button:focus {
+  .email > button:focus, .login > button:focus, .register > button:focus, .reset > button:focus, .search > button:focus, .useredit > button:focus, .edituserheader > button:focus, .notificationedit > button:focus {
     outline: none; }
-  .email > button:hover, .login > button:hover, .register > button:hover, .reset > button:hover, .search > button:hover, .useredit > button:hover, .edituserheader > button:hover {
+  .email > button:hover, .login > button:hover, .register > button:hover, .reset > button:hover, .search > button:hover, .useredit > button:hover, .edituserheader > button:hover, .notificationedit > button:hover {
     background-color: #ffffff;
     border-color: #0c090a;
     color: #0c090a;
     cursor: pointer; }
-  .email a, .login a, .register a, .reset a, .search a, .useredit a, .edituserheader a {
+  .email a, .login a, .register a, .reset a, .search a, .useredit a, .edituserheader a, .notificationedit a {
     display: block;
     margin-top: 5%;
     font-size: 2vh; }
-  .email .invalid-feedback, .login .invalid-feedback, .register .invalid-feedback, .reset .invalid-feedback, .search .invalid-feedback, .useredit .invalid-feedback, .edituserheader .invalid-feedback {
+  .email .invalid-feedback, .login .invalid-feedback, .register .invalid-feedback, .reset .invalid-feedback, .search .invalid-feedback, .useredit .invalid-feedback, .edituserheader .invalid-feedback, .notificationedit .invalid-feedback {
     font-size: 1vw;
     color: red; }
-  .email #important, .login #important, .register #important, .reset #important, .search #important, .useredit #important, .edituserheader #important {
+  .email #important, .login #important, .register #important, .reset #important, .search #important, .useredit #important, .edituserheader #important, .notificationedit #important {
     color: red; }
 
 .search {
@@ -661,5 +661,8 @@ small {
     text-decoration: underline; }
   .pagination .active span {
     text-decoration: underline !important; }
+
+#succes {
+  color: #87B447; }
 
 /*# sourceMappingURL=main.css.map */

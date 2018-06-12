@@ -71,9 +71,9 @@ class WelcomeController extends Controller
      * @param $sessionidfromurl
      * @return  /
      */
-    public function loadsession($sessionidfromurl)
+    public function loadsession(Request $request)
     {
-        $sessionidfromurl=openssl_decrypt($sessionidfromurl,"AES-128-ECB",$_ENV['APP_KEY']);
+        $sessionidfromurl=openssl_decrypt($request->input("sessionid"),"AES-128-ECB",$_ENV['APP_KEY']);
         setcookie("chatsession", $sessionidfromurl,time() + $this->length,"/");
         setcookie("listen","true",time() + $this->length,"/");
         setcookie("visits",2,time() + $this->length,"/");
