@@ -28,7 +28,7 @@ class SentenceController extends Controller
      */
     public function create($messageid)
     {
-        return view("sentenceadd")->with("messageid",$messageid);
+        return view("sentenceadd")->with("messageid",$messageid)->with("pagetitle", "Zin toevoegen");
     }
     /**
      * Store a newly created resource in storage.
@@ -71,7 +71,7 @@ class SentenceController extends Controller
     public function edit($id,$messageid)
     {
         $sentence = Sentence::where("id",$id)->first();
-        return view("sentenceedit")->with('messageid', $messageid)->with("sentence",$sentence);
+        return view("sentenceedit")->with('messageid', $messageid)->with("sentence",$sentence)->with("pagetitle", "Zin bewerken");
     }
     /**
      * Update the specified resource in storage.

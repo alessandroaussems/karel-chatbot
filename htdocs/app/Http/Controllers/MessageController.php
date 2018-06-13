@@ -43,7 +43,7 @@ class MessageController extends Controller
             $messages = Message::paginate(9);
             $search="";
         }
-        return view("messages")->with('messages',$messages)->with("search",$search)->with("error",$error);
+        return view("messages")->with('messages',$messages)->with("search",$search)->with("error",$error)->with("pagetitle", "Berichten");
     }
     /**
      * Show the form for creating a new resource.
@@ -52,7 +52,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        return view("messageadd");
+        return view("messageadd")->with("pagetitle", "Bericht toevoegen");
     }
     /**
      * Store a newly created resource in storage.
@@ -90,7 +90,7 @@ class MessageController extends Controller
         $answers= Sentence::where("message_id",$id)->get();
         if(isset($message))
         {
-            return view("messagedetail")->with('message',$message)->with("answers",$answers);
+            return view("messagedetail")->with('message',$message)->with("answers",$answers)->with("pagetitle", "Bericht detail");
         }
         else
         {
@@ -109,7 +109,7 @@ class MessageController extends Controller
         $message = Message::where("id",$id)->first();
         if(isset($message))
         {
-            return view("messageedit")->with('message', $message);
+            return view("messageedit")->with('message', $message)->with("pagetitle", "Bericht bewerken");
         }
         else
         {

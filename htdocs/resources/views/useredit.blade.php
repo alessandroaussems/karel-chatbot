@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="edituserheader">
-        <h3>Beheerder aanpassen</h3>
+        <h3>Beheerder bewerken</h3>
         <small>Deze kan Karel-Chatbot dan mee instellen!</small><br>
         <small id="important">*Opmerking: Omwille van veiligheidsredenen is het niet toegestaan om het paswoord te wijzigen</small>
         {{ Html::ul($errors->all(), array('class' => 'errors'))}}

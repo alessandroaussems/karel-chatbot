@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('admin', 'AdminController@index');
 Route::get('tags', 'AdminController@tags');
-Route::get('chats', 'AdminController@chats');
+Route::get('livechats', 'AdminController@chats');
 
 Route::resource('messages', 'MessageController');
 Route::get('messages/{id}/delete','MessageController@destroy');
@@ -40,3 +40,7 @@ Route::put("kdglogin",'KdgLoginController@login');
 
 Route::get("pulse",'HeartBleedController@handlePulse');
 Route::get("adminpulse",'HeartBleedController@handleAdminPulse');
+
+Route::get("/about", function(){
+    return view("about")->with("pagetitle", "Promo");
+});

@@ -31,7 +31,7 @@ class LivechatController extends Controller
         {
             abort(404);
         }
-        return view("livechat")->with("messages",json_decode($session->messages));
+        return view("livechat")->with("messages",json_decode($session->messages))->with("pagetitle", "Livechat:".$sessionid);
     }
     /**
      * @param $message

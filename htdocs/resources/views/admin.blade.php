@@ -16,7 +16,7 @@
                 <li><a href="/tags">Tags</a></li>
             @endif
             @if(Auth::user()->hasRole("admin") || Auth::user()->hasRole("chatter") )
-                <li><a href="/chats">Chats&nbsp;</a><span id="chatnumber">{{ $livechatscount }}</span></li>
+                <li><a href="/livechats">Livechats&nbsp;</a><span id="chatnumber">{{ $livechatscount }}</span></li>
             @endif
         </ul>
     </div>

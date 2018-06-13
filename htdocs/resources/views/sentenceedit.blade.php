@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="messageform">
-        <h3>Zin aanpassen!</h3>
+        <h3>Zin bewerken</h3>
         <small>Hier kan je de zin waarop Karel-Chatbot zal reageren aanpassen!</small>
         {{ Html::ul($errors->all(), array('class' => 'errors'))}}
 
@@ -13,7 +13,7 @@
         {{ Form::text('sentence', null, array('class' => 'form-control')) }}
         <br>
 
-        {{ Form::button('Zin aanpassen', array('type' => 'submit')) }}
+        {{ Form::button('Zin bewerken', array('type' => 'submit')) }}
 
         {{ Form::close() }}
 

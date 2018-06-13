@@ -26,7 +26,7 @@ class UserController extends Controller
     public function index()
     {
         $users=User::paginate(5);
-        return view("users")->with("users",$users);
+        return view("users")->with("users",$users)->with("pagetitle", "Beheerders");
     }
     /**
      * Show the form for editing the specified resource.
@@ -39,7 +39,7 @@ class UserController extends Controller
         $user = User::where("id",$id)->first();
         if(isset($user))
         {
-            return view("useredit")->with('user', $user);
+            return view("useredit")->with('user', $user)->with("pagetitle", "Beheerder bewerken");
         }
         else
         {

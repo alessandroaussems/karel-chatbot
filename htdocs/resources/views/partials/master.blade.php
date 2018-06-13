@@ -27,7 +27,11 @@
     <meta property="og:type" content="website" />
     <meta property="og:image" content="{{asset('img/ogimage.png')}}" />
 
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name') }}
+        @if(isset($pagetitle))
+            | {{$pagetitle}}
+        @endif
+    </title>
 
     <link rel="icon" type="image/png" href="{{asset('img/logo_black.png')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('styling/main.css')}}">

@@ -16,7 +16,7 @@ class NotificationController extends Controller
         $session= Session::where("id",$sessionid)->first();
         if(isset($session))
         {
-            return view("notifications")->with('session', $session)->with("id",$request->input("sessionid"));
+            return view("notifications")->with('session', $session)->with("id",$request->input("sessionid"))->with("pagetitle", "Notificaties");
         }
         else
         {

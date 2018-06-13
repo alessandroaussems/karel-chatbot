@@ -29,7 +29,7 @@ class AdminController extends Controller
     public function index()
     {
         $livechats=Livechat::all();
-        return view('admin')->with("livechatscount",Livechat::count())->with("livechats",$livechats);
+        return view('admin')->with("livechatscount",Livechat::count())->with("livechats",$livechats)->with("pagetitle", "Admin");;
     }
     /**
      * Show the list of available tags.
@@ -41,7 +41,7 @@ class AdminController extends Controller
         $tags=Tag::all();
         $starttag=Config::get("kdg.starttag");
         $endtag=Config::get("kdg.endtag");
-        return view("tags")->with("tags",$tags)->with("starttag",$starttag)->with("endtag",$endtag);
+        return view("tags")->with("tags",$tags)->with("starttag",$starttag)->with("endtag",$endtag)->with("pagetitle", "Tags");;
     }
     /**
      * Show the list of available chats.
@@ -52,6 +52,6 @@ class AdminController extends Controller
     {
         $livechats=Livechat::all();
         $livechats_pag=Livechat::paginate(9);
-        return view("livechats")->with("livechats",$livechats)->with("livechats_pag",$livechats_pag);
+        return view("livechats")->with("livechats",$livechats)->with("livechats_pag",$livechats_pag)->with("pagetitle", "Livechats");
     }
 }
