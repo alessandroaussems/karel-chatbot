@@ -28,7 +28,7 @@ CREATE TABLE `livechats` (
   PRIMARY KEY (`id`),
   KEY `livechats_session_id_foreign` (`session_id`),
   CONSTRAINT `livechats_session_id_foreign` FOREIGN KEY (`session_id`) REFERENCES `sessions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,6 +155,8 @@ CREATE TABLE `sessions` (
   `lastname` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `login` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sendmail` tinyint(1) NOT NULL DEFAULT '1',
+  `sendsms` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -165,7 +167,6 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('5b1a8cfec4297','[[\"Hallo ik ben Karel! Stel je vragen maar! Weet je niet wat vragen? Dan kan je altijd \'Help\' typen!\",\"B\"],[\"Mijn punten\",\"H\"],[\"mijn punten\",\"H\"],[\"mijn punten\",\"H\"],[\"mijn punten\",\"H\"],[\"<p>Jouw reeds behaalde punten van dit academiejaar:<\\/p><p> <table border=\'1\' style=\'width: 80%; margin: 0 auto\'><tr><td>Communicatie 3<\\/td><td>Creditbewijs<\\/td><\\/tr><tr><td>Ondernemen 3<\\/td><td>Creditbewijs<\\/td><\\/tr><tr><td>Project Web-UX 3<\\/td><td>Creditbewijs<\\/td><\\/tr><tr><td>Web Design 3<\\/td><td>Creditbewijs<\\/td><\\/tr><tr><td>Web Development 3<\\/td><td>Creditbewijs<\\/td><\\/tr><tr><td>Web Research 3<\\/td><td>Creditbewijs<\\/td><\\/tr><\\/table> <\\/p>\",\"B\"],[\"mijn punten\",\"H\"],[\"<p>Jouw reeds behaalde punten van dit academiejaar:<\\/p><p> <table border=\'1\' style=\'width: 80%; margin: 0 auto\'><tr><td>Communicatie 3<\\/td><td>15<\\/td><\\/tr><tr><td>Ondernemen 3<\\/td><td>17<\\/td><\\/tr><tr><td>Project Web-UX 3<\\/td><td>14<\\/td><\\/tr><tr><td>Web Design 3<\\/td><td>13<\\/td><\\/tr><tr><td>Web Development 3<\\/td><td>13<\\/td><\\/tr><tr><td>Web Research 3<\\/td><td>15<\\/td><\\/tr><\\/table> <\\/p>\",\"B\"],[\"Mijn punten\",\"H\"],[\"<p>Jouw reeds behaalde punten van dit academiejaar:<\\/p><p> <table border=\'1\' style=\'width: 80%; margin: 0 auto\'><tr><td>Communicatie 3<\\/td><td>15<\\/td><\\/tr><tr><td>Frans 3<\\/td><td>13,0<\\/td><\\/tr><tr><td>RZL 3<\\/td><td>16,0<\\/td><\\/tr><tr><td>Ondernemen 3<\\/td><td>17<\\/td><\\/tr><tr><td>Project Web-UX 3<\\/td><td>14<\\/td><\\/tr><tr><td>Web Design 3<\\/td><td>13<\\/td><\\/tr><tr><td>Web Development 3<\\/td><td>13<\\/td><\\/tr><tr><td>Web Research 3<\\/td><td>15<\\/td><\\/tr><\\/table> <\\/p>\",\"B\"]]','2018-06-08 00:00:00','Alessandro','Aussems','alessandro.aussems@student.kdg.be','1C+btKT8IuMFjDIdwffXDw=='),('5b1a8eee894a5','[[\"Hallo ik ben Karel! Stel je vragen maar! Weet je niet wat vragen? Dan kan je altijd \'Help\' typen!\",\"B\"],[\"Mijn punten\",\"H\"],[\"<p>Jouw reeds behaalde punten van dit academiejaar:<\\/p><p> <table border=\'1\' style=\'width: 80%; margin: 0 auto\'><\\/table> <\\/p>\",\"B\"],[\"mijn punten\",\"H\"],[\"<p>Jouw reeds behaalde punten van dit academiejaar:<\\/p><p> <table border=\'1\' style=\'width: 80%; margin: 0 auto\'><\\/table> <\\/p>\",\"B\"],[\"mijn punten\",\"H\"],[\"<p>Jouw reeds behaalde punten van dit academiejaar:<\\/p><p> <table border=\'1\' style=\'width: 80%; margin: 0 auto\'><\\/table> <\\/p>\",\"B\"],[\"mijn punten\",\"H\"],[\"<p>Jouw reeds behaalde punten van dit academiejaar:<\\/p><p> <table border=\'1\' style=\'width: 80%; margin: 0 auto\'><tr><td>Project Web-UX 3<\\/td><td>Creditbewijs<\\/td><\\/tr><tr><td>Web Design 3<\\/td><td>Creditbewijs<\\/td><\\/tr><tr><td>Web Development 3<\\/td><td>Creditbewijs<\\/td><\\/tr><tr><td>Web Research 3<\\/td><td>Creditbewijs<\\/td><\\/tr><\\/table> <\\/p>\",\"B\"],[\"mijn punten\",\"H\"],[\"<p>Jouw reeds behaalde punten van dit academiejaar:<\\/p><p> <table border=\'1\' style=\'width: 80%; margin: 0 auto\'><tr><td>Project Web-UX 3<\\/td><td>13<\\/td><\\/tr><tr><td>Web Design 3<\\/td><td>14<\\/td><\\/tr><tr><td>Web Development 3<\\/td><td>11<\\/td><\\/tr><tr><td>Web Research 3<\\/td><td>15<\\/td><\\/tr><\\/table> <\\/p>\",\"B\"],[\"Mijn punten\",\"H\"],[\"<p>Jouw reeds behaalde punten van dit academiejaar:<\\/p><p> <table border=\'1\' style=\'width: 80%; margin: 0 auto\'><tr><td>Project Web-UX 3<\\/td><td>13<\\/td><\\/tr><tr><td>Web Design 3<\\/td><td>14<\\/td><\\/tr><tr><td>Web Development 3<\\/td><td>11<\\/td><\\/tr><tr><td>Web Research 3<\\/td><td>15<\\/td><\\/tr><\\/table> <\\/p>\",\"B\"]]','2018-06-08 00:00:00','Melis','Pieter','melis.pieter@student.kdg.be','c5mCQUp0TVqwfRkyprOZ7g=='),('5b1a9fcd7d077','[[\"Hallo ik ben Karel! Stel je vragen maar! Weet je niet wat vragen? Dan kan je altijd \'Help\' typen!\",\"B\"]]','2018-06-09 00:00:00',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -209,6 +210,7 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `last_active` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -220,7 +222,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Admin','info@karel-chatbot.be','$2y$10$c6RomkNs7LqXZXew7YY49.nG/IkliJbhHwm7DeXwwdTtdxjx0rAeu','admin','M5UdsdLeE3QZWyNn8YLQ77dmwuIcFpFvnGBow7UugKxFrc8905w5ElnsCoMp',NULL,NULL),(3,'Chatter','chatter@karel-chatbot.be','$2y$10$mpTu2AZ9Sd8Zm0BT1l2n/OgdJmZ5x3hXRYyXONNzw4r6Jk0lYFJpK','chatter','HnCX87tqwYf7z1ftLaOUCyowHFD0vmywIQ6ucrIZGaN348aSrPBS2Jxzn7ht','2018-06-02 11:25:14','2018-06-02 11:25:14'),(4,'Editor','editor@karel-chatbot.be','$2y$10$2.utVV9bWe0YY5Yi44sbg.oI4HzONV0mvm8vNIUc3QcuHeaSPiWqG','editor','UxPnqXS2hDi87eevGc5oLQxdfqiTmc69N6qqm7FGc8qbaQet9bAOnSK3ad1t','2018-06-02 11:31:43','2018-06-02 11:31:43');
+INSERT INTO `users` VALUES (1,'Admin','info@karel-chatbot.be','$2y$10$c6RomkNs7LqXZXew7YY49.nG/IkliJbhHwm7DeXwwdTtdxjx0rAeu','admin','seRFryJmB40WnQOKVbhpclEJ3ydaEDM0IILGTLOHrXn5uQrntF80lV6MW7fg',NULL,'2018-06-13 14:36:13','2018-06-13 16:36:13'),(3,'Chatter','chatter@karel-chatbot.be','$2y$10$mpTu2AZ9Sd8Zm0BT1l2n/OgdJmZ5x3hXRYyXONNzw4r6Jk0lYFJpK','chatter','HnCX87tqwYf7z1ftLaOUCyowHFD0vmywIQ6ucrIZGaN348aSrPBS2Jxzn7ht','2018-06-02 11:25:14','2018-06-02 11:25:14',NULL),(4,'Editor','editor@karel-chatbot.be','$2y$10$2.utVV9bWe0YY5Yi44sbg.oI4HzONV0mvm8vNIUc3QcuHeaSPiWqG','editor','UxPnqXS2hDi87eevGc5oLQxdfqiTmc69N6qqm7FGc8qbaQet9bAOnSK3ad1t','2018-06-02 11:31:43','2018-06-02 11:31:43',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -233,4 +235,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-09 16:13:00
+-- Dump completed on 2018-06-13 17:44:17
