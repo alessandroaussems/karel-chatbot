@@ -46,7 +46,11 @@ class DailyUpdate extends Command
             if(isset($session->login))
             {
                 $KdGService=new KdGService();
-                $KdGService->doLogin($session->login,openssl_decrypt($session->password,"AES-128-ECB",$_ENV['APP_KEY']));
+                $loggedin=$KdGService->doLogin($session->login,openssl_decrypt($session->password,"AES-128-ECB",$_ENV['APP_KEY']));
+                if(!$loggedin)
+                {
+                    break;
+                }
                 $data=new \stdClass();
                 $data->email=$session->login;
                 $data->name=$session->firstname;

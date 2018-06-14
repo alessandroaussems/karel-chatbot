@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command("dailyupdate:send")->dailyAt("6:00"); //BELGIUM GMT+2 THIS IS EXECUTED @ 8:00
     }
 
     /**
