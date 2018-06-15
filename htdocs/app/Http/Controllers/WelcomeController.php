@@ -27,15 +27,15 @@ class WelcomeController extends Controller
         }
         if(!isset($_COOKIE["listen"]))
         {
-            setcookie("listen","false",time() + $this->length);
+            setcookie("listen","false",time() + $this->length,"/");
         }
         if(isset($_COOKIE["visits"]))
         {
-            setcookie("visits",$_COOKIE["visits"]+=1,time() + $this->length);
+            setcookie("visits",$_COOKIE["visits"]+=1,time() + $this->length,"/");
         }
         else
         {
-            setcookie("visits",1,time() + $this->length);
+            setcookie("visits",1,time() + $this->length,"/");
         }
         if(!isset($_COOKIE['chatsession']))
         {
@@ -85,8 +85,8 @@ class WelcomeController extends Controller
     private function startNewSession()
     {
         $sessionid=uniqid();
-        setcookie("chatsession", $sessionid,time() + $this->length);
-        setcookie("visits", 1,time() + $this->length);
+        setcookie("chatsession", $sessionid,time() + $this->length,"/");
+        setcookie("visits", 1,time() + $this->length,"/");
 
         $sessionmessages[0]=["Hallo ik ben Karel! Stel je vragen maar! Weet je niet wat vragen? Dan kan je altijd 'Help' typen!","B"];
 
