@@ -41,6 +41,10 @@ Route::put("kdglogin",'KdgLoginController@login');
 Route::get("pulse",'HeartBleedController@handlePulse');
 Route::get("adminpulse",'HeartBleedController@handleAdminPulse');
 
+Route::get("/promo", function(){
+    return view("promo")->with("pagetitle", "Promo");
+});
+
 Route::get("/about", function(){
-    return view("about")->with("pagetitle", "Promo");
+    return view("about")->with("pagetitle", "Over");
 });
