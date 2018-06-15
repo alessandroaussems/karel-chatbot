@@ -362,7 +362,7 @@ nav {
 
   .login {
     width: 90% !important;
-    margin-top: 15% !important; }
+    margin-top: 20% !important; }
 
   .email, .register, .reset, .search, .useredit, .edituserheader {
     width: 90% !important; }
@@ -403,7 +403,11 @@ nav {
     margin-top: 10%;
     padding: 5%;
     background-color: #ffffff;
-    border: 3px solid #0c090a; }
+    border: 3px solid #0c090a;
+    box-sizing: border-box; }
+    #overlay .login input {
+      box-sizing: border-box;
+      height: 2rem; }
   #overlay #loginerror {
     color: red;
     opacity: 0; }
@@ -494,7 +498,10 @@ nav {
     margin-top: 2%;
     margin-bottom: 2%;
     border: 3px solid #0c090a;
-    font-size: 16px; }
+    font-size: 16px;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+    border-radius: 0; }
   .email > input:focus, .login > input:focus, .register > input:focus, .reset > input:focus, .search > input:focus, .useredit > input:focus, .edituserheader > input:focus, .notificationedit > input:focus {
     outline: none; }
   .email > select, .login > select, .register > select, .reset > select, .search > select, .useredit > select, .edituserheader > select, .notificationedit > select {

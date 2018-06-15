@@ -40,6 +40,12 @@
     padding: 5%;
     background-color: $white;
     border: 3px solid $fullblack;
+    box-sizing: border-box;
+    input
+    {
+      box-sizing: border-box;
+      height: 2rem;
+    }
   }
   #loginerror
   {
