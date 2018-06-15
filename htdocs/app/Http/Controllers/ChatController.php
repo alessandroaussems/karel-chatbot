@@ -87,6 +87,8 @@ class ChatController extends Controller
      */
     function checkMessages($sentencetocheck)
     {
+        $sentencetocheck=strtolower($sentencetocheck);
+        $idsofmessages=[];
         if(strpos($sentencetocheck, 'Wie is') !== false || strpos($sentencetocheck, 'wie is') !== false )
         {
             return Message::where("id",Keyword::where("sentence","Wie is")->first()->message_id)->first()->answer;
@@ -96,9 +98,15 @@ class ChatController extends Controller
         {
             if(strpos($sentencetocheck,$value->keyword)!==false)
             {
-                $message=Message::where("id",$value->message_id)->first();
-                return $message->answer;
+                array_push($idsofmessages,$value->message_id);
             }
+        }
+        if(count($idsofmessages)!=0)
+        {
+            $numberofoccurencesinarray=array_count_values($idsofmessages);
+            arsort($numberofoccurencesinarray);
+            $popularid=array_keys($numberofoccurencesinarray)[0];
+            return Message::where("id",$popularid)->first()->answer;
         }
         return "none";
     }
