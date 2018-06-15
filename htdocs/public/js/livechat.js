@@ -61,7 +61,7 @@ function startPusherListening()
         if(data.message=="stop")
         {
             confirm("De gebruiker heeft de sessie beïndigd. Dit betekend dat hij niet langer hulp nodig heeft van een KdG medewerker. Je wordt omgeleid naar de overzichtspagina.");
-            window.location="/chats";
+            window.location="/livechats";
         }
         createAnswer(data.message)
     });
