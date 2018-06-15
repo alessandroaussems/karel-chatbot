@@ -46,6 +46,7 @@ $secundaryfont: Verdana, Geneva, sans-serif;
 html, body{
   height: 100%;
   overflow-x: hidden;
+  overflow-y: hidden;
   margin: 0 auto;
   background-color: $white;
   font-family: $secundaryfont;
@@ -55,7 +56,6 @@ html, body{
 main
 {
   height: 89.5%;
-
 }
 small
 {
