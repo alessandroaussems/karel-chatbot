@@ -28,10 +28,10 @@ Route::get('livechats', 'AdminController@chats');
 Route::resource('messages', 'MessageController');
 Route::get('messages/{id}/delete','MessageController@destroy');
 
-Route::resource('sentences', 'SentenceController');
-Route::get('sentences/{id}/delete/message/{messageid}','SentenceController@destroy');
-Route::get('sentences/create/{messageid}','SentenceController@create');
-Route::get('sentences/edit/{id}/message/{messageid}','SentenceController@edit');
+Route::resource('keywords', 'KeywordController');
+Route::get('keywords/{id}/delete/message/{messageid}','KeywordController@destroy');
+Route::get('keywords/create/{messageid}','KeywordController@create');
+Route::get('keywords/edit/{id}/message/{messageid}','KeywordController@edit');
 
 Route::resource('users', 'UserController');
 Route::get('users/{id}/delete','UserController@destroy');

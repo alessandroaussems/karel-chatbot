@@ -13,12 +13,12 @@ class CreateUsersSentences extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('sentences')) {
-            Schema::create('sentences', function (Blueprint $table) {
+        if(!Schema::hasTable('keywords')) {
+            Schema::create('keywords', function (Blueprint $table) {
                 $table->increments('id');
                 $table->unsignedInteger('message_id')->nullable();
                 $table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade')->onUpdate('cascade');
-                $table->longText("sentence");
+                $table->longText("keyword");
             });
         }
     }
@@ -30,6 +30,6 @@ class CreateUsersSentences extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sentences');
+        Schema::dropIfExists('keywords');
     }
 }

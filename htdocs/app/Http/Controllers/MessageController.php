@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Message;
-use App\Sentence;
+use App\Keyword;
 use Collective\Html\HtmlFacade;
 use Collective\Html\FormFacade;
 use Illuminate\Support\Facades\Validator;
@@ -86,11 +86,11 @@ class MessageController extends Controller
      */
     public function show($id)
     {
-        $message = Message::where("id",$id)->first();
-        $answers= Sentence::where("message_id",$id)->get();
+        $message  = Message::where("id",$id)->first();
+        $keywords = Keyword::where("message_id",$id)->get();
         if(isset($message))
         {
-            return view("messagedetail")->with('message',$message)->with("answers",$answers)->with("pagetitle", "Bericht detail");
+            return view("messagedetail")->with('message',$message)->with("keywords",$keywords)->with("pagetitle", "Bericht detail");
         }
         else
         {
@@ -150,7 +150,7 @@ class MessageController extends Controller
     public function destroy($id)
     {
         Message::where("id",$id)->delete();
-        Sentence::where("message_id",$id)->delete();
+        Keyword::where("message_id",$id)->delete();
         return Redirect::to('messages');
     }
 }

@@ -633,7 +633,6 @@ nav {
 html, body {
   height: 100%;
   overflow-x: hidden;
-  overflow-y: hidden;
   margin: 0 auto;
   background-color: #ffffff;
   font-family: Verdana, Geneva, sans-serif;

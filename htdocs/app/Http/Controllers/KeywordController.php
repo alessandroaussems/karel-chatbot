@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Message;
-use App\Sentence;
+use App\Keyword;
 use Collective\Html\HtmlFacade;
 use Collective\Html\FormFacade;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
-class SentenceController extends Controller
+class KeywordController extends Controller
 {
     /**
-     * SentenceController constructor.
+     * KeywordController constructor.
      */
     public function __construct()
     {
@@ -28,7 +28,7 @@ class SentenceController extends Controller
      */
     public function create($messageid)
     {
-        return view("sentenceadd")->with("messageid",$messageid)->with("pagetitle", "Zin toevoegen");
+        return view("keywordadd")->with("messageid",$messageid)->with("pagetitle", "Sleutelwoord toevoegen");
     }
     /**
      * Store a newly created resource in storage.
@@ -39,26 +39,26 @@ class SentenceController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'sentence' => 'required',
+            'keyword' => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->fails()) {
-            return Redirect::to('sentences/create/' . Input::get("messageid"))
+            return Redirect::to('keywords/create/' . Input::get("messageid"))
                 ->withErrors($validator)
                 ->withInput();
         }
         else
         {
-            if($this->checkIfSimilarSentence(Input::get('sentence')))
+            if($this->checkIfSimilarKeyword(Input::get('keyword')))
             {
-                return Redirect::to('sentences/create/' . Input::get("messageid"))
-                    ->withErrors("Er is al een andere zin die te hard op deze zin lijkt! Dit kan voor conflicten zorgen.")
+                return Redirect::to('keywords/create/' . Input::get("messageid"))
+                    ->withErrors("Er is al een ander sleutelwoord dat te hard op het door jou ingegeven lijkt! Dit kan voor conflicten zorgen.")
                     ->withInput();
             }
-            $sentence = new Sentence();
-            $sentence->sentence = Input::get('sentence');
-            $sentence->message_id = Input::get("messageid");
-            $sentence->save();
+            $keyword = new Keyword();
+            $keyword->keyword = Input::get('keyword');
+            $keyword->message_id = Input::get("messageid");
+            $keyword->save();
             return Redirect::to('messages/'.Input::get("messageid"));
         }
     }
@@ -70,8 +70,8 @@ class SentenceController extends Controller
      */
     public function edit($id,$messageid)
     {
-        $sentence = Sentence::where("id",$id)->first();
-        return view("sentenceedit")->with('messageid', $messageid)->with("sentence",$sentence)->with("pagetitle", "Zin bewerken");
+        $keyword = Keyword::where("id",$id)->first();
+        return view("keywordedit")->with('messageid', $messageid)->with("keyword",$keyword)->with("pagetitle", "Sleutelwoord bewerken");
     }
     /**
      * Update the specified resource in storage.
@@ -83,27 +83,27 @@ class SentenceController extends Controller
     public function update(Request $request, $id)
     {
         $rules = array(
-            'sentence'      => 'required',
+            'keyword'      => 'required',
         );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->fails())
         {
-            return Redirect::to('sentences/edit/'.$id.'/message/'.Input::get("messageid"))
+            return Redirect::to('keywords/edit/'.$id.'/message/'.Input::get("messageid"))
                 ->withErrors($validator)
                 ->withInput();
         }
         else
         {
-            if($this->checkIfSimilarSentence(Input::get('sentence')))
+            if($this->checkIfSimilarKeyword(Input::get('keyword')))
             {
-                return Redirect::to('sentences/create/' . Input::get("messageid"))
-                    ->withErrors("Er is al een andere zin die te hard op deze zin lijkt! Dit kan voor conflicten zorgen.")
+                return Redirect::to('keyword/create/' . Input::get("messageid"))
+                    ->withErrors("Er is al een ander sleutelwoord dat te hard op het door jou ingegeven lijkt! Dit kan voor conflicten zorgen.")
                     ->withInput();
             }
-            $sentence = Sentence::find($id);
-            $sentence->sentence = Input::get('sentence');
-            $sentence->message_id=Input::get("messageid");
-            $sentence->save();
+            $keyword = Keyword::find($id);
+            $keyword->keyword = Input::get('keyword');
+            $keyword->message_id=Input::get("messageid");
+            $keyword->save();
             return Redirect::to('messages/'.Input::get("messageid"));
         }
     }
@@ -115,20 +115,20 @@ class SentenceController extends Controller
      */
     public function destroy($id,$messageid)
     {
-        Sentence::where("id",$id)->delete();
+        Keyword::where("id",$id)->delete();
         return Redirect::to('/messages/'.$messageid);
     }
     //HELPER FUNCTIONS BELOW
     /**
-     * @param $sentencetocheck
+     * @param $keywordtocheck
      * @return bool indicating if result similar to param is found.
      */
-    private function checkIfSimilarSentence($sentencetocheck)
+    private function checkIfSimilarKeyword($keywordtocheck)
     {
-        $sentences=Sentence::all();
-        foreach ($sentences as $sentence => $value)
+        $keywords=Keyword::all();
+        foreach ($keywords as $keyword => $value)
         {
-            similar_text($sentencetocheck,$value->sentence,$percent);
+            similar_text($keyword,$value->keyword,$percent);
             if($percent>70)
             {
                 return true;

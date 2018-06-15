@@ -1,3 +1,4 @@
+var helpitems=["Meldingen","Prikbord"]
 var next=document.getElementById("next");
 var previous=document.getElementById("previous");
 
