@@ -13,6 +13,6 @@ class Message extends Model
     ];
     public function sentence()
     {
-        return $this->belongsTo(Sentence::class, 'id', 'message_id');
+        return $this->belongsTo(Keyword::class, 'id', 'message_id');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Sentence;
+use App\Keyword;
 use Illuminate\Http\Request;
 use App\Session;
 
@@ -19,12 +19,6 @@ class WelcomeController extends Controller
      */
     public function welcome()
     {
-        $sentences=$this->unique_multidim_array(Sentence::all()->toArray(),"message_id");
-        $helpitems=[];
-        foreach ($sentences as $sentence)
-        {
-            array_push($helpitems,$sentence["sentence"]);
-        }
         if(!isset($_COOKIE["listen"]))
         {
             setcookie("listen","false",time() + $this->length,"/");
@@ -42,7 +36,7 @@ class WelcomeController extends Controller
             $this->startNewSession();
             setcookie("listen","false",time() + $this->length,"/");
 
-            return view("chat")->with("messages",[])->with("isconnected",false)->with("helpitems",$helpitems);
+            return view("chat")->with("messages",[])->with("isconnected",false);
         }
         else
         {
@@ -52,7 +46,7 @@ class WelcomeController extends Controller
                 $this->startNewSession();
                 setcookie("listen","false",time() + $this->length,"/");
 
-                return view("chat")->with("messages",[])->with("isconnected",false)->with("helpitems",$helpitems);
+                return view("chat")->with("messages",[])->with("isconnected",false);
             }
             else
             {
@@ -63,7 +57,7 @@ class WelcomeController extends Controller
                 $session=Session::where('id', $_COOKIE["chatsession"])->first();
                 $isconnected = (!is_null($session->login) && !is_null($session->password));
 
-                return view("chat")->with("messages",json_decode($session->messages))->with("isconnected",$isconnected)->with("helpitems",$helpitems);
+                return view("chat")->with("messages",json_decode($session->messages))->with("isconnected",$isconnected);
             }
         }
     }
@@ -96,24 +90,5 @@ class WelcomeController extends Controller
         date_default_timezone_set("Europe/Brussels");
         $session->last_active=date('Y-m-d H:i:s');
         $session->save();
-    }
-    /**
-     * @param $array
-     * @param $key
-     * @return array
-     */
-    private function unique_multidim_array($array, $key) {
-    $temp_array = array();
-    $i = 0;
-    $key_array = array();
-
-    foreach($array as $val) {
-        if (!in_array($val[$key], $key_array)) {
-            $key_array[$i] = $val[$key];
-            $temp_array[$i] = $val;
-        }
-        $i++;
-    }
-    return $temp_array;
     }
 }

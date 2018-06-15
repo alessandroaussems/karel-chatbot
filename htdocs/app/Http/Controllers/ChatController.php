@@ -8,7 +8,7 @@ use App\Services\KdGService;
 use App\Session;
 use App\User;
 use Illuminate\Http\Request;
-use App\Sentence;
+use App\Keyword;
 use App\Message;
 use Illuminate\Support\Facades\Config;
 use App\Events\SendToUser;
@@ -43,116 +43,53 @@ class ChatController extends Controller
             event(new SendToUser($_COOKIE["chatsession"],"usermessage",["message"=>$message,"id"=>$_COOKIE["chatsession"]]));
             return "live";
         }
-        $search=$this->searchMessage($message); // FIRST CHECKING LITERALLY
-        if($search!="none") // IF SUCCESFULL 100% MATCH
+        $answer=$this->checkMessages($message);
+        if($answer!="none") //SOME RESEMBLANCE FOUND
         {
-            if($this->isACode($search))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
+            if($this->isACode($answer))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
             {
-                $codes=$this->getTheCode($search); //GET THE CODES
+                $codes=$this->getTheCode($answer); //GET THE CODES
                 foreach ($codes as $code)
                 {
-                    $search=str_replace($code,$this->callKdgService($code,$message),$search);
+                    $answer=str_replace($code,$this->callKdgService($code,$message),$answer);
                 }
-                $search=$this->sanitizeTheCode($search); //REMOVE START AND END TAG
-                echo $search;
+                $answer=$this->sanitizeTheCode($answer); //REMOVE START AND END TAG
             }
-            else
-            {
-                echo $search; //ECHO THE RESEMBLANCE
-            }
-            $this->addToSession($search,"B");
-        }
-        else // NO 100% MATCH
-        {
-            $answer=$this->checkMessagesSequential($message); //LOOP AND CHECK IF RESEMBLANCE
-            if($answer!="none") //SOME RESEMBLANCE FOUND
-            {
-                if($this->isACode($answer))//CHECK IF IT'S MAYBE A CODE FOR RETRIEVING LIVE DATA
-                {
-                    $codes=$this->getTheCode($answer); //GET THE CODES
-                    foreach ($codes as $code)
-                    {
-                        $answer=str_replace($code,$this->callKdgService($code,$message),$answer);
-                    }
-                    $answer=$this->sanitizeTheCode($answer); //REMOVE START AND END TAG
-                    echo $answer;
-                }
-                else
-                {
-                    echo $answer; //ECHO THE RESEMBLANCE
-                }
-                $this->addToSession($answer,"B");
-            }
-            else
-            {
-                echo $error; //NO 100% MATCH AND NOT RESEMBLANCE
-                $this->addToSession($error,"B");
-            }
-        }
-
-
-    }
-    /*
-    function CallWit($message)
-    {
-        $message=urlencode($message);
-        $witaccestoken=$_ENV['WITACCESSTOKEN'];
-        $url="https://api.wit.ai/message?q=".$message;
-        $authorization = "Authorization: Bearer ".$witaccestoken;
-        $ch=curl_init();
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization ));
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $result = json_decode(curl_exec($ch),true);
-        curl_close($ch);
-        return $result;
-    }*/
-    /**
-     * @param $sentence
-     * @return string
-     */
-    function searchMessage($sentence)
-    {
-        $sentence=Sentence::where("sentence",$sentence)->first();
-        if($sentence)
-        {
-            $message=Message::where("id",$sentence->message_id)->first();
-            if($message)
-            {
-                return $message->answer;
-            }
-            else
-            {
-                return "none";
-            }
+            $this->addToSession($answer,"B");
+            return $answer;
         }
         else
         {
-            return "none";
+            $this->addToSession($error,"B");
+            return $error;
         }
-
     }
     /**
      * @param $sentencetocheck
      * @return string
      */
-    function checkMessagesSequential($sentencetocheck)
+    function checkMessages($sentencetocheck)
     {
+        $sentencetocheck=strtolower($sentencetocheck);
+        $idsofmessages=[];
         if(strpos($sentencetocheck, 'Wie is') !== false || strpos($sentencetocheck, 'wie is') !== false )
         {
-            return Message::where("id",Sentence::where("sentence","Wie is")->first()->message_id)->first()->answer;
+            return Message::where("id",Keyword::where("keyword","Wie is")->first()->message_id)->first()->answer;
         }
-        $sentences=Sentence::all();
-        foreach ($sentences as $sentence => $value)
+        $keywords=Keyword::all();
+        foreach ($keywords as $keyword => $value)
         {
-            similar_text($value->sentence, $sentencetocheck, $perc);
-            if($perc>70)
+            if(strpos($sentencetocheck,$value->keyword)!==false)
             {
-                $message=Message::where("id",$value->message_id)->first();
-                return $message->answer;
+                array_push($idsofmessages,$value->message_id);
             }
+        }
+        if(count($idsofmessages)!=0)
+        {
+            $numberofoccurencesinarray=array_count_values($idsofmessages);
+            arsort($numberofoccurencesinarray);
+            $popularid=array_keys($numberofoccurencesinarray)[0];
+            return Message::where("id",$popularid)->first()->answer;
         }
         return "none";
     }
@@ -322,7 +259,7 @@ class ChatController extends Controller
                         }
                         else
                         {
-                            $html.="<p>Je kan deze persoon bereiken via email: <a href='mailto:".$person["email"]."'>".$person["email"]."</a>";
+                            $html.="<p>Je kan ".$person["name"] ." bereiken via email: <a href='mailto:".$person["email"]."'>".$person["email"]."</a>";
                         }
                     }
                     else

@@ -1,3 +1,4 @@
+var helpitems=["Mijn meldingen","Het prikbord","Mijn naam","Mijn lessen","Afwezigen","De wifi","Printen","Fietsenstalling","Mijn punten","Wie is Alessandro Aussems","Medewerker","Help","Mijn campus","Mijn leerkrediet","Wat heb ik nodig?","Academiejaar","Verdienstelijkheid"]
 var next=document.getElementById("next");
 var previous=document.getElementById("previous");
 

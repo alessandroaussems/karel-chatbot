@@ -29,11 +29,6 @@
     <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
     <script src="{{asset('js/chat.js')}}"></script>
     <script src="{{asset('js/heartbleed.js')}}"></script>
-    <script type='text/javascript'>
-        <?php
-        echo "var helpitems = ". json_encode($helpitems) . ";\n";
-        ?>
-    </script>
     <script src="{{asset('js/help.js')}}"></script>
     <script src="{{asset('js/cookie.js')}}"></script>
 @endsection

@@ -8,18 +8,18 @@
         <a class="edit pullright" href="/messages/{{$message->id}}/edit">3</a>
         <a class="delete" href="/messages/{{$message->id}}/delete">n</a>
         <div class="answer"><?php echo $message->answer?></div>
-        <h5>Reageert op:</h5>
+        <h5>Sleutelwoorden:</h5>
         <ul>
-            @foreach($answers as $key => $value)
+            @foreach($keywords as $key => $value)
                 <li>
-                    {{$value->sentence}}
+                    {{$value->keyword}}
                 </li>
-                <a class="edit" href="/sentences/edit/{{$value->id}}/message/{{$message->id}}">3</a>
-                <a class="delete" href="/sentences/{{$value->id}}/delete/message/{{$message->id}}">n</a>
+                <a class="edit" href="/keywords/edit/{{$value->id}}/message/{{$message->id}}">3</a>
+                <a class="delete" href="/keywords/{{$value->id}}/delete/message/{{$message->id}}">n</a>
                 <br>
             @endforeach
         </ul>
-        <a class="add" href="/sentences/create/{{$message->id}}">n</a><br>
+        <a class="add" href="/keywords/create/{{$message->id}}">n</a><br>
     </div>
     <script src="{{asset('js/adminheartbleed.js')}}"></script>
 @endsection
