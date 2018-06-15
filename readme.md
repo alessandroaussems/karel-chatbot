@@ -1,6 +1,8 @@
 # Karel-Chatbot<img src="https://github.com/alessandroaussems/karel-chatbot/blob/master/htdocs/public/img/logo_black.png" width="50" height="50">
 https://karel-chatbot.be
+
 [![Promo](_PROMO/promo.gif)](https://karel-chatbot.be/promo)
+
 ### About
 https://karel-chatbot.be/about
 
