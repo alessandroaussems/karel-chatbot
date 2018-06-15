@@ -91,7 +91,7 @@ class ChatController extends Controller
         $idsofmessages=[];
         if(strpos($sentencetocheck, 'Wie is') !== false || strpos($sentencetocheck, 'wie is') !== false )
         {
-            return Message::where("id",Keyword::where("sentence","Wie is")->first()->message_id)->first()->answer;
+            return Message::where("id",Keyword::where("keyword","Wie is")->first()->message_id)->first()->answer;
         }
         $keywords=Keyword::all();
         foreach ($keywords as $keyword => $value)
@@ -276,7 +276,7 @@ class ChatController extends Controller
                         }
                         else
                         {
-                            $html.="<p>Je kan deze persoon bereiken via email: <a href='mailto:".$person["email"]."'>".$person["email"]."</a>";
+                            $html.="<p>Je kan ".$person["name"] ." bereiken via email: <a href='mailto:".$person["email"]."'>".$person["email"]."</a>";
                         }
                     }
                     else
