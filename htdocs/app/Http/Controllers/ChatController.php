@@ -83,6 +83,18 @@ class ChatController extends Controller
             {
                 array_push($idsofmessages,$value->message_id);
             }
+            else
+            {
+                $wordstocheck=explode(" ",$sentencetocheck);
+                foreach ($wordstocheck as $wordtocheck)
+                {
+                    similar_text($wordtocheck,$value->keyword,$perc);
+                    if($perc>80)
+                    {
+                        array_push($idsofmessages,$value->message_id);
+                    }
+                }
+            }
         }
         if(count($idsofmessages)!=0)
         {
