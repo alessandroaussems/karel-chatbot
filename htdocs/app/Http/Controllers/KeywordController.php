@@ -56,7 +56,7 @@ class KeywordController extends Controller
                     ->withInput();
             }
             $keyword = new Keyword();
-            $keyword->keyword = Input::get('keyword');
+            $keyword->keyword = strtolower(Input::get('keyword'));
             $keyword->message_id = Input::get("messageid");
             $keyword->save();
             return Redirect::to('messages/'.Input::get("messageid"));
@@ -96,12 +96,12 @@ class KeywordController extends Controller
         {
             if($this->checkIfSimilarKeyword(Input::get('keyword')))
             {
-                return Redirect::to('keyword/create/' . Input::get("messageid"))
+                return Redirect::to('keywords/edit/'.$id.'/message/'.Input::get("messageid"))
                     ->withErrors("Er is al een ander sleutelwoord dat te hard op het door jou ingegeven lijkt! Dit kan voor conflicten zorgen.")
                     ->withInput();
             }
             $keyword = Keyword::find($id);
-            $keyword->keyword = Input::get('keyword');
+            $keyword->keyword = strtolower(Input::get('keyword'));
             $keyword->message_id=Input::get("messageid");
             $keyword->save();
             return Redirect::to('messages/'.Input::get("messageid"));
@@ -128,7 +128,7 @@ class KeywordController extends Controller
         $keywords=Keyword::all();
         foreach ($keywords as $keyword => $value)
         {
-            similar_text($keyword,$value->keyword,$percent);
+            similar_text($keywordtocheck,$value->keyword,$percent);
             if($percent>70)
             {
                 return true;
