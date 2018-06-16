@@ -75,7 +75,7 @@ class MessageController extends Controller
             $message = new Message();
             $message->answer = Input::get('answer');
             $message->save();
-            return Redirect::to('messages/');
+            return Redirect::to('messages/'.$message->id);
         }
     }
     /**
