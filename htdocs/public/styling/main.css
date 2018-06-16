@@ -639,6 +639,9 @@ html, body {
   font-size: 16px;
   position: relative; }
 
+.route-home {
+  overflow-y: hidden; }
+
 main {
   height: 89.5%; }
 

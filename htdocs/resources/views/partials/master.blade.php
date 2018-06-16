@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" class="route-{{ Route::currentRouteName() }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,7 +37,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('styling/main.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sceditor/2.1.3/themes/modern.min.css">
 </head>
-<body>
+<body class="route-{{ Route::currentRouteName() }}">
 @extends("partials.overlay")
 <nav class="clearfix">
     <a href="/" id="botlogo" title="Karel-Chatbot">

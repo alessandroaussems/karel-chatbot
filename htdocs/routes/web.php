@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/','WelcomeController@welcome');
+Route::get('/','WelcomeController@welcome')->name('home');;
 Route::get('session/','WelcomeController@loadsession');
 Route::resource('notifications', 'NotificationController');
 Route::get('chat/{message}','ChatController@handleMessage');
