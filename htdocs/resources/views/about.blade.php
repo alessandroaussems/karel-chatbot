@@ -1,2 +1,2 @@
 @extends('partials.master')
-<iframe class="videoContainer__video" height="100%" width="100%" src="https://www.youtube.com/embed/5ze-KHVL-y4?modestbranding=1&autoplay=1&controls=0&fs=0&loop=1&rel=0&showinfo=0&disablekb=1" frameborder="0"></iframe>
+<iframe height="100%" width="100%" src="https://www.youtube.com/embed/5ze-KHVL-y4?modestbranding=1&autoplay=1&controls=0&fs=0&loop=1&rel=0&showinfo=0&disablekb=1" frameborder="0"></iframe>

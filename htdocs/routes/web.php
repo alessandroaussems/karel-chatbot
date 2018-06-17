@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/','WelcomeController@welcome')->name('home');;
+Route::get('/','WelcomeController@welcome')->name('home');
 Route::get('session/','WelcomeController@loadsession');
 Route::resource('notifications', 'NotificationController');
 Route::get('chat/{message}','ChatController@handleMessage');
@@ -43,8 +43,8 @@ Route::get("adminpulse",'HeartBleedController@handleAdminPulse');
 
 Route::get("/promo", function(){
     return view("promo")->with("pagetitle", "Promo");
-});
+})->name('promo');
 
 Route::get("/about", function(){
     return view("about")->with("pagetitle", "Over");
-});
+})->name('about');
