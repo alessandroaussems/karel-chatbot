@@ -82,15 +82,13 @@
   width: 100%;
   input, button
   {
-    display: inline-block;
+    float: left;
   }
   input
   {
-    width: 87%;
   }
   button
   {
-    margin: 0;
-    width: 10%;
+    text-align: center;
   }
 }

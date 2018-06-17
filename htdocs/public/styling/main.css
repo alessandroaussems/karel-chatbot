@@ -130,7 +130,7 @@ nav {
   color: #ffffff;
   float: left;
   background-color: #1d1d1b;
-  height: 5.6%;
+  height: 5.7%;
   width: 9.5%;
   font-size: 1.5vmax;
   text-align: center;
@@ -203,10 +203,12 @@ nav {
   margin-left: 25%;
   margin-right: 25%;
   text-align: center; }
+  .menu h3 {
+    margin-top: 5%; }
   .menu a {
     color: #0c090a; }
   .menu .add {
-    margin-top: 1%;
+    margin-top: 5%;
     margin-left: 90%;
     display: table;
     width: 10%;
@@ -267,6 +269,7 @@ nav {
       margin-bottom: 5%; }
 
 .messagedetail {
+  position: relative;
   width: 50%;
   margin-left: 25%;
   margin-right: 25%; }
@@ -295,8 +298,11 @@ nav {
     color: #0c090a;
     text-decoration: none;
     transform: rotate(45deg); }
-  .messagedetail .pullright {
-    margin-left: 92.5%; }
+  .messagedetail .icons {
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    margin-top: -20px; }
 
 .messageform {
   width: 50%;
@@ -551,12 +557,9 @@ nav {
 .search {
   width: 100%; }
   .search input, .search button {
-    display: inline-block; }
-  .search input {
-    width: 87%; }
+    float: left; }
   .search button {
-    margin: 0;
-    width: 10%; }
+    text-align: center; }
 
 #cookie {
   font-size: 1vmax;

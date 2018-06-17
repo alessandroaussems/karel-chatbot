@@ -1,5 +1,6 @@
 .messagedetail
 {
+  position: relative;
   width: 50%;
   margin-left: 25%;
   margin-right: 25%;
@@ -42,8 +43,11 @@
     text-decoration: none;
     transform: rotate(45deg);
   }
-  .pullright
+  .icons
   {
-    margin-left: 92.5%;
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    margin-top: -20px;
   }
 }

@@ -5,8 +5,8 @@
         <a class="add" href="messages/create">n</a><br>
         <h3>Berichten</h3>
         <small>Dit zijn alle antwoorden die Karel-Chatbot kan geven! Klik op eentje om meer opties te krijgen!</small>
-        <form class="search">
-            <input type="text" placeholder="Typ hier om te zoeken op berichten" name="search" value="{{$search}}">
+        <form class="search clearfix">
+            <input type="text" placeholder="Zoek op berichten..." name="search" value="{{$search}}">
             <button type="submit">Zoek</button>
         </form>
         <p>{!! $error !!}</p>
