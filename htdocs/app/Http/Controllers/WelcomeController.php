@@ -51,6 +51,10 @@ class WelcomeController extends Controller
             }
             else
             {
+                if(Livechat::where("session_id",$_COOKIE["chatsession"])->first()!==null)
+                {
+                    setcookie("listen","true",time() + $this->length,"/");
+                }
                 date_default_timezone_set("Europe/Brussels");
                 $session->last_active=date("Y-m-d H:i:s");
                 $session->save();
