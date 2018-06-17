@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Keyword;
+use App\Livechat;
 use Illuminate\Http\Request;
 use App\Session;
 
@@ -69,7 +70,14 @@ class WelcomeController extends Controller
     {
         $sessionidfromurl=openssl_decrypt($request->input("sessionid"),"AES-128-ECB",$_ENV['APP_KEY']);
         setcookie("chatsession", $sessionidfromurl,time() + $this->length,"/");
-        setcookie("listen","true",time() + $this->length,"/");
+        if(Livechat::where("session_id",$sessionidfromurl)->first()!==null)
+        {
+            setcookie("listen","true",time() + $this->length,"/");
+        }
+        else
+        {
+            setcookie("listen","false",time() + $this->length,"/");
+        }
         setcookie("visits",2,time() + $this->length,"/");
         return redirect("/");
     }
