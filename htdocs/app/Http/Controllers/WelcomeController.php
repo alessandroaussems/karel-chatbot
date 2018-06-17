@@ -55,6 +55,10 @@ class WelcomeController extends Controller
                 {
                     setcookie("listen","true",time() + $this->length,"/");
                 }
+                else
+                {
+                    setcookie("listen","false",time() + $this->length,"/");
+                }
                 date_default_timezone_set("Europe/Brussels");
                 $session->last_active=date("Y-m-d H:i:s");
                 $session->save();
