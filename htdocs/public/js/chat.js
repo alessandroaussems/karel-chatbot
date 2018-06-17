@@ -39,7 +39,7 @@ function sendMessage(value,event)
             xmlhttp.onreadystatechange = function(){
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
                 {
-                    if(this.responseText=="<p> <p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! Om de sessie te beeïndigen kan je altijd 'Medewerker stop' ingeven.</p> </p>")
+                    if(this.responseText=="<p> <p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! Om de sessie te beeïndigen kan je altijd 'Medewerker stop' ingeven.</p> </p>" || this.responseText=="<p> <p>Oke! No hard feelings...Vanaf nu ben je aan het chatten met een medewerken van KdG. Stel je vragen maar! Om de sessie te beeïndigen kan je altijd 'Medewerker stop' ingeven. Er is momenteel <strong>GEEN</strong> medewerker online. Je kan je vraag alsnog stellen, ik stuur je dan een mailtje als je antwoord hebt!</p> </p>")
                     {
                         startPusherListening();
                     }
