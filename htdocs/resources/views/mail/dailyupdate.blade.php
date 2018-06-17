@@ -32,7 +32,7 @@
                                                 <li><p style="margin: 0;"><a style="color: inherit;" href="{{$notification["url"]}}">{{$notification["title"]}}</a></p></li>
                                             @endforeach
                                         </ul>
-                                        <p style="margin-top: 30px;">Surf snel naar <a href="https://karel-chatbot.be/session/{{$data->sessionid}}">karel-chatbot.be</a> om meer dingen te vragen!</p>
+                                        <p style="margin-top: 30px;">Surf snel naar <a href="https://karel-chatbot.be/session/?sessionid={{$data->sessionid}}">karel-chatbot.be</a> om meer dingen te vragen!</p>
                                         <p>Tot de volgende!<br>Karel-Chatbot<p>
                                     </td>
                                 </tr>
