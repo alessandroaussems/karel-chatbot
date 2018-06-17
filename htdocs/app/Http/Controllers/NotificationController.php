@@ -33,7 +33,7 @@ class NotificationController extends Controller
         ]);
         if($validator->fails())
         {
-            return Redirect::to('notifications/?sessionid='.$encrypted_id)
+            return Redirect::to('notifications/?sessionid='.rawurlencode($encrypted_id))
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -43,7 +43,7 @@ class NotificationController extends Controller
             $session->sendmail=Input::get('sendmail');
             $session->sendsms=Input::get('sendsms');
             $session->save();
-            return Redirect::to('notifications/?sessionid='.$encrypted_id)
+            return Redirect::to('notifications/?sessionid='.rawurlencode($encrypted_id))
                     ->withInput()
                     ->withSuccess('Je voorkeuren zijn geüpdatet');
         }
