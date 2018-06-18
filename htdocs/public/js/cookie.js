@@ -1,6 +1,6 @@
 function closeCookienotice()
 {
-    setCookie("cookienotice","true",2147483647);
+    setCookie("cookienotice","true",30);
     document.getElementById("cookie").classList.add("cookiegone");
 }
 function setCookie(cname, cvalue, exdays) {
