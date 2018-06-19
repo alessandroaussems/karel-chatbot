@@ -73,7 +73,7 @@ class MessageController extends Controller
         else
         {
             $message = new Message();
-            $message->answer = Input::get('answer');
+            $message->answer = preg_replace ("/<a([^>]+)>/is","<a$1 target=\"_blank\">",Input::get('answer'));
             $message->save();
             return Redirect::to('messages/'.$message->id);
         }
@@ -136,7 +136,7 @@ class MessageController extends Controller
         else
         {
             $message = Message::find($id);
-            $message->answer = Input::get('answer');
+            $message->answer = preg_replace ("/<a([^>]+)>/is","<a$1 target=\"_blank\">",Input::get('answer'));
             $message->save();
             return Redirect::to('messages/'.$id);
         }
