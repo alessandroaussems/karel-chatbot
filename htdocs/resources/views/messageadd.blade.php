@@ -25,6 +25,7 @@
             format: 'bbcode',
             emoticonsRoot: window.location.origin+"/img/"
         });
+        sceditor.instance(textarea).css('body { font-family: Verdana }');
     </script>
     <script src="{{asset('js/adminheartbleed.js')}}"></script>
 @endsection
