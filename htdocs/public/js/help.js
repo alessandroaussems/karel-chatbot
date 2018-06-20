@@ -1,4 +1,22 @@
-var helpitems=["Mijn meldingen","Het prikbord","Mijn naam","Mijn lessen","Afwezigen","De wifi","Printen","Fietsenstalling","Mijn punten","Wie is Alessandro Aussems","Medewerker","Help","Mijn campus","Mijn leerkrediet","Wat heb ik nodig?","Academiejaar","Verdienstelijkheid"]
+var helpitems=[
+                "Mijn meldingen",
+                "Wat heb ik nodig?",
+                "Mijn vakken",
+                "Wie is Alessandro Aussems",
+                "Afwezige docenten",
+                "Mijn campus",
+                "Fietsenstalling",
+                "Wachtwoord van de wifi",
+                "Afdrukken",
+                "Dagmenu",
+                "Mijn lessen",
+                "Mijn punten",
+                "Onderscheiding",
+                "Mijn leerkrediet",
+                "Prikbord",
+                "Medewerker",
+                "Help"
+                ];
 var next=document.getElementById("next");
 var previous=document.getElementById("previous");
 
