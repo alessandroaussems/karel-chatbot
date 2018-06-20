@@ -49,7 +49,11 @@
 <body class="route-{{ Route::currentRouteName() }}">
 @extends("partials.overlay")
 <nav class="clearfix">
+    @if(Auth::check() && Route::currentRouteName()!="home")
+    <a href="/admin" id="botlogo" title="Karel-Chatbot">
+    @else
     <a href="/" id="botlogo" title="Karel-Chatbot">
+    @endif
     <img src="{{asset('img/logo_white.png')}}" alt="Logo van Karel - Chatbot" title="Logo van Karel - Chatbot">
     </a>
     <h1>Karel - Chatbot</h1>
