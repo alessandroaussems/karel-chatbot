@@ -1,10 +1,8 @@
 # Karel-Chatbot<img src="https://github.com/alessandroaussems/karel-chatbot/blob/master/htdocs/public/img/logo_black.png" width="50" height="50">
-https://karel-chatbot.be
 
-[![Promo](_other/_PROMO/promo.gif)](https://karel-chatbot.be/promo)
+[![Promo](_other/_PROMO/promo.gif)]()
 
 ### About
-https://karel-chatbot.be/about
 
 This is a chatbot I created in my final year @ Karel De Grote Hogeschool, Multimedia Technology.
 
